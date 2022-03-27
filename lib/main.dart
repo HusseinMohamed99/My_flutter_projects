@@ -1,24 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_projects/messanger_screen.dart';
+import 'package:flutter_projects/List_screen.dart';
+
 
 void main() {
-  runApp(MyApp());
+  runApp( MyApp());
 }
 
-// Stateless
-// Stateful
-
-// class MyApp
-
 class MyApp extends StatelessWidget {
-// constructor
-// build
 
+  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home:messenger_screen(),
+      home: List_Screen(),
     );
   }
 }
+
