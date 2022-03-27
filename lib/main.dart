@@ -1,73 +1,55 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_projects/bloc_observer.dart';
-import 'package:flutter_projects/layout/cubit/cubit.dart';
-import 'package:flutter_projects/layout/cubit/states.dart';
-import 'package:flutter_projects/layout/news_app/news_layout.dart';
-import 'package:flutter_projects/shared/cubit/cubit.dart';
+import 'package:flutter_projects/home/cubit/cubit.dart';
+import 'package:flutter_projects/home/home_screen.dart';
+import 'package:flutter_projects/modules/on_boarding/on_boardingScreen.dart';
+import 'package:flutter_projects/shared/componnetns/constants.dart';
 import 'package:flutter_projects/shared/network/local/cache_helper.dart';
 import 'package:flutter_projects/shared/network/remote/dio_helper.dart';
 import 'package:flutter_projects/shared/styles/themes.dart';
 
 
-
-void main() async {
-
-  // بيتأكد ان كل حاجة خلصت و بعدين يرن
+void main() async{
   WidgetsFlutterBinding.ensureInitialized();
-
-  Bloc.observer = MyBlocObserver();
   DioHelper.init();
   await CacheHelper.init();
 
-  bool isDark = CacheHelper.getBoolean(key: 'isDark');
+  Widget widget;
 
-  runApp(MyApp(isDark: isDark));
+  bool onBoarding = CacheHelper.getData(key: 'onBoarding');
+
+  token = CacheHelper.getData(key: 'token');
+
+  if(onBoarding != null)
+  {
+    if(token != null) widget = HomeScreen();
+    else widget = onBoardingScreen();
+  }else
+  {
+    widget = onBoardingScreen();
+  }
+
+
+  runApp( Myapp(
+    startWidget : widget,
+  ));
 }
+class Myapp extends StatelessWidget {
+  final Widget startWidget;
 
-// Stateless
-// Stateful
-// class MyApp
-
-class MyApp extends StatelessWidget {
-
-  final bool isDark;
-
-
-  MyApp({this.isDark,});
-
-  // constructor
-  // build
+  Myapp({this.startWidget,});
 
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-      providers: [
-        BlocProvider(create:(context)=>  NewsCubit()
-          ..getsports()
-          ..getbusiness()
-          ..getscience(),),
-
-        BlocProvider(create:(context)=> ModeCubit()
-          ..changeAppMode(
-            fromShared: isDark,
-          ),
-        ),
+      providers :[
+        BlocProvider(create: (context)=> HomeCubit()..getHomeData()..getCategoriesData()..getFavoritesData()..getLoginData()),
       ],
-      child: BlocConsumer<ModeCubit,ModeStates>
-        (
-        listener: (context,state){},
-        builder: (context,state)
-        {
-          return MaterialApp(
-            debugShowCheckedModeBanner: false,
-            theme: lightTheme,
-            darkTheme: darkTheme,
-            themeMode:
-            ModeCubit.get(context).isDark? ThemeMode.dark : ThemeMode.light,
-            home:News_Screen(),
-          );
-        },
+
+      child: MaterialApp(
+        theme: lightTheme,
+        debugShowCheckedModeBanner: false,
+        home: startWidget,
       ),
     );
   }

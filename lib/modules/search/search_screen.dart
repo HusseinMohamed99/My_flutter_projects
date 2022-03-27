@@ -1,60 +1,70 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_projects/shared/components/componentes.dart';
-import 'package:flutter_projects/shared/cubit/states.dart';
-import '../../shared/cubit/cubit.dart';
+import 'package:flutter_projects/modules/search/cubit/cubit.dart';
+import 'package:flutter_projects/modules/search/cubit/state.dart';
+import 'package:flutter_projects/shared/componnetns/components.dart';
 
+class SearchScreen extends StatelessWidget {
 
-
-
-class SearchScreen extends StatelessWidget
-{
+  var formkey = GlobalKey<FormState>();
   var searchController = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<NewsCubit,NewsStates>(
-      listener:(context, state) {} ,
-      builder: (context,state)
-      {
-         var list = NewsCubit.get(context).search;
-        return Scaffold(
-          appBar: AppBar(),
-          body: Column(
-            children: [
-              Padding(
+    return BlocProvider(
+      create: (context)=> SearchCubit(),
+      child:BlocConsumer<SearchCubit,SearchStates>(
+        listener: (context, state){},
+        builder: (context, state)
+        {
+          return  Scaffold(
+            appBar: AppBar(),
+            body: Form(
+              key: formkey,
+              child: Padding(
                 padding: const EdgeInsets.all(20.0),
-                child: defaultTextFormField(
-
-                  controller: searchController,
-                  type: TextInputType.text,
-                  onChange: (value)
-                  {
-                    NewsCubit.get(context).getSearch(value);
-                  },
-                  validate: (String value)
-                  {
-                    if (value.isEmpty)
-                    {
-                      return 'search must not be empty';
-                    }return null ;
-                  },
-                  label: 'Search',
-                  prefix: Icons.search,
-
-
+                child: Column(
+                  children:
+                  [
+                    defaultTextFormField(
+                        controller: searchController,
+                        type: TextInputType.text,
+                        validate: (String value)
+                        {
+                          if(value.isEmpty)
+                          {
+                            return 'Enter Text to get Search';
+                          }return null;
+                        },
+                      onSubmit: (String text)
+                      {
+                        SearchCubit.get(context).Search(text);
+                      },
+                        label: 'Search',
+                        prefix: Icons.search,
+                    ),
+                    SizedBox(
+                    height: 20.0,
+                  ),
+                    if(state is SearchLoadingState)
+                      LinearProgressIndicator(),
+                    SizedBox(
+                      height: 20.0,
+                    ),
+                    if(state is SearchSuccessState)
+                    Expanded(
+                      child: ListView.separated(
+                        itemBuilder: (context, index) => BuildListProduct(SearchCubit.get(context).searchModel.data.data[index],context,isOldPrice: false) ,
+                        separatorBuilder: (context , index) => myDivider(),
+                        itemCount: SearchCubit.get(context).searchModel.data.data.length ,
+                      ),
+                    ),
+                  ],
                 ),
               ),
-              Expanded(child: articleBuilder(list, context, isSearch: true,),),
-
-            ],
-
-          ),
-
-
-        );
-      },
-
+            ),
+          );
+        },
+      ),
     );
   }
 }
