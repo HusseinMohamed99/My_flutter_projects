@@ -5,15 +5,9 @@ void main() {
   runApp(MyApp());
 }
 
-// Stateless
-// Stateful
-
-// class MyApp
-
 class MyApp extends StatelessWidget {
-  // constructor
-  // build
 
+  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
