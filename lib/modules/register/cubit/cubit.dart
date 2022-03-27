@@ -1,10 +1,10 @@
-import 'package:flutter/cupertino.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_projects/models/login.dart';
+import 'package:flutter_projects/models/user_model.dart';
 import 'package:flutter_projects/modules/register/cubit/state.dart';
-import 'package:flutter_projects/shared/network/end_points.dart';
-import 'package:flutter_projects/shared/network/remote/dio_helper.dart';
+
 
 
 
@@ -14,34 +14,64 @@ class RegisterCubit extends Cubit<RegisterStates>
 
   static RegisterCubit get(context) => BlocProvider.of(context);
 
-  LoginModel loginModel ;
+
 
   void UserRegister({
-  @required String email ,
-  @required String password ,
-  @required String name ,
-  @required String phone ,
-})
-  {
+    @required String email ,
+    @required String password ,
+    @required String name ,
+    @required String phone ,
+  }) {
     emit(RegisterLoadingState());
-    DioHelper.postData(
-        url: REGISTER,
-        data:
-    {
-      'name' : name,
-      'phone' : phone,
-      'email' : email,
-      'password' : password,
 
-    },).then((value)
+    FirebaseAuth.instance.createUserWithEmailAndPassword(
+      email: email,
+      password: password,
+    ).then((value)
     {
-      loginModel = LoginModel.fromJson(value.data);
+      UserCreate(
+        email: email,
+        name: name,
+        phone: phone,
+        uId: value.user.uid,
+      );
 
-      emit(RegisterSuccessState(loginModel));
+
     }).catchError((error)
     {
-      print(error.toString());
       emit(RegisterErrorState(error.toString()));
+    });
+  }
+
+  void UserCreate({
+    @required String email ,
+    @required String name ,
+    @required String phone ,
+    @required String uId ,
+  })
+  {
+    SocialUserModel model = SocialUserModel(
+      name: name,
+      email: email,
+      phone: phone,
+      uId: uId,
+      cover: 'https://img.freepik.com/free-photo/hand-touching-virtual-world-with-connection-network_50039-1565.jpg?w=996',
+      bio: 'Write you bio...',
+      image : 'https://img.freepik.com/free-psd/person-with-excited-expression-pointing-tshirt-mockup_23-2149106998.jpg?w=826',
+      isEmailVerified: false,
+    );
+
+    FirebaseFirestore.instance
+        .collection('users')
+        .doc(uId)
+        .set(model.toMap())
+        .then((value)
+    {
+      emit(CreateUserSuccessState());
+
+    }).catchError((error)
+    {
+      emit(CreateUserErrorState(error.toString()));
     });
   }
 
@@ -52,7 +82,7 @@ class RegisterCubit extends Cubit<RegisterStates>
   {
     isPassword = !isPassword;
     suffix = isPassword ? Icons.visibility_outlined : Icons.visibility_off_outlined;
-    
+
     emit(ChangePasswordRegisterState());
   }
 

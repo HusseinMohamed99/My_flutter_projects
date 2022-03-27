@@ -18,6 +18,7 @@ ThemeData darkTheme = ThemeData(
       color: Colors.white,
       fontSize: 20.0,
       fontWeight: FontWeight.bold,
+      fontFamily: 'Jannah',
     ),
     actionsIconTheme: IconThemeData(
       color: Colors.white,
@@ -31,69 +32,29 @@ ThemeData darkTheme = ThemeData(
     elevation: 25.0,
   ),
   textTheme: TextTheme(
+    subtitle1:  TextStyle(
+        fontSize: 16.0,
+        fontWeight: FontWeight.w600,
+        color: Colors.black,
+        height: 1.0
+    ),
     bodyText1: TextStyle(
       fontSize: 18.0,
       color: Colors.white,
+
     ),
-    bodyText2: TextStyle(
-      fontSize: 18.0,
-      color: Colors.white,
-    ),
-    caption: TextStyle(
-      fontSize: 18.0,
-      color: Colors.white,
-    ),
-    headline1: TextStyle(
-      fontSize: 18.0,
-      color: Colors.white,
-    ),
-    headline2: TextStyle(
-      fontSize: 18.0,
-      color: Colors.white,
-    ),
-    headline3: TextStyle(
-      fontSize: 18.0,
-      color: Colors.white,
-    ),
-    headline4: TextStyle(
-      fontSize: 18.0,
-      color: Colors.white,
-    ),
-    headline5: TextStyle(
-      fontSize: 18.0,
-      color: Colors.white,
-    ),
-    headline6: TextStyle(
-      fontSize: 18.0,
-      color: Colors.white,
-    ),
-    subtitle1: TextStyle(
-      fontSize: 18.0,
-      color: Colors.white,
-    ),
-    subtitle2: TextStyle(
-      fontSize: 18.0,
-      color: Colors.white,
-    ),
-    button: TextStyle(
-      fontSize: 18.0,
-      color: Colors.white,
-    ),
-    overline: TextStyle(
-      fontSize: 18.0,
-      color: Colors.white,
-    ),
+
   ),
   iconTheme: IconThemeData(
     color: Colors.white,
   ),
-  inputDecorationTheme: InputDecorationTheme(prefixIconColor: Colors.white),
+  inputDecorationTheme: InputDecorationTheme( ),
   fontFamily: 'Jannah',
 );
 
 ThemeData lightTheme = ThemeData(
   primarySwatch: defaultColor,
-  androidOverscrollIndicator: AndroidOverscrollIndicator.glow,
+  // androidOverscrollIndicator: AndroidOverscrollIndicator.glow,
   scaffoldBackgroundColor: Colors.white,
   appBarTheme: AppBarTheme(
     titleSpacing: 20.0,
@@ -107,6 +68,7 @@ ThemeData lightTheme = ThemeData(
       color: Colors.black,
       fontSize: 20.0,
       fontWeight: FontWeight.bold,
+      fontFamily: 'Jannah',
     ),
     iconTheme: IconThemeData(
       color: Colors.black,
@@ -127,45 +89,18 @@ ThemeData lightTheme = ThemeData(
   ),
   textTheme:   TextTheme(
     bodyText1: TextStyle(
-      fontSize: 16.0,
+      fontSize: 18.0,
       color: Colors.black,
+
     ),
-    bodyText2: TextStyle(
+     subtitle1:  TextStyle(
       fontSize: 14.0,
+      fontWeight: FontWeight.w600,
       color: Colors.black,
-    ),
-    caption:   TextStyle(
-      fontSize: 12.0,
-      color: Colors.black,
-    ),
-    headline1: TextStyle(
-      fontSize: 96.0,
-      color: Colors.black,
-    ),
-    headline2: TextStyle(
-      fontSize: 60.0,
-      color: Colors.black,
-    ),
-    headline3: TextStyle(
-      fontSize: 48.0,
-      color: Colors.black,
-    ),
-    headline4: TextStyle(
-      fontSize: 34.0,
-      color: Colors.black,
-    ),
-    headline5: TextStyle(
-      fontSize: 24.0,
-      color: Colors.black,
-    ),
-    headline6: TextStyle(
-      fontSize: 20.0,
-      color: Colors.black,
-    ),
-    overline:  TextStyle(
-      fontSize: 10.0,
-      color: Colors.black,
+      height: 1.3,
+
     ),
   ),
+
   fontFamily: 'Jannah',
 );

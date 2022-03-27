@@ -5,6 +5,7 @@ import 'package:flutter_projects/shared/componnetns/components.dart';
 import 'package:flutter_projects/shared/network/local/cache_helper.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
+
 class BoardingModel {
   final String image;
   final String title;
@@ -67,93 +68,93 @@ class _onBoardingScreenState extends State<onBoardingScreen> {
       appBar: AppBar(
         actions: [
           defaultTextButton(
-              function:submit,
-              text:'Skip',
+            function:submit,
+            text:'Skip',
           ),
         ],
       ),
-     body: Padding(
-       padding: const EdgeInsets.all(20.0),
-       child: Column(
-         crossAxisAlignment: CrossAxisAlignment.start,
-         children: [
-           Expanded(
-             child: PageView.builder(
-               physics: BouncingScrollPhysics(),
-               onPageChanged: (int index)
-               {
-                 if (index == boarding.length - 1 )
-                 {
-                   setState(() {
-                     isLast = true;
-                   });
-                 }else setState(() {
-                   isLast = false;
-                 });
-               },
-               controller: pageController,
-               itemBuilder: (context, index) => buildBoardingItem(boarding[index]),
-               itemCount: boarding.length,
-             ),
-           ),
-           SizedBox(
-             height: 50.0,
-           ),
-           Row(
-             children: [
-               SmoothPageIndicator(
-                   controller: pageController,
-                   count: boarding.length,
-                   effect: ExpandingDotsEffect(
-                     dotWidth: 10.0,
-                     dotHeight: 10.0,
-                     dotColor: Colors.grey,
-                     activeDotColor: Colors.blue,
-                     radius: 20.0,
-                     spacing: 6,
-                     expansionFactor: 4.0,
-                   ),
-               ),
-               Spacer(),
-               FloatingActionButton(
-                 child: Icon(
-                   Icons.play_arrow_outlined,
-                   size: 35.0,
-                 ),
-                 onPressed: ()
-                 {
-                   if (isLast)
-                   {
-                     submit();
-                   }else
-                   {
-                     pageController.nextPage(
-                       duration: Duration(
-                         milliseconds: 780,
-                       ),
-                       curve: Curves.bounceInOut,
-                     );
-                   }
-                 },
-               ),
-             ],
-           ),
-         ],
-       ),
-     ),
+      body: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              child: PageView.builder(
+                physics: BouncingScrollPhysics(),
+                onPageChanged: (int index)
+                {
+                  if (index == boarding.length - 1 )
+                  {
+                    setState(() {
+                      isLast = true;
+                    });
+                  }else setState(() {
+                    isLast = false;
+                  });
+                },
+                controller: pageController,
+                itemBuilder: (context, index) => buildBoardingItem(boarding[index]),
+                itemCount: boarding.length,
+              ),
+            ),
+            SizedBox(
+              height: 50.0,
+            ),
+            Row(
+              children: [
+                SmoothPageIndicator(
+                  controller: pageController,
+                  count: boarding.length,
+                  effect: ExpandingDotsEffect(
+                    dotWidth: 10.0,
+                    dotHeight: 10.0,
+                    dotColor: Colors.grey,
+                    activeDotColor: Colors.blue,
+                    radius: 20.0,
+                    spacing: 6,
+                    expansionFactor: 4.0,
+                  ),
+                ),
+                Spacer(),
+                FloatingActionButton(
+                  child: Icon(
+                    Icons.play_arrow_outlined,
+                    size: 35.0,
+                  ),
+                  onPressed: ()
+                  {
+                    if (isLast)
+                    {
+                      submit();
+                    }else
+                    {
+                      pageController.nextPage(
+                        duration: Duration(
+                          milliseconds: 780,
+                        ),
+                        curve: Curves.bounceInOut,
+                      );
+                    }
+                  },
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
 
 
 
     );
   }
-           
+
   Widget buildBoardingItem(BoardingModel model)=> Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
       Expanded(
         child: Image(
           image: AssetImage(
-              '${model.image}',
+            '${model.image}',
 
           ),
         ),

@@ -1,7 +1,9 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_projects/home/cubit/cubit.dart';
 import 'package:flutter_projects/home/home_screen.dart';
+import 'package:flutter_projects/modules/login/login_screen.dart';
 import 'package:flutter_projects/modules/on_boarding/on_boardingScreen.dart';
 import 'package:flutter_projects/shared/componnetns/constants.dart';
 import 'package:flutter_projects/shared/network/local/cache_helper.dart';
@@ -11,6 +13,34 @@ import 'package:flutter_projects/shared/styles/themes.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
+  // var token = FirebaseMessaging.instance.getToken();
+  // print(token);
+  // FirebaseMessaging.onMessage.listen((event)
+  // {
+  //   print('on message');
+  //   print(event.data.toString());
+  //
+  //   ShowToast(text: 'on Message', state: ToastStates.SUCCESS);
+  // });
+
+  // FirebaseMessaging.onBackgroundMessage.listen((event)
+  // {
+  //   print('on Message Opened App');
+  //   print(event.data.toString());
+  //
+  //   ShowToast(text: 'on Message Opened App', state: ToastStates.SUCCESS);
+  // });
+
+  await Firebase.initializeApp();
+
+  // FirebaseMessaging.onMessageOpenedApp.listen((event)
+  // {
+  //   print('on Message Opened App');
+  //   print(event.data.toString());
+  //
+  //   ShowToast(text: 'on Message Opened App', state: ToastStates.SUCCESS);
+  // });
+
   DioHelper.init();
   await CacheHelper.init();
 
@@ -18,34 +48,38 @@ void main() async{
 
   bool onBoarding = CacheHelper.getData(key: 'onBoarding');
 
-  token = CacheHelper.getData(key: 'token');
+  uId = CacheHelper.getData(key: 'uId');
 
-  if(onBoarding != null)
+
+  if(uId != null)
   {
-    if(token != null) widget = HomeScreen();
-    else widget = onBoardingScreen();
+    widget = HomeScreen();
   }else
   {
     widget = onBoardingScreen();
   }
 
 
-  runApp( Myapp(
+  runApp( MyApp(
     startWidget : widget,
   ));
 }
-class Myapp extends StatelessWidget {
+class MyApp extends StatelessWidget {
   final Widget startWidget;
 
-  Myapp({this.startWidget,});
+  MyApp({this.startWidget,});
 
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-      providers :[
-        BlocProvider(create: (context)=> HomeCubit()..getHomeData()..getCategoriesData()..getFavoritesData()..getLoginData()),
-      ],
+      providers: [
+        BlocProvider(
+            create: (BuildContext context)=>SocialCubit()
+              ..getUserData()
+              ..getPosts()
 
+        ),
+      ],
       child: MaterialApp(
         theme: lightTheme,
         debugShowCheckedModeBanner: false,

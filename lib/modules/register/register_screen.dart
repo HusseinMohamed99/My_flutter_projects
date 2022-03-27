@@ -5,8 +5,6 @@ import 'package:flutter_projects/home/home_screen.dart';
 import 'package:flutter_projects/modules/register/cubit/cubit.dart';
 import 'package:flutter_projects/modules/register/cubit/state.dart';
 import 'package:flutter_projects/shared/componnetns/components.dart';
-import 'package:flutter_projects/shared/componnetns/constants.dart';
-import 'package:flutter_projects/shared/network/local/cache_helper.dart';
 
 
 class RegisterScreen extends StatelessWidget {
@@ -20,29 +18,15 @@ class RegisterScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-    create: (context)=> RegisterCubit(),
+      create: (context)=> RegisterCubit(),
       child: BlocConsumer<RegisterCubit,RegisterStates>(
         listener: (context,state)
-    {
-      if(state is RegisterSuccessState) {
-        if (state.loginModel.status) {
-          print(state.loginModel.message);
-          print(state.loginModel.data.token);
-
-          CacheHelper.saveData(key: 'token', value: state.loginModel.data.token)
-              .then((value) {
-            token = state.loginModel.data.token;
+        {
+          if(state is CreateUserSuccessState)
+          {
             navigateAndFinish(context, HomeScreen());
           }
-          );
-        } else {
-          ShowToast(
-            text: state.loginModel.message,
-            state: ToastStates.ERROR,);
-          print(state.loginModel.message);
-        }
-      }
-    },
+        },
         builder: (context,state){
           return Scaffold(
             appBar: AppBar(),
@@ -59,7 +43,7 @@ class RegisterScreen extends StatelessWidget {
                           width: 300.0,
                           height: 200.0,
                           image: AssetImage(
-                              'assets/images/Check.png',
+                            'assets/images/Check.png',
                           ),
                         ),
                         Text(
@@ -159,6 +143,7 @@ class RegisterScreen extends StatelessWidget {
                                   password: passwordController.text,
                                   name: nameController.text,
                                   phone: phoneController.text,
+
                                 );
                               }
                             },

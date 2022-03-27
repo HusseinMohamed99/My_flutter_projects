@@ -1,122 +1,133 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_projects/home/cubit/cubit.dart';
 import 'package:flutter_projects/modules/on_boarding/on_boardingScreen.dart';
 import 'package:flutter_projects/shared/network/local/cache_helper.dart';
-import 'package:flutter_projects/shared/styles/colors.dart';
+import 'package:flutter_projects/shared/styles/icon_broken.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-
 
 
 Widget defaultButton({
   double width = double.infinity,
-  Color background = Colors.blue,
+  double height = 40.0,
+ // Color background = Colors.blue,
   bool isUpperCase = true,
   double radius = 3.0,
   @required Function function,
   @required String text,
   Function onTap,
-}) =>     Container(
-
-  width: width,
-  height: 50.0,
-  child: MaterialButton(
-    onPressed: function,
-    child: Text(
-      isUpperCase ? text.toUpperCase() : text,
-      style: const TextStyle(
-        color: Colors.white,
-        fontSize: 20.0,
+}) =>
+    Container(
+      width: width,
+      height: height,
+      child: MaterialButton(
+        onPressed: () {
+          function();
+        },
+        child: Text(
+          isUpperCase ? text.toUpperCase() : text,
+          style: const TextStyle(
+            color: Colors.white,
+            fontSize: 20.0,
+          ),
+        ),
       ),
-    ),
-  ),
-  decoration: BoxDecoration(
-    borderRadius: BorderRadius.circular(
-      radius,
-    ),
-    color: background,
-  ),
-);
-
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(
+          radius,
+        ),
+        gradient: LinearGradient(
+          colors: [
+            Colors.blue,
+            Colors.red,
+          ],
+        ),
+      //  color: background,
+      ),
+    );
 
 Widget defaultTextButton({
   @required Function function,
   @required String text,
-}) => TextButton(
-  onPressed: function,
-  child: Text(text.toUpperCase()),
-);
+}) =>
+    TextButton(
+      onPressed: () {
+        function();
+      },
+      child: Text(text.toUpperCase()),
+    );
 
 Widget defaultTextFormField({
-
-@required TextEditingController controller,
-@required TextInputType type,
-Function onSubmit,
-Function onChange,
-Function onTap,
-@required  Function  validate,
-@required String label,
-@required IconData prefix,
-bool isPassword = false,
-bool isClickable = true,
-  IconData  suffix,
+  @required TextEditingController controller,
+  @required TextInputType type,
+  Function onSubmit,
+  Function onChange,
+  Function onTap,
+  @required Function validate,
+  @required String label,
+  @required IconData prefix,
+  bool isPassword = false,
+  bool isClickable = true,
+  IconData suffix,
   Function suffixPressed,
-  InputDecoration decoration ,
-
-}) => TextFormField(
-  controller: controller,
-  keyboardType: type,
-  obscureText: isPassword,
-  onFieldSubmitted: onSubmit,
-  onChanged: onChange,
-  enabled: isClickable,
-  onTap: onTap,
-  validator:validate,
-  decoration: InputDecoration(
-
-    labelText : label ,
-    prefixIcon: Icon(prefix),
-    suffixIcon: suffix != null ? IconButton(
-      onPressed: suffixPressed,
-      icon: Icon(
-        suffix,
+  InputDecoration decoration,
+}) =>
+    TextFormField(
+      controller: controller,
+      keyboardType: type,
+      obscureText: isPassword,
+      onFieldSubmitted: (submit) {
+        onSubmit(submit);
+      },
+      onChanged: (change) {
+        onChange(change);
+      },
+      enabled: isClickable,
+      onTap: () {
+        onTap();
+      },
+      validator: (validation) {
+        validate(validation);
+      },
+      decoration: InputDecoration(
+        labelText: label,
+        prefixIcon: Icon(prefix),
+        suffixIcon: suffix != null
+            ? IconButton(
+                onPressed: () {
+                  suffixPressed();
+                },
+                icon: Icon(
+                  suffix,
+                ),
+              )
+            : null,
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(
+            10.0,
+          ),
+        ),
       ),
-    ) : null,
-    border: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(
-          10.0,
+    );
+
+Widget myDivider() => Container(
+      width: double.infinity,
+      height: 1.0,
+      color: Colors.grey[300],
+    );
+
+void navigateTo(context, Widget) => Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => Widget,
       ),
-    ),
-  ),
+    );
 
-);
-
-Widget myDivider () => Padding(
-  padding: const EdgeInsets.all(10.0),
-  child: Container(
-    width: double.infinity,
-    height: 1.0,
-    color: Colors.grey[300],
-  ),
-);
-
-void navigateTo(context,Widget)=>  Navigator.push(
-  context,
-  MaterialPageRoute(
-    builder: (context) => Widget,
-  ),
-);
-
-void navigateAndFinish(context,Widget)=>  Navigator.pushAndRemoveUntil(
-
-    context,
-    MaterialPageRoute(
-      builder: (context) => Widget,
-    ),
-        (route)
-    {
+void navigateAndFinish(context, Widget) => Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(
+          builder: (context) => Widget,
+        ), (route) {
       return false;
-    }
-);
+    });
 
 void logOut(context) {
   CacheHelper.removeData(
@@ -128,12 +139,10 @@ void logOut(context) {
   });
 }
 
-
-
-void ShowToast ({
+void ShowToast({
   @required String text,
   @required ToastStates state,
-})=>
+}) =>
     Fluttertoast.showToast(
       msg: text,
       toastLength: Toast.LENGTH_LONG,
@@ -146,13 +155,11 @@ void ShowToast ({
 
 // enum  كذا اختيار من حاجة
 
-enum ToastStates {SUCCESS , ERROR , WARNING}
+enum ToastStates { SUCCESS, ERROR, WARNING }
 
-Color chooseToastColor(ToastStates state)
-{
+Color chooseToastColor(ToastStates state) {
   Color color;
-  switch (state)
-  {
+  switch (state) {
     case ToastStates.SUCCESS:
       color = Colors.green;
       break;
@@ -168,98 +175,22 @@ Color chooseToastColor(ToastStates state)
   return color;
 }
 
-
-Widget BuildListProduct ( model , context , {isOldPrice = true,})=>  Padding(
-  padding: const EdgeInsets.all(20.0),
-  child: Container(
-    height: 120.0,
-    child: Row(
-      children:
-      [
-        Stack(
-          alignment: AlignmentDirectional.bottomEnd,
-          children: [
-            Image(
-              image: NetworkImage (model.image,),
-              width: 120.0,
-              height: 120.0,
-            ),
-            if(model.discount !=0 && isOldPrice)
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: 5.0,),
-                color: Colors.red,
-                child: Text(
-                  'OFFERS',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 10.0,
-                  ),
-                ),
-              ),
-          ],
+ defaultAppBar({
+  @required BuildContext context,
+ @required String title,
+  List<Widget> actions,
+}) =>
+    AppBar(
+      leading: IconButton(
+        onPressed: ()
+        {
+          Navigator.pop(context);
+        },
+        icon: Icon(
+          IconBroken.Arrow___Left_2,
         ),
-        SizedBox(
-          width: 20.0,
-        ),
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-
-            children: [
-              Text(
-                model.name,
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-                style: TextStyle(height: 1.5),
-              ),
-              Spacer(),
-              Row(
-                children: [
-                  Text(
-                    '${model.price.round()}',
-                    style: TextStyle(
-                      color: defaultColor,
-                    ),
-                  ),
-                  SizedBox(
-                    width: 10.0,
-                  ),
-                  if(model.discount != 0 && isOldPrice)
-                    Text(
-                      '${model.oldPrice.round()}',
-                      style: TextStyle(
-                        color: Colors.grey,
-                        decoration: TextDecoration.lineThrough,
-                      ),
-                    ),
-                  Spacer(),
-                  CircleAvatar(
-                    backgroundColor: HomeCubit.get(context).favorites[model.id] ? Colors.red : Colors.grey[300],
-                    child: IconButton(
-                      onPressed: ()
-                      {
-                        HomeCubit.get(context).ChangeFavorites(model.id);
-                      },
-                      icon: Icon(
-                        Icons.star_border,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ),
-      ],
-    ),
-  ),
-);
-
-
-
-
-
-
-
-
+      ),
+      titleSpacing: 5.0,
+      title: Text(title),
+      actions: actions,
+    );

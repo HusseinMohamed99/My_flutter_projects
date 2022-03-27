@@ -1,60 +1,128 @@
+abstract class SocialStates{}
+
+class SocialInitialState extends SocialStates{}
 
 
-import 'package:flutter_projects/models/favorite.dart';
-import 'package:flutter_projects/models/login.dart';
+//---------------------  Get User  --------------------------------//
+class SocialLoadingState extends SocialStates{}
 
-abstract class HomeStates{}
+class SocialGetUserSuccessState extends SocialStates{}
 
-class HomeInitialStates extends HomeStates{}
+class SocialGetUserErrorState extends SocialStates{
 
-class ChangeBottomNavBar extends HomeStates{}
+  final String error;
 
-class HomeLoadingStates extends HomeStates{}
-
-class HomeSuccessStates extends HomeStates{}
-
-class HomeErrorStates extends HomeStates{}
-
-class CategoriesSuccessStates extends HomeStates{}
-
-class CategoriesErrorStates extends HomeStates{}
-
-class ChangeFavoritesSuccessStates extends HomeStates
-{
-  final  ChangeFavoritesModel model;
-
-  ChangeFavoritesSuccessStates(this.model);
-
+  SocialGetUserErrorState(this.error);
 }
 
-class ChangeFavoritesStates extends HomeStates{}
+//---------------------  Get All User  --------------------------------//
+class SocialGetAllUsersLoadingState extends SocialStates{}
 
-class ChangeFavoritesErrorStates extends HomeStates{}
+class SocialGetAllUsersSuccessState extends SocialStates{}
 
-class FavoritesLoadingStates extends HomeStates{}
+class SocialGetAllUsersErrorState extends SocialStates{
 
-class GetFavoritesSuccessStates extends HomeStates{}
+  final String error;
 
-class GetFavoritesErrorStates extends HomeStates{}
-
-class LoginUserLoadingStates extends HomeStates{}
-
-class LoginUserSuccessStates extends HomeStates
-{
-  final LoginModel loginModel;
-
-  LoginUserSuccessStates(this.loginModel);
+  SocialGetAllUsersErrorState(this.error);
 }
 
-class LoginUserErrorStates extends HomeStates{}
 
-class UpdateUserLoadingStates extends HomeStates{}
 
-class UpdateUserSuccessStates extends HomeStates
-{
-  final LoginModel loginModel;
+//---------------------  Bottom NavBar  --------------------------------//
+class SocialBottomNavBarState extends SocialStates{}
 
-  UpdateUserSuccessStates(this.loginModel);
+
+//---------------------  Add Post  --------------------------------//
+class SocialAddNewPostState extends SocialStates{}
+
+
+//---------------------  Get Profile Image  --------------------------------//
+class SocialProfileImageSuccessState extends SocialStates{}
+
+class SocialProfileImageErrorState extends SocialStates{}
+
+
+//---------------------  Get Cover Image  --------------------------------//
+class SocialCoverImageSuccessState extends SocialStates{}
+
+class SocialCoverImageErrorState extends SocialStates{}
+
+
+
+//---------------------  Upload Profile Image  --------------------------------//
+class SocialUploadProfileImageSuccessState extends SocialStates{}
+
+class SocialUploadProfileImageErrorState extends SocialStates{}
+
+
+
+//---------------------  Upload Cover Image  --------------------------------//
+class SocialUploadCoverImageSuccessState extends SocialStates{}
+
+class SocialUploadCoverImageErrorState extends SocialStates{}
+
+
+
+//---------------------  User Update  --------------------------------//
+class SocialUserUpdateLoadingState extends SocialStates{}
+
+class SocialUserUpdateSuccessState extends SocialStates{}
+
+class SocialUserUpdateErrorState extends SocialStates{}
+
+
+//---------------------  Create Post  --------------------------------//
+class SocialCreatePostLoadingState extends SocialStates{}
+
+class SocialCreatePostSuccessState extends SocialStates{}
+
+class SocialCreatePostErrorState extends SocialStates{}
+
+class SocialPostImageSuccessState extends SocialStates{}
+
+class SocialPostImageErrorState extends SocialStates{}
+
+class SocialRemovePostImageState extends SocialStates{}
+
+
+//---------------------  Get Posts --------------------------------//
+class SocialPostLoadingState extends SocialStates{}
+
+class SocialGetPostSuccessState extends SocialStates{}
+
+class SocialGetPostErrorState extends SocialStates{
+
+  final String error;
+
+  SocialGetPostErrorState(this.error);
 }
 
-class UpdateUserErrorStates extends HomeStates{}
+//---------------------  Like Posts --------------------------------//
+class SocialLikePostSuccessState extends SocialStates{}
+
+class SocialLikePostErrorState extends SocialStates{
+
+  final String error;
+
+  SocialLikePostErrorState(this.error);
+}
+
+//---------------------  comments Posts --------------------------------//
+class SocialCommentsPostSuccessState extends SocialStates{}
+
+class SocialCommentsPostErrorState extends SocialStates{
+
+  final String error;
+
+  SocialCommentsPostErrorState(this.error);
+}
+
+//---------------------  Send & Get Messages in Chats --------------------------------//
+class SocialSendMessagesSuccessState extends SocialStates{}
+
+class SocialSendMessagesErrorState extends SocialStates{}
+
+class SocialGetMessagesSuccessState extends SocialStates{}
+
+class SocialGetMessagesErrorState extends SocialStates{}
