@@ -1,24 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_projects/modules/BMI_Screen.dart';
+import 'package:flutter_projects/counter_screen.dart';
 
 void main() {
   runApp(MyApp());
 }
 
-// Stateless
-// Stateful
-
-// class MyApp
-
 class MyApp extends StatelessWidget {
-// constructor
-// build
 
+
+  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home:BMI_Screen(),
+
+      home:Counter_Screen() ,
     );
   }
 }
