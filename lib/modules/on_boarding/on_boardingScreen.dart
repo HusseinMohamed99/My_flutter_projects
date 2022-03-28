@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_projects/modules/login/login_screen.dart';
 import 'package:flutter_projects/shared/componnetns/components.dart';
 import 'package:flutter_projects/shared/network/local/cache_helper.dart';
+import 'package:flutter_projects/shared/styles/icon_broken.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 
@@ -31,19 +32,19 @@ class _onBoardingScreenState extends State<onBoardingScreen> {
 
   List <BoardingModel> boarding = [
     BoardingModel(
-      image: 'assets/images/on_boarding1.png',
+      image: 'assets/images/1.png',
       title: 'You aren\'t alone in this',
       body: 'We are here for you ',
     ),
     BoardingModel(
-      image: 'assets/images/Olline.png',
-      title: 'You aren\'t alone in this',
-      body: 'We are here for you ',
+      image: 'assets/images/2.png',
+      title:'Communicate with friends',
+      body: 'Have a nice time',
     ),
     BoardingModel(
-      image: 'assets/images/shop2.png',
-      title: 'You aren\'t alone in this',
-      body: 'We are here for you ',
+      image: 'assets/images/3.png',
+      title: 'Stay Connected',
+      body: 'Now you Sign',
     ),
   ];
   bool isLast = false;
@@ -118,7 +119,7 @@ class _onBoardingScreenState extends State<onBoardingScreen> {
                 Spacer(),
                 FloatingActionButton(
                   child: Icon(
-                    Icons.play_arrow_outlined,
+                    Icons.navigate_next_sharp,
                     size: 35.0,
                   ),
                   onPressed: ()

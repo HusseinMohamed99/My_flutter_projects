@@ -5,6 +5,8 @@ import 'package:flutter_projects/home/home_screen.dart';
 import 'package:flutter_projects/modules/register/cubit/cubit.dart';
 import 'package:flutter_projects/modules/register/cubit/state.dart';
 import 'package:flutter_projects/shared/componnetns/components.dart';
+import 'package:flutter_projects/shared/styles/icon_broken.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 
 class RegisterScreen extends StatelessWidget {
@@ -151,6 +153,53 @@ class RegisterScreen extends StatelessWidget {
                             radius: 30.0,
                           ),
                           fallback:(context)=> const Center(child: CircularProgressIndicator()),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(20.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              InkWell(
+                                child: CircleAvatar(
+                                  child: SvgPicture.asset(
+                                    'assets/icon/google.svg',
+                                    height: 100.0,
+                                    width: 100.0,
+                                    allowDrawingOutsideViewBox: true,
+                                  ),
+                                  radius: 30.0,
+                                  backgroundColor: Colors.white24,
+                                ),
+                                onTap: (){},
+                              ),
+                              InkWell(
+                                child: CircleAvatar(
+                                  child: SvgPicture.asset(
+                                    'assets/icon/facebook.svg',
+                                    height: 100.0,
+                                    width: 100.0,
+                                    allowDrawingOutsideViewBox: true,
+                                  ),
+                                  radius: 30.0,
+                                  backgroundColor: Colors.white24,
+                                ),
+                                onTap: (){},
+                              ),
+                              InkWell(
+                                child: CircleAvatar(
+                                  child: SvgPicture.asset(
+                                    'assets/icon/twitter.svg',
+                                    height: 100.0,
+                                    width: 100.0,
+                                    allowDrawingOutsideViewBox: true,
+                                  ),
+                                  radius: 30.0,
+                                  backgroundColor: Colors.white24,
+                                ),
+                                onTap: () {},
+                              ),
+                            ],
+                          ),
                         ),
                       ],
                     ),

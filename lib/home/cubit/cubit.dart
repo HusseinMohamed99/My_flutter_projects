@@ -17,12 +17,10 @@ import 'package:image_picker/image_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 
 
-
 class SocialCubit extends Cubit<SocialStates> {
   SocialCubit() : super(SocialInitialState());
 
   static SocialCubit get(context) => BlocProvider.of(context);
-
 
   //---------------------  Get User Data --------------------------------//
   SocialUserModel userModel;
@@ -42,7 +40,6 @@ class SocialCubit extends Cubit<SocialStates> {
       emit(SocialGetUserErrorState(error.toString()));
     });
   }
-
 
   //---------------------  Create List Item >> Bottom Navigation Bar IN Home_Screen  --------------------------------//
   int crruntIndex = 0;
@@ -64,7 +61,6 @@ class SocialCubit extends Cubit<SocialStates> {
     'Users',
     'Settings',
   ];
-
 
   //---------------------  Change Bottom Navigation Bar IN Home_Screen  --------------------------------//
   void changeBottomNav(int index) {
