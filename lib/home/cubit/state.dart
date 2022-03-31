@@ -127,20 +127,3 @@ class SocialGetMessagesSuccessState extends SocialStates{}
 
 class SocialGetMessagesErrorState extends SocialStates{}
 
-///GetComments State
-class GetCommentsSuccessState extends SocialStates {}
-///End of GetComments State
-class CommentPostSuccessState extends SocialStates {}
-class PlusCommentSuccessState extends SocialStates {}
-class CommentPostErrorState extends SocialStates{}
-///End of CommentPost State
-///GetCommentPic State
-class GetCommentPicSuccessState extends SocialStates {}
-class GetCommentPicErrorState extends SocialStates{}
-class DeleteCommentPicState extends SocialStates {}
-///End of GetCommentPic State
-///UploadCommentPic State
-class UploadCommentPicLoadingState extends SocialStates{}
-class UploadCommentPicSuccessState extends SocialStates {}
-class UploadCommentPicErrorState extends SocialStates{}
-///End of UploadCommentPic State

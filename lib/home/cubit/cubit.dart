@@ -4,7 +4,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_projects/home/cubit/state.dart';
-import 'package:flutter_projects/models/comment_model.dart';
 import 'package:flutter_projects/models/message_model.dart';
 import 'package:flutter_projects/models/post_model.dart';
 import 'package:flutter_projects/models/user_model.dart';
@@ -397,25 +396,6 @@ class SocialCubit extends Cubit<SocialStates> {
     });
   }
 
-  //---------------------  Comments Post  --------------------------------//
-
-
-  void CommentPost(String postId) {
-    FirebaseFirestore.instance
-        .collection('posts')
-        .doc(postId)
-        .collection('comments')
-        .doc(userModel.uId)
-        .get()
-        .then((value) {
-      emit(SocialLikePostSuccessState());
-    })
-        .catchError((error) {
-      emit(SocialLikePostErrorState(error.toString()));
-    });
-  }
-
-
 
 //---------------------  Get All Users   --------------------------------//
   List<SocialUserModel> users =[];
@@ -511,112 +491,6 @@ class SocialCubit extends Cubit<SocialStates> {
         messages.add(MessageModel.fromJson(element.data()));
       });
       emit(SocialGetMessagesSuccessState());
-    });
-  }
-
-
-  File commentImage;
-  int commentImageWidth;
-  int commentImageHeight;
-  Future getCommentImage() async {
-    emit(SocialPostLoadingState());
-    final pickedFile = await picker?.pickImage(source: ImageSource.gallery);
-    print('Selecting Image...');
-    if (pickedFile != null) {
-      commentImage = File(pickedFile.path);
-      print('Image Selected');
-      emit(GetCommentPicSuccessState());
-    } else {
-      print('No Image Selected');
-      emit(GetCommentPicErrorState());
-    }
-  }
-
-  void popCommentImage() {
-    commentImage = null;
-    emit(DeleteCommentPicState());
-  }
-
-  String commentImageURL;
-  bool isCommentImageLoading = false;
-
-  void uploadCommentPic({
-    @required String postId,
-    String commentText,
-    @required String time,
-  }) {
-    isCommentImageLoading = true;
-    emit(UploadCommentPicLoadingState());
-    firebase_storage.FirebaseStorage.instance
-        .ref()
-        .child(Uri.file(commentImage.path).pathSegments.last)
-        .putFile(commentImage)
-        .then((value) {
-      value.ref.getDownloadURL().then((value) {
-        commentImageURL = value;
-        commentPost(
-            postId: postId,
-            comment: commentText,
-            commentImage: {
-              'width' : commentImageWidth,
-              'image' : value,
-              'height': commentImageHeight
-            },
-            time: time);
-        emit(UploadCommentPicSuccessState());
-        isCommentImageLoading = false;
-      }).catchError((error) {
-        print('Error While getDownload CommentImageURL ' + error);
-        emit(UploadCommentPicErrorState());
-      });
-    }).catchError((error) {
-      print('Error While putting the File ' + error);
-      emit(UploadCommentPicErrorState());
-    });
-  }
-
-  void commentPost({
-    @required String postId,
-    String comment,
-    Map<String,dynamic> commentImage,
-    @required String time,
-  }) {
-    CommentModel commentModel = CommentModel(
-        name: userModel.name,
-        image: userModel.image,
-        commentText: comment,
-        commentImage: commentImage,
-        time: time,
-        dateTime: FieldValue.serverTimestamp());
-    FirebaseFirestore.instance
-        .collection('posts')
-        .doc(postId)
-        .collection('comments')
-        .add(commentModel.toMap())
-        .then((value) {
-      getPosts();
-      emit(CommentPostSuccessState());
-    }).catchError((error) {
-      print(error.toString());
-      emit(CommentPostErrorState());
-    });
-  }
-
-  List<CommentModel> comments = [];
-
-  void getComments(postId) {
-    FirebaseFirestore.instance
-        .collection('posts')
-        .doc(postId)
-        .collection('comments')
-        .orderBy('dateTime')
-        .snapshots()
-        .listen((event) {
-      comments.clear();
-      event.docs.forEach((element) {
-        comments.add(CommentModel.fromJson(element.data()));
-        emit(GetCommentsSuccessState());
-      });
     });
   }
 
