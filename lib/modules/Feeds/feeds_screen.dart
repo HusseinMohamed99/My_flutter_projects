@@ -24,33 +24,33 @@ class FeedsScreen extends StatelessWidget {
             physics: BouncingScrollPhysics(),
             child: Column(
               children: [
-                Card(
-                  margin: const EdgeInsets.all(9.0),
-                  clipBehavior: Clip.antiAliasWithSaveLayer,
-                  elevation: 20.0,
-                  child: Stack(
-                    alignment: AlignmentDirectional.bottomEnd,
-                    children: [
-                      const Image(
-                        image: NetworkImage(
-                            'https://img.freepik.com/free-photo/pyramids-with-beautiful-sky-giza-cairo-egypt_87394-2.jpg?w=740'),
-                        height: 200.0,
-                        width: double.infinity,
-                        fit: BoxFit.cover,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(
-                          'Communicate with friends',
-                          style: Theme.of(context)
-                              .textTheme
-                              .subtitle1
-                              .copyWith(color: Colors.white),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+                // Card(
+                //   margin: const EdgeInsets.all(9.0),
+                //   clipBehavior: Clip.antiAliasWithSaveLayer,
+                //   elevation: 20.0,
+                //   child: Stack(
+                //     alignment: AlignmentDirectional.bottomEnd,
+                //     children: [
+                //       const Image(
+                //         image: NetworkImage(
+                //             'https://img.freepik.com/free-photo/pyramids-with-beautiful-sky-giza-cairo-egypt_87394-2.jpg?w=740'),
+                //         height: 200.0,
+                //         width: double.infinity,
+                //         fit: BoxFit.cover,
+                //       ),
+                //       Padding(
+                //         padding: const EdgeInsets.all(8.0),
+                //         child: Text(
+                //           'Communicate with friends',
+                //           style: Theme.of(context)
+                //               .textTheme
+                //               .subtitle1
+                //               .copyWith(color: Colors.white),
+                //         ),
+                //       ),
+                //     ],
+                //   ),
+                // ),
                 ListView.separated(
                   shrinkWrap: true,
                   physics: NeverScrollableScrollPhysics(),

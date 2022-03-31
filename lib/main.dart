@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_projects/home/cubit/cubit.dart';
 import 'package:flutter_projects/home/home_screen.dart';
+import 'package:flutter_projects/modules/comment/commet_screen.dart';
 import 'package:flutter_projects/modules/login/login_screen.dart';
 import 'package:flutter_projects/modules/on_boarding/on_boardingScreen.dart';
 import 'package:flutter_projects/shared/componnetns/constants.dart';
@@ -75,8 +76,9 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(
             create: (BuildContext context)=>SocialCubit()
+            ..getPosts()
               ..getUserData()
-              ..getPosts()
+
 
         ),
       ],
