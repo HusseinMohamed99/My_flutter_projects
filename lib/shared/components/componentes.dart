@@ -68,7 +68,7 @@ Widget defaultTextFormField({
     labelStyle: TextStyle(color: Colors.white),
     prefixIcon: Icon(
       prefix,
-      color: Colors.white,
+      color: Colors.black,
     ),
     suffixIcon: suffix != null ? IconButton(
       onPressed: suffixPressed,

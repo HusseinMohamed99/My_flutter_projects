@@ -5,8 +5,6 @@ import 'package:flutter_projects/shared/cubit/states.dart';
 import '../../shared/cubit/cubit.dart';
 
 
-
-
 class SearchScreen extends StatelessWidget
 {
   var searchController = TextEditingController();
@@ -24,25 +22,34 @@ class SearchScreen extends StatelessWidget
             children: [
               Padding(
                 padding: const EdgeInsets.all(20.0),
-                child: defaultTextFormField(
-
-                  controller: searchController,
-                  type: TextInputType.text,
-                  onChange: (value)
-                  {
-                    NewsCubit.get(context).getSearch(value);
-                  },
-                  validate: (String value)
-                  {
-                    if (value.isEmpty)
+                child: Card(
+                  child: TextFormField(
+                    controller: searchController,
+                    keyboardType: TextInputType.text,
+                    onChanged: (value)
                     {
-                      return 'search must not be empty';
-                    }return null ;
-                  },
-                  label: 'Search',
-                  prefix: Icons.search,
+                      NewsCubit.get(context).getSearch(value);
+                    },
+                    validator: (String value)
+                    {
+                      if (value.isEmpty)
+                      {
+                        return 'search must not be empty';
+                      }return null ;
+                    },
+                    decoration: InputDecoration(
+                      prefixIcon: Icon(
+                          Icons.search,
+                        color: Colors.grey,
+                      ),
+                      label: Text(
+                        'Search',
+                      ),
+                    ),
 
 
+
+                  ),
                 ),
               ),
               Expanded(child: articleBuilder(list, context, isSearch: true,),),
