@@ -1,11 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_projects/commpnents.dart';
-import 'package:flutter_projects/cubit.dart';
+import 'package:flutter_projects/register/register_screen.dart';
+import 'package:flutter_projects/shared/commpnents.dart';
+import 'package:flutter_projects/login/cubit/cubit.dart';
 import 'package:flutter_projects/login_with/google.dart';
 import 'package:flutter_projects/shared/network/local/cache.dart';
-import 'package:flutter_projects/states.dart';
+import 'package:flutter_projects/login/cubit/states.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -78,6 +79,7 @@ class LoginScreen extends StatelessWidget {
                                       .headline6
                                       .copyWith(color: Colors.orange),
                                 ),
+
                                 defaultTextFormField(
                                   controller: emailController,
                                   type: TextInputType.emailAddress,
@@ -88,6 +90,7 @@ class LoginScreen extends StatelessWidget {
                                     return null;
                                   },
                                   label: 'Email Address',
+                                  prefix: Icons.alternate_email,
 
                                 ),
                                 SizedBox(
@@ -124,6 +127,7 @@ class LoginScreen extends StatelessWidget {
                                     return null;
                                   },
                                   label: 'Password',
+                                  prefix: Icons.lock_open_rounded
 
                                 ),
                                 SizedBox(
@@ -161,43 +165,91 @@ class LoginScreen extends StatelessWidget {
                                 SizedBox(
                                   height: 20.0,
                                 ),
-                                Container(
-                                  width: 300.0,
+                                Row(
 
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      InkWell(
-                                        child: SvgPicture.asset(
-                                          'assets/icon/google.svg',
-                                          height: 60.0,
-                                          width: 60.0,
-                                          allowDrawingOutsideViewBox: true,
+                                  children: [
+                                    Expanded(
+                                      child: Container(
+
+                                        height: 60.0,
+
+                                        decoration: BoxDecoration(
+                                          color: Colors.white.withOpacity(0.1),
+                                          borderRadius: BorderRadius.only(
+                                            topLeft: Radius.circular(20.0),
+                                            topRight: Radius.circular(20.0),
+                                            bottomLeft: Radius.circular(20.0),
+                                            bottomRight: Radius.circular(20.0),
+                                          ),
                                         ),
-                                        onTap: () {
-                                          signInWithGoogle();
-                                        },
-                                      ),
-                                      InkWell(
-                                        child: SvgPicture.asset(
-                                          'assets/icon/facebook.svg',
-                                          height: 60.0,
-                                          width: 60.0,
-                                          allowDrawingOutsideViewBox: true,
+                                        child: InkWell(
+                                          child: SvgPicture.asset(
+                                            'assets/icon/google.svg',
+                                           fit: BoxFit.none,
+
+                                          ),
+                                          onTap: () {
+                                            signInWithGoogle();
+                                          },
                                         ),
-                                        onTap: () {},
                                       ),
-                                      InkWell(
-                                        child: SvgPicture.asset(
-                                          'assets/icon/twitter.svg',
-                                          height: 60.0,
-                                          width: 60.0,
-                                          allowDrawingOutsideViewBox: true,
+                                    ),
+                                    SizedBox(
+                                      width: 20.0,
+                                    ),
+                                    Expanded(
+                                      child: Container(
+
+                                        height: 60.0,
+                                        decoration: BoxDecoration(
+                                          color: Colors.white.withOpacity(0.1),
+                                          borderRadius: BorderRadius.only(
+                                            topLeft: Radius.circular(20.0),
+                                            topRight: Radius.circular(20.0),
+                                            bottomLeft: Radius.circular(20.0),
+                                            bottomRight: Radius.circular(20.0),
+                                          ),
                                         ),
-                                        onTap: () {},
+                                        child: InkWell(
+                                          child: SvgPicture.asset(
+                                            'assets/icon/facebook.svg',
+                                           fit: BoxFit.none,
+                                          ),
+                                          onTap: ()
+                                          {
+                                            signInWithGoogle();
+                                          },
+                                        ),
                                       ),
-                                    ],
-                                  ),
+                                    ),
+                                    SizedBox(
+                                      width: 20.0,
+                                    ),
+                                    Expanded(
+                                      child: Container(
+
+                                        height: 60.0,
+                                        decoration: BoxDecoration(
+                                          color: Colors.white.withOpacity(0.1),
+                                          borderRadius: BorderRadius.only(
+                                            topLeft: Radius.circular(20.0),
+                                            topRight: Radius.circular(20.0),
+                                            bottomLeft: Radius.circular(20.0),
+                                            bottomRight: Radius.circular(20.0),
+                                          ),
+                                        ),
+                                        child: InkWell(
+                                          child: SvgPicture.asset(
+                                            'assets/icon/twitter.svg',
+                                           fit: BoxFit.none,
+                                          ),
+                                          onTap: () {
+                                            signInWithGoogle();
+                                          },
+                                        ),
+                                      ),
+                                    ),
+                                  ],
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
@@ -210,7 +262,7 @@ class LoginScreen extends StatelessWidget {
                                               .copyWith(color: Colors.white)),
                                       defaultTextButton(
                                         function: () {
-                                       // navigateTo(context, Widget);
+                                       navigateTo(context, RegisterScreen());
                                         },
                                         text: 'Sign up',
                                       ),
@@ -229,7 +281,6 @@ class LoginScreen extends StatelessWidget {
             ),
           );
         },
-
       ),
     );
   }
