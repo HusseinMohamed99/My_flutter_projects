@@ -40,7 +40,7 @@ class LoginScreen extends StatelessWidget {
             constraints: const BoxConstraints.expand(),
             decoration: const BoxDecoration(
               image: DecorationImage(
-                image: AssetImage("assets/images/Q0.png"),
+                image: AssetImage("assets/images/QS.png"),
                 fit: BoxFit.cover,
               ),
             ),
