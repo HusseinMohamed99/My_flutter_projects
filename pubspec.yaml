@@ -84,7 +84,15 @@ flutter:
     - assets/icon/
 
 
+  fonts:
+    - family: Jannah
+      fonts:
+        - asset: assets/fonts/Janna_Bold.ttf
+          weight: 700
 
+    - family: IconBroken
+      fonts:
+        - asset: assets/fonts/icons.ttf
 
   # To add assets to your application, add an assets section, like this:
   # assets:

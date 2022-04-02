@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:hexcolor/hexcolor.dart';
 
 Widget defaultButton({
   double width = double.infinity,
@@ -33,8 +32,8 @@ Widget defaultButton({
         ),
         gradient: LinearGradient(
           colors: [
-            Colors.amberAccent,
-            Colors.amber,
+            Colors.blue,
+            Colors.blue,
           ],
         ),
         //  color: background,
@@ -82,15 +81,19 @@ Widget defaultTextFormField({
   onTap: onTap,
   validator:validate,
   decoration: InputDecoration(
+    filled: true,
+    fillColor: Colors.blue.withOpacity(0.2),
     hintText: label,
     hintStyle: TextStyle(
         color: Colors.white30,
 
     ),
+    prefixIcon:Icon(prefix,color: Colors.white,),
     suffixIcon: suffix != null ? IconButton(
       onPressed: suffixPressed,
       icon: Icon(
         suffix,
+        color: Colors.white,
       ),
     ) : null,
 
