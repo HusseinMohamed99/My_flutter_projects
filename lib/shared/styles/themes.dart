@@ -9,7 +9,7 @@ ThemeData darkTheme = ThemeData(
   appBarTheme: AppBarTheme(
     titleSpacing: 20.0,
     systemOverlayStyle: SystemUiOverlayStyle(
-      statusBarColor: HexColor('#121212'),
+      statusBarColor: Colors.transparent,
       statusBarIconBrightness: Brightness.light,
     ),
     backgroundColor: HexColor('#121212'),
@@ -59,7 +59,7 @@ ThemeData lightTheme = ThemeData(
   appBarTheme: AppBarTheme(
     titleSpacing: 20.0,
     systemOverlayStyle: SystemUiOverlayStyle(
-      statusBarColor: Colors.white,
+      statusBarColor: Colors.transparent,
       statusBarIconBrightness: Brightness.dark,
 
     ),

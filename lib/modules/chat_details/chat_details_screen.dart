@@ -1,6 +1,7 @@
 import 'package:conditional_builder/conditional_builder.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_projects/home/cubit/cubit.dart';
 import 'package:flutter_projects/home/cubit/state.dart';
@@ -9,122 +10,211 @@ import 'package:flutter_projects/models/user_model.dart';
 import 'package:flutter_projects/shared/styles/colors.dart';
 import 'package:flutter_projects/shared/styles/icon_broken.dart';
 
+
 class ChatDetailsScreen extends StatelessWidget {
   SocialUserModel userModel;
   ChatDetailsScreen({this.userModel});
-
+  final controller = ScrollController();
   var messageController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
-    return Builder(
-      builder: (context) {
-        SocialCubit.get(context).getMessages(receiverId: userModel.uId);
-        return BlocConsumer<SocialCubit, SocialStates>(
-          listener: (context, state) {},
-          builder: (context, state) {
-            return Scaffold(
-              appBar: AppBar(
-                titleSpacing: 0.0,
-                title: Row(
-                  children: [
-                    CircleAvatar(
-                      backgroundImage: NetworkImage(
-                        userModel.image,
+    return Container(
+      constraints: const BoxConstraints.expand(),
+      decoration: const BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage("assets/images/99.png"),
+          fit: BoxFit.cover,
+        ),
+      ),
+      child: Builder(
+        builder: (context) {
+          SocialCubit.get(context).getMessages(receiverId: userModel.uId);
+          return BlocConsumer<SocialCubit, SocialStates>(
+            listener: (context, state) {},
+            builder: (context, state) {
+              return Scaffold(
+                backgroundColor: Colors.transparent,
+                appBar: AppBar(
+                  systemOverlayStyle: SystemUiOverlayStyle(
+                    statusBarColor: Colors.transparent,
+                  ),
+                  backgroundColor: Colors.teal[300],
+                  titleSpacing: -19.0,
+                  title: Row(
+                    children: [
+                      CircleAvatar(
+                        backgroundImage: NetworkImage(
+                          userModel.image,
+                        ),
+                        radius: 20.0,
                       ),
-                      radius: 23.0,
+                      SizedBox(
+                        width: 5.0,
+                      ),
+                      Text(
+                        userModel.name,
+                        style: TextStyle(overflow: TextOverflow.ellipsis),
+                      ),
+                    ],
+                  ),
+                  actions: [
+                    IconButton(
+                      onPressed: () {},
+                      icon: Icon(
+                        IconBroken.Video,
+                        size: 22.0,
+                      ),
                     ),
-                    SizedBox(
-                      width: 15.0,
+                    IconButton(
+                      onPressed: () {},
+                      icon: Icon(
+                        IconBroken.Call,
+                        size: 22.0,
+                      ),
                     ),
-                    Text(
-                      userModel.name,
-                      style: TextStyle(
-                        height: 1.4,
+                    IconButton(
+                      onPressed: () {},
+                      icon: Icon(
+                        IconBroken.More_Circle,
+                        size: 22.0,
                       ),
                     ),
                   ],
                 ),
-              ),
-              body: ConditionalBuilder(
-                condition: SocialCubit.get(context).messages.length > 0 || SocialCubit.get(context).messages.length ==0,
-                builder: (context) => Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: Column(
-                    children: [
-                      Expanded(
-                        child: ListView.separated(
-                          physics: BouncingScrollPhysics(),
-                          itemBuilder: (context, index) {
-                            var message =
-                                SocialCubit.get(context).messages[index];
-                            if (SocialCubit.get(context).userModel.uId ==
-                                message.senderId) {
-                              return buildReceiverMessage(message);
-                            } else {
-                              return buildMessage(message);
-                            }
-                          },
-                          separatorBuilder: (context, index) => SizedBox(
-                            height: 15.0,
+                body: ConditionalBuilder(
+                  condition: SocialCubit.get(context).messages.length > 0 ||
+                      SocialCubit.get(context).messages.length == 0,
+                  builder: (context) => Padding(
+                    padding: const EdgeInsets.all(16),
+                    child: Column(
+                      children: [
+                        Expanded(
+                          child: ListView.separated(
+                            controller: controller,
+                            physics: BouncingScrollPhysics(),
+                            itemBuilder: (context, index) {
+                              var message =
+                                  SocialCubit.get(context).messages[index];
+                              if (SocialCubit.get(context).userModel.uId ==
+                                  message.senderId) {
+                                return buildReceiverMessage(message);
+                              } else {
+                                return buildMessage(message);
+                              }
+                            },
+                            separatorBuilder: (context, index) => SizedBox(
+                              height: 10,
+                            ),
+                            itemCount: SocialCubit.get(context).messages.length,
                           ),
-                          itemCount: SocialCubit.get(context).messages.length,
                         ),
-                      ),
-                      Row(
-                        children: [
-                          Expanded(
-                            child: Container(
+                        SizedBox(
+                          height: 30,
+                        ),
+                        Row(
+                          children: [
+                            Expanded(
+                              child: TextFormField(
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .subtitle1
+                                    .copyWith(
+                                      color: Colors.white,
+                                    ),
+                                controller: messageController,
+                                decoration: InputDecoration(
+                                  filled: true,
+                                  fillColor: Colors.grey[900],
+                                  enabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.only(
+                                      bottomRight: Radius.circular(20.0),
+                                      bottomLeft: Radius.circular(20.0),
+                                      topRight: Radius.circular(20.0),
+                                      topLeft: Radius.circular(20.0),
+                                    ),
+                                    borderSide: BorderSide(
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                  disabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.only(
+                                      bottomRight: Radius.circular(20.0),
+                                      bottomLeft: Radius.circular(20.0),
+                                      topRight: Radius.circular(20.0),
+                                      topLeft: Radius.circular(20.0),
+                                    ),
+                                    borderSide: BorderSide(
+                                      color: Colors.green,
+                                    ),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.only(
+                                      bottomRight: Radius.circular(20.0),
+                                      bottomLeft: Radius.circular(20.0),
+                                      topRight: Radius.circular(20.0),
+                                      topLeft: Radius.circular(20.0),
+                                    ),
+                                    borderSide: BorderSide(
+                                      color: Colors.green,
+                                    ),
+                                  ),
+                                  hintText: 'type a message ......',
+                                  hintStyle: Theme.of(context)
+                                      .textTheme
+                                      .bodyMedium
+                                      .copyWith(
+                                        color: Colors.white,
+                                      ),
+                                  prefixIcon: Icon(
+                                    IconBroken.Voice,
+                                    color: Colors.white,
+                                    size: 25,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Container(
                               decoration: BoxDecoration(
-                                  border: Border.all(color: Colors.grey),
-                                  borderRadius: BorderRadius.circular(30.0)),
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 20.0,
-                                ),
-                                child: TextFormField(
-                                  controller: messageController,
-                                  decoration: InputDecoration(
-                                      hintText: 'type a message ......',
-                                      border: InputBorder.none),
+                                color: defaultColor,
+                                shape: BoxShape.circle,
+                              ),
+                              height: 50.0,
+                              child: MaterialButton(
+                                onPressed: () {
+                                  SocialCubit.get(context).sendMessages(
+                                    receiverId: userModel.uId,
+                                    dateTime: DateTime.now().toString(),
+                                    text: messageController.text,
+                                  );
+                                  messageController.clear();
+                                  controller.animateTo(
+                                    controller.position.maxScrollExtent,
+                                    duration: Duration(microseconds: 1),
+                                    curve: Curves.easeIn,
+                                  );
+                                },
+                                minWidth: 1.0,
+                                child: Icon(
+                                  IconBroken.Send,
+                                  color: Colors.white,
                                 ),
                               ),
-                            ),
-                          ),
-                          Container(
-                            decoration: BoxDecoration(
-                              color: defaultColor,
-                              shape: BoxShape.circle,
-                            ),
-                            height: 50.0,
-                            child: MaterialButton(
-                              onPressed: () {
-
-                                SocialCubit.get(context).sendMessages(
-                                  receiverId: userModel.uId,
-                                  dateTime: DateTime.now().toString(),
-                                  text: messageController.text,
-                                );
-                              },
-                              minWidth: 1.0,
-                              child: Icon(
-                                IconBroken.Send,
-                                color: Colors.white,
-                              ),
-                            ),
-                          )
-                        ],
-                      ),
-                    ],
+                            )
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                  fallback: (context) => Center(
+                    child: CircularProgressIndicator(),
                   ),
                 ),
-                fallback: (context) => Center(
-                  child: CircularProgressIndicator(),
-                ),
-              ),
-            );
-          },
-        );
-      },
+              );
+            },
+          );
+        },
+      ),
     );
   }
 
@@ -145,7 +235,6 @@ class ChatDetailsScreen extends StatelessWidget {
           child: Text(
             model.text,
             textWidthBasis: TextWidthBasis.parent,
-
           ),
         ),
       );

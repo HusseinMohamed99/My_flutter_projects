@@ -33,6 +33,7 @@ class EditProfileScreens extends StatelessWidget {
         phoneController.text = userModel.phone;
 
         return Scaffold(
+          backgroundColor: Colors.transparent,
           appBar: defaultAppBar(
             context: context,
             title: 'Edit profile',
@@ -158,7 +159,7 @@ class EditProfileScreens extends StatelessWidget {
                         Expanded(
                           child: Column(
                             children: [
-                              defaultButton(
+                              defaultMaterialButton(
                                 function: ()
                                 {
                                   SocialCubit.get(context).uploadProfileImage(
@@ -187,7 +188,7 @@ class EditProfileScreens extends StatelessWidget {
                           Expanded(
                             child: Column(
                               children: [
-                                defaultButton(
+                                defaultMaterialButton(
                                   function: ()
                                   {
                                     SocialCubit.get(context).uploadCoverImage(
@@ -216,9 +217,9 @@ class EditProfileScreens extends StatelessWidget {
                       height: 20.0,
                     ),
 
-                  defaultTextFormField(
+                  defaultTextFormFeild(
                     controller: nameController,
-                    type: TextInputType.name,
+                    keyboardType: TextInputType.name,
                     validate: (String value)
                     {
                       if(value.isEmpty)
@@ -234,9 +235,9 @@ class EditProfileScreens extends StatelessWidget {
                     height: 15.0,
                   ),
 
-                  defaultTextFormField(
+                  defaultTextFormFeild(
                     controller: phoneController,
-                    type: TextInputType.phone,
+                    keyboardType: TextInputType.phone,
                     validate: (String value)
                     {
                       if(value.isEmpty)
@@ -252,9 +253,9 @@ class EditProfileScreens extends StatelessWidget {
                     height: 15.0,
                   ),
 
-                  defaultTextFormField(
+                  defaultTextFormFeild(
                     controller: bioController,
-                    type: TextInputType.text,
+                    keyboardType: TextInputType.text,
                     validate: (String value)
                     {
                       if(value.isEmpty)

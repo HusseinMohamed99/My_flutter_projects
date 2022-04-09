@@ -53,6 +53,8 @@ dependencies:
   font_awesome_flutter: ^10.1.0
   flutter_cmoon_icons: ^0.1.0
   flutter_svg: ^1.0.3
+  dropdown_formfield: ^0.1.4
+  modal_progress_hud: ^0.1.3
 
 #    #firebase
   firebase_core: ^1.7.0

@@ -23,6 +23,7 @@ class FeedsScreen extends StatelessWidget {
           builder: (context)=> SingleChildScrollView(
             physics: BouncingScrollPhysics(),
             child: Column(
+
               children: [
                 // Card(
                 //   margin: const EdgeInsets.all(9.0),

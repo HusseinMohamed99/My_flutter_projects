@@ -4,15 +4,127 @@ import 'package:flutter_projects/shared/network/local/cache_helper.dart';
 import 'package:flutter_projects/shared/styles/icon_broken.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
+Widget defaultTextFormFeild({
+  @required TextEditingController controller,
+  @required TextInputType keyboardType,
+  @required Function validate,
+  @required String label,
+  @required String hint,
+  Function onTap,
+  Function onChanged,
+  Function onFieldSubmitted,
+  bool isPassword = false,
+  bool isClickable = true,
+  InputDecoration decoration,
+  IconData suffix,
+  IconData prefix,
+  Function suffixPressed,
+}) =>
+    TextFormField(
+      style: TextStyle(color: Colors.white),
+      maxLines: 1,
+      // maxLength: 25,
+      minLines: 1,
+      controller: controller,
+      validator: validate,
+      enabled: isClickable,
+      onTap: onTap,
+      onFieldSubmitted: onFieldSubmitted,
+      onChanged: onChanged,
+      obscureText: isPassword,
+      keyboardType: keyboardType,
+      autofocus: false,
+      decoration: InputDecoration(
+        prefixIcon: Icon(
+          prefix,
+          color: Colors.white,
+        ),
+        suffixIcon: suffix != null
+            ? IconButton(
+                onPressed: suffixPressed,
+                icon: Icon(
+                  suffix,
+                  color: Colors.white,
+                ),
+              )
+            : null,
+        filled: true,
+        isCollapsed: false,
+        fillColor: Colors.blue.withOpacity(0.2),
+        hoverColor: Colors.red.withOpacity(0.2),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.only(
+            bottomRight: Radius.circular(20.0),
+            bottomLeft: Radius.circular(20.0),
+            topRight: Radius.circular(20.0),
+            topLeft: Radius.circular(20.0),
+          ),
+          borderSide: BorderSide(
+            color: Colors.green,
+          ),
+        ),
+        focusedErrorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.only(
+            bottomRight: Radius.circular(20.0),
+            bottomLeft: Radius.circular(20.0),
+            topRight: Radius.circular(20.0),
+            topLeft: Radius.circular(20.0),
+          ),
+          borderSide: BorderSide(
+            color: Colors.red,
+          ),
+        ),
+        labelText: label,
+        labelStyle: TextStyle(
+          fontStyle: FontStyle.italic,
+          color: Colors.deepOrangeAccent,
+        ),
+        hintText: hint,
+        hintStyle: TextStyle(color: Colors.white),
+        focusColor: Colors.white,
+        disabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.only(
+            bottomRight: Radius.circular(20.0),
+            bottomLeft: Radius.circular(20.0),
+            topRight: Radius.circular(20.0),
+            topLeft: Radius.circular(20.0),
+          ),
+          borderSide: BorderSide(
+            color: Colors.green,
+          ),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.only(
+            bottomRight: Radius.circular(20.0),
+            bottomLeft: Radius.circular(20.0),
+            topRight: Radius.circular(20.0),
+            topLeft: Radius.circular(20.0),
+          ),
+          borderSide: BorderSide(
+            color: Colors.black,
+          ),
+        ),
+        errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.only(
+            bottomRight: Radius.circular(20.0),
+            bottomLeft: Radius.circular(20.0),
+            topRight: Radius.circular(20.0),
+            topLeft: Radius.circular(20.0),
+          ),
+          borderSide: BorderSide(
+            color: Colors.red,
+          ),
+        ),
+      ),
+    );
 
-Widget defaultButton({
-  double width = double.infinity,
-  double height = 40.0,
- // Color background = Colors.blue,
-  bool isUpperCase = true,
-  double radius = 3.0,
+Widget defaultMaterialButton({
   @required Function function,
   @required String text,
+  double width = double.infinity,
+  double height = 40.0,
+  double radius = 3.0,
+  bool isUpperCase = true,
   Function onTap,
 }) =>
     Container(
@@ -24,7 +136,7 @@ Widget defaultButton({
         },
         child: Text(
           isUpperCase ? text.toUpperCase() : text,
-          style: const TextStyle(
+          style: TextStyle(
             color: Colors.white,
             fontSize: 20.0,
           ),
@@ -37,10 +149,10 @@ Widget defaultButton({
         gradient: LinearGradient(
           colors: [
             Colors.blue,
-            Colors.red,
+            Colors.amberAccent,
           ],
         ),
-      //  color: background,
+        //  color: background,
       ),
     );
 
@@ -53,59 +165,6 @@ Widget defaultTextButton({
         function();
       },
       child: Text(text.toUpperCase()),
-    );
-
-Widget defaultTextFormField({
-  @required TextEditingController controller,
-  @required TextInputType type,
-  Function onSubmit,
-  Function onChange,
-  Function onTap,
-  @required Function validate,
-  @required String label,
-  @required IconData prefix,
-  bool isPassword = false,
-  bool isClickable = true,
-  IconData suffix,
-  Function suffixPressed,
-  InputDecoration decoration,
-}) =>
-    TextFormField(
-      controller: controller,
-      keyboardType: type,
-      obscureText: isPassword,
-      onFieldSubmitted: (submit) {
-        onSubmit(submit);
-      },
-      onChanged: (change) {
-        onChange(change);
-      },
-      enabled: isClickable,
-      onTap: () {
-        onTap();
-      },
-      validator: (validation) {
-        validate(validation);
-      },
-      decoration: InputDecoration(
-        labelText: label,
-        prefixIcon: Icon(prefix),
-        suffixIcon: suffix != null
-            ? IconButton(
-                onPressed: () {
-                  suffixPressed();
-                },
-                icon: Icon(
-                  suffix,
-                ),
-              )
-            : null,
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(
-            10.0,
-          ),
-        ),
-      ),
     );
 
 Widget myDivider() => Container(
@@ -175,15 +234,14 @@ Color chooseToastColor(ToastStates state) {
   return color;
 }
 
- defaultAppBar({
+defaultAppBar({
   @required BuildContext context,
- @required String title,
+  @required String title,
   List<Widget> actions,
 }) =>
     AppBar(
       leading: IconButton(
-        onPressed: ()
-        {
+        onPressed: () {
           Navigator.pop(context);
         },
         icon: Icon(

@@ -57,7 +57,7 @@ class _onBoardingScreenState extends State<onBoardingScreen> {
     {
       if(value)
       {
-        navigateAndFinish(context, LoginScreen(),);
+        navigateAndFinish(context, Login_Screen(),);
       }
     });
   }

@@ -2,6 +2,7 @@ import 'package:conditional_builder/conditional_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_projects/home/home_screen.dart';
+import 'package:flutter_projects/modules/Chats/chats_screen.dart';
 import 'package:flutter_projects/modules/register/cubit/cubit.dart';
 import 'package:flutter_projects/modules/register/cubit/state.dart';
 import 'package:flutter_projects/shared/componnetns/components.dart';
@@ -9,194 +10,338 @@ import 'package:flutter_projects/shared/styles/icon_broken.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 
-class RegisterScreen extends StatelessWidget {
+
+List<DropdownMenuItem<String>> get dropdownItems {
+  List<DropdownMenuItem<String>> menuItems = [
+    DropdownMenuItem(child: Text("Cairo"), value: "Cairo"),
+    DropdownMenuItem(child: Text("Alexandria"), value: "Alexandria"),
+    DropdownMenuItem(child: Text("Giza"), value: "Giza"),
+    DropdownMenuItem(
+        child: Text("Shubra El Kheima"), value: "Shubra El Kheima"),
+    DropdownMenuItem(child: Text("Port Said"), value: "Port Said"),
+    DropdownMenuItem(child: Text("Suez"), value: "Suez"),
+    DropdownMenuItem(
+        child: Text("El Mahalla El Kubra"), value: "El Mahalla El Kubra"),
+    DropdownMenuItem(child: Text("Luxor"), value: "Luxor"),
+    DropdownMenuItem(child: Text("Mansoura"), value: "Mansoura"),
+    DropdownMenuItem(child: Text("Tanta"), value: "Tanta"),
+    DropdownMenuItem(child: Text("Asyut"), value: "Asyut"),
+    DropdownMenuItem(child: Text("Ismailia"), value: "Ismailia"),
+    DropdownMenuItem(child: Text("Faiyum"), value: "Faiyum"),
+    DropdownMenuItem(child: Text("Zagazig"), value: "Zagazig"),
+    DropdownMenuItem(child: Text("Damietta"), value: "Damietta"),
+    DropdownMenuItem(child: Text("Aswan"), value: "Aswan"),
+    DropdownMenuItem(child: Text("Minya"), value: "Minya"),
+    DropdownMenuItem(child: Text("Damanhur"), value: "Damanhur"),
+    DropdownMenuItem(child: Text("Beni Suef"), value: "Beni Suef"),
+    DropdownMenuItem(child: Text("Hurghada"), value: "Hurghada"),
+    DropdownMenuItem(child: Text("Qena"), value: "Qena"),
+    DropdownMenuItem(child: Text("Sohag"), value: "Sohag"),
+    DropdownMenuItem(child: Text("Shibin El Kom"), value: "Shibin El Kom"),
+    DropdownMenuItem(child: Text("Banha"), value: "Banha"),
+    DropdownMenuItem(child: Text("Arish"), value: "EnglaArishnd"),
+  ];
+  return menuItems;
+}
+
+class Register_Screen extends StatefulWidget {
+  @override
+  State<Register_Screen> createState() => _Register_ScreenState();
+}
+
+class _Register_ScreenState extends State<Register_Screen> {
+  String selectedValue = null;
 
   var formkey = GlobalKey<FormState>();
-  var nameController = TextEditingController();
+
   var emailController = TextEditingController();
+
   var passwordController = TextEditingController();
+
+  var nameController = TextEditingController();
+
   var phoneController = TextEditingController();
+
+  var countryController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context)=> RegisterCubit(),
-      child: BlocConsumer<RegisterCubit,RegisterStates>(
-        listener: (context,state)
-        {
-          if(state is CreateUserSuccessState)
-          {
-            navigateAndFinish(context, HomeScreen());
-          }
-        },
-        builder: (context,state){
-          return Scaffold(
-            appBar: AppBar(),
-            body:  Center(
-              child: SingleChildScrollView(
-                child: Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: Form(
-                    key: formkey,
+    return Container(
+      constraints: const BoxConstraints.expand(),
+      decoration: const BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage("assets/images/99.png"),
+          fit: BoxFit.cover,
+        ),
+      ),
+
+
+      child: BlocProvider(
+        create: (context) => RegisterCubit(),
+        child: BlocConsumer<RegisterCubit, RegisterStates>(
+            listener: (context, state) {
+              if (state is CreateUserSuccessState) {
+                navigateAndFinish(context, ChatsScreen());
+              }
+            }, builder: (context, state) {
+          return SafeArea(
+            child: Scaffold(
+              backgroundColor: Colors.transparent,
+              body: Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Form(
+                  key: formkey,
+                  child: SingleChildScrollView(
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const   Image(
-                          width: 300.0,
-                          height: 200.0,
-                          image: AssetImage(
-                            'assets/images/Check.png',
-                          ),
+                        SizedBox(
+                          height: 10,
                         ),
-                        Text(
-                            'Register',
-                            style: Theme.of(context).textTheme.headline4.copyWith(color: Colors.black)
-                        ),
-                        Text(
-                            'Register now to browse our hot offers',
-                            style: Theme.of(context).textTheme.bodyText2.copyWith(color: Colors.grey)
-                        ),
-                        const   SizedBox(
-                          height: 10.0,
-                        ),
-
-                        defaultTextFormField(
+                        defaultTextFormFeild(
                           controller: nameController,
-                          type: TextInputType.name,
-                          validate: (String value)
-                          {
-                            if(value.isEmpty)
-                            {
-                              return 'Please Enter your Name';
+                          keyboardType: TextInputType.name,
+                          validate: (String value) {
+                            if (value.isEmpty) {
+                              return 'please enter your name';
                             }
                           },
-                          prefix: Icons.person,
                           label: 'Name',
-
+                          hint: 'name',
                         ),
-                        const  SizedBox(
-                          height: 15.0,
-                        ),  defaultTextFormField(
+                        SizedBox(
+                          height: 20.0,
+                        ),
+                        defaultTextFormFeild(
                           controller: emailController,
-                          type: TextInputType.emailAddress,
-                          validate: (String value)
-                          {
-                            if(value.isEmpty)
-                            {
-                              return 'Please Enter your Email_Address';
+                          keyboardType: TextInputType.emailAddress,
+                          validate: (String value) {
+                            if (value.isEmpty) {
+                              return 'please enter your email';
                             }
                           },
-                          prefix: Icons.email_outlined,
-                          label: 'Email Address',
-
+                          label: 'Email_Adderss',
+                          hint: 'email',
                         ),
-                        const  SizedBox(
-                          height: 15.0,
+                        SizedBox(
+                          height: 20.0,
                         ),
-
-                        defaultTextFormField(
+                        defaultTextFormFeild(
                           controller: passwordController,
-                          type: TextInputType.visiblePassword,
+                          keyboardType: TextInputType.visiblePassword,
                           suffix: RegisterCubit.get(context).suffix,
                           isPassword: RegisterCubit.get(context).isPassword,
-                          suffixPressed: ()
-                          {
+                          suffixPressed: () {
                             RegisterCubit.get(context).ChangePassword();
                           },
-                          onSubmit: (value) {},
-                          validate: (String value)
-                          {
-                            if(value.isEmpty)
-                            {
-                              return 'Please Enter your Password';
+                          onFieldSubmitted: (value) {},
+                          validate: (String value) {
+                            if (value.isEmpty) {
+                              return 'please enter your password';
                             }
                           },
                           label: 'Password',
-                          prefix: Icons.password,
+                          hint: 'Password',
                         ),
-                        const   SizedBox(
-                          height: 15.0,
+                        SizedBox(
+                          height: 20.0,
                         ),
-                        defaultTextFormField(
+                        defaultTextFormFeild(
                           controller: phoneController,
-                          type: TextInputType.phone,
-                          validate: (String value)
-                          {
-                            if(value.isEmpty)
-                            {
-                              return 'Please Enter your Phone';
+                          keyboardType: TextInputType.phone,
+                          validate: (String value) {
+                            if (value.isEmpty) {
+                              return 'please enter your phone';
                             }
                           },
-                          prefix: Icons.phone_android,
                           label: 'Phone',
+                          hint: 'phone',
                         ),
-                        const  SizedBox(
-                          height: 15.0,
+                        SizedBox(
+                          height: 20.0,
+                        ),
+                        DropdownButtonFormField(
+                          style: TextStyle(
+                            color: Colors.white,
+                          ),
+                          decoration: InputDecoration(
+                            prefixIcon: Text(''), //fake ,
+                            filled: true,
+                            isCollapsed: false,
+                            fillColor: Colors.blue.withOpacity(0.2),
+                            hoverColor: Colors.red.withOpacity(0.2),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.only(
+                                bottomRight: Radius.circular(20.0),
+                                bottomLeft: Radius.circular(20.0),
+                                topRight: Radius.circular(20.0),
+                                topLeft: Radius.circular(20.0),
+                              ),
+                              borderSide: BorderSide(
+                                color: Colors.green,
+                              ),
+                            ),
+                            focusedErrorBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.only(
+                                bottomRight: Radius.circular(20.0),
+                                bottomLeft: Radius.circular(20.0),
+                                topRight: Radius.circular(20.0),
+                                topLeft: Radius.circular(20.0),
+                              ),
+                              borderSide: BorderSide(
+                                color: Colors.red,
+                              ),
+                            ),
+                            labelText: 'City',
+                            labelStyle: TextStyle(
+                              fontStyle: FontStyle.italic,
+                              color: Colors.deepOrangeAccent,
+                            ),
+                            hintText: 'City',
+                            hintStyle: TextStyle(
+                              color: Colors.white,
+                            ),
+                            focusColor: Colors.white,
+                            disabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.only(
+                                bottomRight: Radius.circular(20.0),
+                                bottomLeft: Radius.circular(20.0),
+                                topRight: Radius.circular(20.0),
+                                topLeft: Radius.circular(20.0),
+                              ),
+                              borderSide: BorderSide(
+                                color: Colors.green,
+                              ),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.only(
+                                bottomRight: Radius.circular(20.0),
+                                bottomLeft: Radius.circular(20.0),
+                                topRight: Radius.circular(20.0),
+                                topLeft: Radius.circular(20.0),
+                              ),
+                              borderSide: BorderSide(
+                                color: Colors.black,
+                              ),
+                            ),
+                            errorBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.only(
+                                bottomRight: Radius.circular(20.0),
+                                bottomLeft: Radius.circular(20.0),
+                                topRight: Radius.circular(20.0),
+                                topLeft: Radius.circular(20.0),
+                              ),
+                              borderSide: BorderSide(
+                                color: Colors.red,
+                              ),
+                            ),
+                          ),
+                          validator: (value) =>
+                          value == null ? "Select a city" : null,
+                          dropdownColor: Colors.white.withOpacity(0.5),
+                          value: selectedValue,
+                          onChanged: (String newValue) {
+                            setState(() {
+                              selectedValue = newValue;
+                            });
+                          },
+                          items: dropdownItems,
+                        ),
+                        SizedBox(
+                          height: 20.0,
                         ),
                         ConditionalBuilder(
                           condition: state is! RegisterLoadingState,
-                          builder: (context)=>defaultButton(
-                            function: ()
-                            {
-                              if(formkey.currentState.validate())
-                              {
-                                RegisterCubit.get(context).UserRegister(
-                                  email: emailController.text,
-                                  password: passwordController.text,
-                                  name: nameController.text,
-                                  phone: phoneController.text,
-
-                                );
+                          builder: (context) => defaultMaterialButton(
+                            function: () {
+                              if (formkey.currentState.validate()) {
+                                checkRegister(context);
                               }
                             },
                             text: 'Register',
-                            radius: 30.0,
+                            width: 250.0,
+                            radius: 20.0,
                           ),
-                          fallback:(context)=> const Center(child: CircularProgressIndicator()),
+                          fallback: (context) =>
+                          const Center(child: CircularProgressIndicator()),
+                        ),
+                        SizedBox(
+                          height: 20.0,
+                        ),
+                        Text(
+                          "ــــــــــــــــــــــ OR Sign With ــــــــــــــــــــ",
+                          style: Theme.of(context).textTheme.bodyText1.copyWith(
+                            color: Colors.white,
+                          ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.all(20.0),
+                          padding: const EdgeInsets.symmetric(vertical: 20.0),
                           child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              InkWell(
-                                child: CircleAvatar(
-                                  child: SvgPicture.asset(
-                                    'assets/icon/google.svg',
-                                    height: 100.0,
-                                    width: 100.0,
-                                    allowDrawingOutsideViewBox: true,
+                              Expanded(
+                                child: Container(
+                                  height: 60.0,
+                                  decoration: BoxDecoration(
+                                    color: Colors.white.withOpacity(0.1),
+                                    borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(20.0),
+                                      topRight: Radius.circular(20.0),
+                                      bottomLeft: Radius.circular(20.0),
+                                      bottomRight: Radius.circular(20.0),
+                                    ),
                                   ),
-                                  radius: 30.0,
-                                  backgroundColor: Colors.white24,
+                                  child: InkWell(
+                                    child: SvgPicture.asset(
+                                      'assets/icon/google.svg',
+                                    ),
+                                    onTap: () {},
+                                  ),
                                 ),
-                                onTap: (){},
                               ),
-                              InkWell(
-                                child: CircleAvatar(
-                                  child: SvgPicture.asset(
-                                    'assets/icon/facebook.svg',
-                                    height: 100.0,
-                                    width: 100.0,
-                                    allowDrawingOutsideViewBox: true,
-                                  ),
-                                  radius: 30.0,
-                                  backgroundColor: Colors.white24,
-                                ),
-                                onTap: (){},
+                              SizedBox(
+                                width: 20.0,
                               ),
-                              InkWell(
-                                child: CircleAvatar(
-                                  child: SvgPicture.asset(
-                                    'assets/icon/twitter.svg',
-                                    height: 100.0,
-                                    width: 100.0,
-                                    allowDrawingOutsideViewBox: true,
+                              Expanded(
+                                child: Container(
+                                  height: 60.0,
+                                  decoration: BoxDecoration(
+                                    color: Colors.white.withOpacity(0.1),
+                                    borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(20.0),
+                                      topRight: Radius.circular(20.0),
+                                      bottomLeft: Radius.circular(20.0),
+                                      bottomRight: Radius.circular(20.0),
+                                    ),
                                   ),
-                                  radius: 30.0,
-                                  backgroundColor: Colors.white24,
+                                  child: InkWell(
+                                    child: SvgPicture.asset(
+                                        'assets/icon/facebook.svg'),
+                                    onTap: () {},
+                                  ),
                                 ),
-                                onTap: () {},
+                              ),
+                              SizedBox(
+                                width: 20.0,
+                              ),
+                              Expanded(
+                                child: Container(
+                                  height: 60.0,
+                                  decoration: BoxDecoration(
+                                    color: Colors.white.withOpacity(0.1),
+                                    borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(20.0),
+                                      topRight: Radius.circular(20.0),
+                                      bottomLeft: Radius.circular(20.0),
+                                      bottomRight: Radius.circular(20.0),
+                                    ),
+                                  ),
+                                  child: InkWell(
+                                    child: SvgPicture.asset(
+                                        'assets/icon/twitter.svg'),
+                                    onTap: () {},
+                                  ),
+                                ),
                               ),
                             ],
                           ),
@@ -208,8 +353,17 @@ class RegisterScreen extends StatelessWidget {
               ),
             ),
           );
-        },
+        }),
       ),
+    );
+  }
+
+  void checkRegister(BuildContext context) {
+    RegisterCubit.get(context).UserRegister(
+      email: emailController.text,
+      password: passwordController.text,
+      name: nameController.text,
+      phone: phoneController.text,
     );
   }
 }
