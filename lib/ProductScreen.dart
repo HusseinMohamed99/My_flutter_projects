@@ -3,6 +3,7 @@ import 'package:flutter_projects/Services/Get_Products.dart';
 import 'package:flutter_projects/UpdateProductScreen.dart';
 import 'package:flutter_projects/model/product_Model.dart';
 import 'package:flutter_projects/shared/style/icon_broken.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 ProductModel product;
 
@@ -15,7 +16,7 @@ class ProductScreen extends StatelessWidget {
         child: Column(
           children: [
             MyDrawerHeader(),
-            MenuItem(),
+            MenuItem(context),
           ],
         ),
       ),
@@ -71,7 +72,7 @@ class ProductScreen extends StatelessWidget {
     );
   }
 
-  Widget MenuItem() => Column(
+  Widget MenuItem(context) => Column(
         children: [
           Text(
             'Category',
@@ -87,10 +88,11 @@ class ProductScreen extends StatelessWidget {
           InkWell(
             onTap: () {},
             child: ListTile(
-              leading: Image(
-                image: AssetImage(
-                  'assets/images/clothes.png',
-                ),
+              leading: Icon(
+                Icons.electrical_services,
+                color: Colors.red,
+                size: 40,
+
               ),
               title: Text(
                 'Electronics',
@@ -106,10 +108,11 @@ class ProductScreen extends StatelessWidget {
           InkWell(
             onTap: () {},
             child: ListTile(
-              leading: Image(
-                image: AssetImage(
-                  'assets/images/clothes.png',
-                ),
+              leading: Icon(
+                Icons.watch,
+                color: Colors.red,
+                size: 40,
+
               ),
               title: Text(
                 'Jewelery',
@@ -125,10 +128,11 @@ class ProductScreen extends StatelessWidget {
           InkWell(
             onTap: () {},
             child: ListTile(
-              leading: Image(
-                image: AssetImage(
-                  'assets/images/clothes.png',
-                ),
+              leading: Icon(
+                FontAwesomeIcons.tshirt,
+                color: Colors.red,
+                size: 40,
+
               ),
               title: Text(
                 'men\'s clothing',
@@ -144,10 +148,11 @@ class ProductScreen extends StatelessWidget {
           InkWell(
             onTap: () {},
             child: ListTile(
-              leading: Image(
-                image: AssetImage(
-                  'assets/images/clothes.png',
-                ),
+              leading:Icon(
+                FontAwesomeIcons.bagShopping,
+                color: Colors.red,
+                size: 40,
+
               ),
               title: Text(
                 'women\'s clothing',
@@ -171,7 +176,8 @@ class MyDrawerHeader extends StatelessWidget {
             image: AssetImage(
               'assets/images/clothes.png',
             ),
-            fit: BoxFit.cover),
+            fit: BoxFit.cover,
+        ),
       ),
     );
   }
@@ -262,3 +268,5 @@ class Grid_Product extends StatelessWidget {
     );
   }
 }
+
+

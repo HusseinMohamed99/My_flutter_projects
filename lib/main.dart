@@ -19,7 +19,6 @@ class MyApp extends StatelessWidget {
       routes: {
         ProductScreen.id: (context) => ProductScreen(),
         UpdateProductScreen.id: (context) => UpdateProductScreen(),
-
       },
       initialRoute: ProductScreen.id,
     );
