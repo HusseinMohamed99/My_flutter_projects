@@ -6,7 +6,7 @@ import 'package:http/http.dart' as http;
 
 class GetCategory
 {
-  Future <List<dynamic>> getAllCateogires()async
+  Future <List<dynamic>> getAllCategories()async
 
   {
     List<dynamic> data =
@@ -16,5 +16,4 @@ class GetCategory
          return data;
   }
 }
-
 

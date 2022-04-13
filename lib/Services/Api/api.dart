@@ -1,19 +1,18 @@
 import 'dart:convert';
-import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class Api {
-  Future<dynamic> get({@required String url, @required String token}) async {
-    Map<String, dynamic> headers = {};
+  Future<dynamic> get({ String url, String token}) async {
+    Map<String, String> headers = {};
 
     if (token != null) {
       headers.addAll({
         'Authorization': 'Bearer $token',
       });
     }
-    print('url = $url , token = $token ');
-    http.Response response = await http.get(Uri.parse(url), headers: headers);
 
+    http.Response response = await http.get(Uri.parse(url));
+    print('url = $url , token = $token ');
     if (response.statusCode == 200) {
       return jsonDecode(response.body);
     } else {
@@ -23,9 +22,9 @@ class Api {
   }
 
   Future<dynamic> post(
-      {@required String url,
-      @required dynamic body,
-      @required String token}) async {
+      { String url,
+       dynamic body,
+       String token}) async {
     Map<String, dynamic> headers = {};
     if (token != null) {
       headers.addAll({
@@ -37,7 +36,7 @@ class Api {
         await http.post(Uri.parse(url), body: body, headers: headers);
     if (response.statusCode == 200) {
       Map<String, dynamic> data = jsonDecode(response.body);
-print(data);
+      print(data);
       return data;
     } else {
       throw Exception(
@@ -46,9 +45,9 @@ print(data);
   }
 
   Future<dynamic> put(
-      {@required String url,
-      @required dynamic body,
-      @required String token}) async {
+      { String url,
+       dynamic body,
+      String token}) async {
     Map<String, dynamic> headers = {};
     headers.addAll({'Content-Type': 'application/x-www-form-urlencoded'});
     if (token != null) {
@@ -61,7 +60,7 @@ print(data);
         await http.post(Uri.parse(url), body: body, headers: headers);
     if (response.statusCode == 200) {
       Map<String, dynamic> data = jsonDecode(response.body);
-print(data);
+      print(data);
       return data;
     } else {
       throw Exception(

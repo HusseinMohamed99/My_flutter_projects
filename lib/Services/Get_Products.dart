@@ -2,7 +2,7 @@ import 'package:flutter_projects/Services/Api/api.dart';
 import 'package:flutter_projects/model/product_Model.dart';
 
 
-class GetProduct
+class AllProductServices
 {
   Future<List<ProductModel>> getAllProducts() async{
 

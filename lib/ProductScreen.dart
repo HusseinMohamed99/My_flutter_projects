@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_projects/Services/Get_Products.dart';
 import 'package:flutter_projects/UpdateProductScreen.dart';
 import 'package:flutter_projects/model/product_Model.dart';
-import 'package:flutter_projects/shared/commpnents.dart';
 import 'package:flutter_projects/shared/style/icon_broken.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 ProductModel product;
 
 class ProductScreen extends StatelessWidget {
+  static String id = 'HomePAge';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,7 +16,7 @@ class ProductScreen extends StatelessWidget {
         child: Column(
           children: [
             MyDrawerHeader(),
-            MenuItem(),
+            MenuItem(context),
           ],
         ),
       ),
@@ -44,7 +45,7 @@ class ProductScreen extends StatelessWidget {
           right: 16,
         ),
         child: FutureBuilder<List<ProductModel>>(
-          future: GetProduct().getAllProducts(),
+          future: AllProductServices().getAllProducts(),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               List<ProductModel> products = snapshot.data;
@@ -60,18 +61,18 @@ class ProductScreen extends StatelessWidget {
                   itemBuilder: (context, index) {
                     return Grid_Product(product: products[index]);
                   });
-            } else {
+            }
               return Center(
                 child: CircularProgressIndicator(),
               );
-            }
+
           },
         ),
       ),
     );
   }
 
-  Widget MenuItem() => Column(
+  Widget MenuItem(context) => Column(
         children: [
           Text(
             'Category',
@@ -87,10 +88,11 @@ class ProductScreen extends StatelessWidget {
           InkWell(
             onTap: () {},
             child: ListTile(
-              leading: Image(
-                image: AssetImage(
-                  'assets/images/clothes.png',
-                ),
+              leading: Icon(
+                Icons.electrical_services,
+                color: Colors.red,
+                size: 40,
+
               ),
               title: Text(
                 'Electronics',
@@ -106,10 +108,11 @@ class ProductScreen extends StatelessWidget {
           InkWell(
             onTap: () {},
             child: ListTile(
-              leading: Image(
-                image: AssetImage(
-                  'assets/images/clothes.png',
-                ),
+              leading: Icon(
+                Icons.watch,
+                color: Colors.red,
+                size: 40,
+
               ),
               title: Text(
                 'Jewelery',
@@ -125,10 +128,11 @@ class ProductScreen extends StatelessWidget {
           InkWell(
             onTap: () {},
             child: ListTile(
-              leading: Image(
-                image: AssetImage(
-                  'assets/images/clothes.png',
-                ),
+              leading: Icon(
+                FontAwesomeIcons.tshirt,
+                color: Colors.red,
+                size: 40,
+
               ),
               title: Text(
                 'men\'s clothing',
@@ -144,10 +148,11 @@ class ProductScreen extends StatelessWidget {
           InkWell(
             onTap: () {},
             child: ListTile(
-              leading: Image(
-                image: AssetImage(
-                  'assets/images/clothes.png',
-                ),
+              leading:Icon(
+                FontAwesomeIcons.bagShopping,
+                color: Colors.red,
+                size: 40,
+
               ),
               title: Text(
                 'women\'s clothing',
@@ -171,7 +176,8 @@ class MyDrawerHeader extends StatelessWidget {
             image: AssetImage(
               'assets/images/clothes.png',
             ),
-            fit: BoxFit.cover),
+            fit: BoxFit.cover,
+        ),
       ),
     );
   }
@@ -186,7 +192,8 @@ class Grid_Product extends StatelessWidget {
     return GestureDetector(
       onTap: ()
       {
-        navigateTo(context, UpdateProductScreen());
+        Navigator.pushNamed(context, UpdateProductScreen.id,arguments: product);
+
       },
       child: Stack(
         clipBehavior: Clip.none,
@@ -219,7 +226,7 @@ class Grid_Product extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      '${product.title.substring(0, 18)}',
+                     product.title.substring(0,9),
                       maxLines: 2,
                       style: TextStyle(
                         fontSize: 15,
@@ -250,7 +257,7 @@ class Grid_Product extends StatelessWidget {
             left: 65,
             child: Image(
               image: NetworkImage(
-                '${product.image}',
+                product.image,
               ),
               height: 100,
               width: 100,
@@ -261,3 +268,5 @@ class Grid_Product extends StatelessWidget {
     );
   }
 }
+
+
