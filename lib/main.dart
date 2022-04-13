@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_projects/ProductScreen.dart';
+import 'package:flutter_projects/UpdateProductScreen.dart';
 
 
 
@@ -15,7 +16,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: ProductScreen(),
+      routes: {
+        ProductScreen.id: (context) => ProductScreen(),
+        UpdateProductScreen.id: (context) => UpdateProductScreen(),
+
+      },
+      initialRoute: ProductScreen.id,
     );
   }
 }

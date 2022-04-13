@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_projects/Services/updateProduct.dart';
 import 'package:flutter_projects/model/product_Model.dart';
 import 'package:flutter_projects/shared/commpnents.dart';
-import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
+import 'package:modal_progress_hud/modal_progress_hud.dart';
 
 class UpdateProductScreen extends StatefulWidget {
+  static String id = 'update product';
   @override
   State<UpdateProductScreen> createState() => _UpdateProductScreenState();
 }
@@ -20,23 +21,23 @@ class _UpdateProductScreenState extends State<UpdateProductScreen> {
   Widget build(BuildContext context) {
     ProductModel product =
         ModalRoute.of(context).settings.arguments as ProductModel;
-    return ModalProgressHUD(
-      inAsyncCall: isLoading,
-      child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.teal,
-          leading: Text(
-            'Update Product',
-            style: TextStyle(
-              color: Colors.white,
-            ),
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.teal,
+        title: Text(
+          'Update Product',
+          style: TextStyle(
+            color: Colors.white,
           ),
-          elevation: 0,
-          centerTitle: true,
         ),
-        body: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: SingleChildScrollView(
+        elevation: 0,
+        centerTitle: true,
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: SingleChildScrollView(
+          child: ModalProgressHUD(
+            inAsyncCall: isLoading,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -50,7 +51,7 @@ class _UpdateProductScreenState extends State<UpdateProductScreen> {
                   hintText: 'Product Name',
                 ),
                 SizedBox(
-                  height: 10,
+                  height: 20,
                 ),
                 customTextField(
                   onChanged: (data) {
@@ -59,7 +60,7 @@ class _UpdateProductScreenState extends State<UpdateProductScreen> {
                   hintText: 'description',
                 ),
                 SizedBox(
-                  height: 10,
+                  height: 20,
                 ),
                 customTextField(
                   onChanged: (data) {
@@ -69,7 +70,7 @@ class _UpdateProductScreenState extends State<UpdateProductScreen> {
                   inputType: TextInputType.number,
                 ),
                 SizedBox(
-                  height: 10,
+                  height: 20,
                 ),
                 customTextField(
                   onChanged: (data) {
@@ -78,15 +79,17 @@ class _UpdateProductScreenState extends State<UpdateProductScreen> {
                   hintText: 'image',
                 ),
                 SizedBox(
-                  height: 70,
+                  height: 40,
                 ),
-                defaultTextButton(
+                defaultButton(
+                  radius: 50,
+                  width: 200,
                   text: 'Update',
-                  function: ()  {
+                  function: ()  async{
                     isLoading = true;
                     setState(() {});
                     try {
-                       updateProduct(product);
+                      await updateProduct(product);
 
                       print('success');
                     } catch (e) {
@@ -105,8 +108,8 @@ class _UpdateProductScreenState extends State<UpdateProductScreen> {
   }
 
   Future<void> updateProduct(ProductModel product) async {
-    await UpdateProduct().updateProduct(
-        id: product.id,
+    await UpdateProductService().updateProduct(
+      id: product.id,
         title: productName == null ? product.title : productName,
         price: price == null ? product.price.toString() : price,
         desc: desc == null ? product.description : desc,

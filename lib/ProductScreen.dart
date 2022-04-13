@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_projects/Services/Get_Products.dart';
 import 'package:flutter_projects/UpdateProductScreen.dart';
 import 'package:flutter_projects/model/product_Model.dart';
-import 'package:flutter_projects/shared/commpnents.dart';
 import 'package:flutter_projects/shared/style/icon_broken.dart';
 
 ProductModel product;
 
 class ProductScreen extends StatelessWidget {
+  static String id = 'HomePAge';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,7 +44,7 @@ class ProductScreen extends StatelessWidget {
           right: 16,
         ),
         child: FutureBuilder<List<ProductModel>>(
-          future: GetProduct().getAllProducts(),
+          future: AllProductServices().getAllProducts(),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               List<ProductModel> products = snapshot.data;
@@ -60,11 +60,11 @@ class ProductScreen extends StatelessWidget {
                   itemBuilder: (context, index) {
                     return Grid_Product(product: products[index]);
                   });
-            } else {
+            }
               return Center(
                 child: CircularProgressIndicator(),
               );
-            }
+
           },
         ),
       ),
@@ -186,7 +186,8 @@ class Grid_Product extends StatelessWidget {
     return GestureDetector(
       onTap: ()
       {
-        navigateTo(context, UpdateProductScreen());
+        Navigator.pushNamed(context, UpdateProductScreen.id,arguments: product);
+
       },
       child: Stack(
         clipBehavior: Clip.none,
@@ -219,7 +220,7 @@ class Grid_Product extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      '${product.title.substring(0, 18)}',
+                     product.title.substring(0,9),
                       maxLines: 2,
                       style: TextStyle(
                         fontSize: 15,
@@ -250,7 +251,7 @@ class Grid_Product extends StatelessWidget {
             left: 65,
             child: Image(
               image: NetworkImage(
-                '${product.image}',
+                product.image,
               ),
               height: 100,
               width: 100,

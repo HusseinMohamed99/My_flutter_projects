@@ -2,10 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_projects/Services/Api/api.dart';
 import 'package:flutter_projects/model/product_Model.dart';
 
-class UpdateProduct {
+class UpdateProductService {
   Future<ProductModel> updateProduct(
       {@required String title,
-        @required int id,
+      @required int id,
       @required String price,
       @required String desc,
       @required String image,
