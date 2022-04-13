@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 
 Widget defaultButton({
   double width = double.infinity,
@@ -65,50 +64,49 @@ Widget defaultTextFormField({
   IconData suffix,
   Function suffixPressed,
   InputDecoration decoration,
-
-}) => TextFormField(
-  cursorColor: Colors.white,
-  style: TextStyle(
-    color: Colors.white,
-    backgroundColor: Colors.black
-  ),
-  controller: controller,
-  keyboardType: type,
-  obscureText: isPassword,
-  onFieldSubmitted: onSubmit,
-  onChanged: onChange,
-  enabled: isClickable,
-  onTap: onTap,
-  validator:validate,
-  decoration: InputDecoration(
-    filled: true,
-    fillColor: Colors.blue.withOpacity(0.2),
-    hintText: label,
-    hintStyle: TextStyle(
-        color: Colors.white30,
-
-    ),
-    prefixIcon:Icon(prefix,color: Colors.white,),
-    suffixIcon: suffix != null ? IconButton(
-      onPressed: suffixPressed,
-      icon: Icon(
-        suffix,
-        color: Colors.white,
-      ),
-    ) : null,
-
-    border:  OutlineInputBorder(
-      borderRadius: BorderRadius.only(
-        bottomRight: Radius.circular(20.0),
-        bottomLeft: Radius.circular(20.0),
-        topRight: Radius.circular(20.0),
-        topLeft: Radius.circular(20.0),
-      ),
+}) =>
+    TextFormField(
+      cursorColor: Colors.white,
+      style: TextStyle(color: Colors.white, backgroundColor: Colors.black),
+      controller: controller,
+      keyboardType: type,
+      obscureText: isPassword,
+      onFieldSubmitted: onSubmit,
+      onChanged: onChange,
+      enabled: isClickable,
+      onTap: onTap,
+      validator: validate,
+      decoration: InputDecoration(
+        filled: true,
+        fillColor: Colors.blue.withOpacity(0.2),
+        hintText: label,
+        hintStyle: TextStyle(
+          color: Colors.white30,
+        ),
+        prefixIcon: Icon(
+          prefix,
+          color: Colors.white,
+        ),
+        suffixIcon: suffix != null
+            ? IconButton(
+                onPressed: suffixPressed,
+                icon: Icon(
+                  suffix,
+                  color: Colors.white,
+                ),
+              )
+            : null,
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.only(
+            bottomRight: Radius.circular(20.0),
+            bottomLeft: Radius.circular(20.0),
+            topRight: Radius.circular(20.0),
+            topLeft: Radius.circular(20.0),
+          ),
           borderSide: BorderSide(),
-    ),
-  ),
-);
-
+        ),
+      ),
+    );
 
 Widget myDivider() => Container(
       width: double.infinity,
@@ -131,38 +129,27 @@ void navigateAndFinish(context, Widget) => Navigator.pushAndRemoveUntil(
       return false;
     });
 
-void ShowToast({
-  @required String text,
-  @required ToastStates state,
-}) =>
-    Fluttertoast.showToast(
-      msg: text,
-      toastLength: Toast.LENGTH_LONG,
-      gravity: ToastGravity.BOTTOM,
-      timeInSecForIosWeb: 10,
-      backgroundColor: chooseToastColor(state),
-      textColor: Colors.white,
-      fontSize: 16.0,
+
+
+Widget customTextField(
+{
+  Function(String) onChanged,
+  String hintText,
+  TextInputType  inputType,
+  bool obscureText = false,
+}) => TextField(
+      obscureText: obscureText,
+      onChanged: onChanged,
+      keyboardType: inputType,
+      decoration: InputDecoration(
+        hintText: hintText,
+        enabledBorder: OutlineInputBorder(
+          borderSide: BorderSide(),
+          borderRadius: BorderRadius.circular(8),
+        ),
+        border: OutlineInputBorder(
+          borderSide: BorderSide(),
+          borderRadius: BorderRadius.circular(8),
+        ),
+      ),
     );
-
-// enum  كذا اختيار من حاجة
-
-enum ToastStates { SUCCESS, ERROR, WARNING }
-
-Color chooseToastColor(ToastStates state) {
-  Color color;
-  switch (state) {
-    case ToastStates.SUCCESS:
-      color = Colors.green;
-      break;
-
-    case ToastStates.ERROR:
-      color = Colors.red;
-      break;
-
-    case ToastStates.WARNING:
-      color = Colors.amber;
-      break;
-  }
-  return color;
-}
