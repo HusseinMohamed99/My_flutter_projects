@@ -1,26 +1,70 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_projects/ProductScreen.dart';
-import 'package:flutter_projects/UpdateProductScreen.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_projects/Screens/home/home_screen.dart';
+import 'package:flutter_projects/Screens/login/login_screen.dart';
+import 'package:flutter_projects/Screens/splash/splash_screen.dart';
+import 'package:flutter_projects/shared/componnetns/constants.dart';
+import 'package:flutter_projects/shared/cubit/cubit.dart';
+import 'package:flutter_projects/shared/network/local/cache_helper.dart';
+import 'package:flutter_projects/shared/network/remote/dio_helper.dart';
+import 'package:flutter_projects/shared/styles/themes.dart';
 
 
 
 
-void main() {
 
-  runApp(MyApp());
+void main()  async{
+  WidgetsFlutterBinding.ensureInitialized();
+  DioHelper.init();
+  await CacheHelper.init();
+
+  Widget widget;
+
+  bool onBoarding = CacheHelper.getData(key: 'onBoarding');
+
+  token = CacheHelper.getData(key: 'token');
+  print('token $token');
+
+  if(onBoarding != null)
+  {
+    if(token != null) {
+      widget = HomeScreen();
+    } else {
+      widget = LoginScreen();
+    }
+  }else
+  {
+    widget = SplashScreen();
+  }
+
+
+  runApp( Myapp(
+    startWidget : widget,
+  ));
 }
+class Myapp extends StatelessWidget {
+  final Widget startWidget;
 
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+  Myapp({this.startWidget,});
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      routes: {
-        ProductScreen.id: (context) => ProductScreen(),
-        UpdateProductScreen.id: (context) => UpdateProductScreen(),
-      },
-      initialRoute: ProductScreen.id,
+    return MultiBlocProvider(
+      providers: [
+       BlocProvider(create: (context) => MainCubit()
+         ..getHomeData()
+         ..getCategoriesData()
+         ..getFavoritesData()
+         ..getUserData()
+
+
+       ),
+
+      ],
+      child: MaterialApp(
+        theme: lightTheme,
+        debugShowCheckedModeBanner: false,
+        home: startWidget,
+      ),
     );
   }
 }
