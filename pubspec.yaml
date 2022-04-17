@@ -48,6 +48,12 @@ dependencies:
   get: ^4.6.1
   conditional_builder: ^1.0.2
   carousel_slider: ^4.0.0
+  flutter_svg: ^1.0.3
+
+
+  firebase_auth: ^3.3.14
+  google_sign_in: ^5.3.0
+  flutter_facebook_auth: '^3.5.0'
 
 
 

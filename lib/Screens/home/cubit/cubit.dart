@@ -3,18 +3,17 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_projects/Screens/Categories/category.dart';
 import 'package:flutter_projects/Screens/Favorites/favorite.dart';
 import 'package:flutter_projects/Screens/Products/product.dart';
-import 'package:flutter_projects/Screens/home/home_screen.dart';
+import 'package:flutter_projects/Screens/home/cubit/state.dart';
 import 'package:flutter_projects/Screens/setting/setting.dart';
 import 'package:flutter_projects/model/category_model.dart';
 import 'package:flutter_projects/model/favorite_model.dart';
 import 'package:flutter_projects/model/home_model.dart';
 import 'package:flutter_projects/model/login_model.dart';
 import 'package:flutter_projects/shared/componnetns/constants.dart';
-import 'package:flutter_projects/shared/cubit/state.dart';
 import 'package:flutter_projects/shared/network/End_Points.dart';
 import 'package:flutter_projects/shared/network/remote/dio_helper.dart';
 
-class MainCubit extends Cubit<MainState> {
+class MainCubit extends Cubit<MainStates> {
   MainCubit() : super(MainInitialState());
   static MainCubit get(context) => BlocProvider.of(context);
 
@@ -215,3 +214,5 @@ DioHelper.getData(
 
   }
 }
+
+

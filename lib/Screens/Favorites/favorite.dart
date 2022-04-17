@@ -2,15 +2,15 @@ import 'package:conditional_builder/conditional_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_projects/shared/componnetns/components.dart';
-import 'package:flutter_projects/shared/cubit/cubit.dart';
-import 'package:flutter_projects/shared/cubit/state.dart';
+import 'package:flutter_projects/Screens/home/cubit/cubit.dart';
+import 'package:flutter_projects/Screens/home/cubit/state.dart';
 import 'package:flutter_projects/shared/styles/colors.dart';
 
 class FavoritesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<MainCubit,MainState>(
+    return BlocConsumer<MainCubit,MainStates>(
       listener: (context, state) {},
       builder: (context, state)
       {

@@ -12,7 +12,7 @@ class CategoriesModel {
 
 class CategoriesDataModel {
   int currentPage;
-  List <DataModel>  data  = [];
+  List <DataModel>  data = [];
   String firstPageUrl;
   int from;
   int lastPage;
@@ -29,13 +29,13 @@ class CategoriesDataModel {
     json['data'].forEach((element)
     {
 
-      data.add( DataModel.fromJson(element));
+      data.add(DataModel.fromJson(element));
     });
   }
 
 }
 
-class DataModel {
+class DataModel{
   int id;
   String name;
   String image;

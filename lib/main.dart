@@ -4,7 +4,7 @@ import 'package:flutter_projects/Screens/home/home_screen.dart';
 import 'package:flutter_projects/Screens/login/login_screen.dart';
 import 'package:flutter_projects/Screens/splash/splash_screen.dart';
 import 'package:flutter_projects/shared/componnetns/constants.dart';
-import 'package:flutter_projects/shared/cubit/cubit.dart';
+import 'package:flutter_projects/Screens/home/cubit/cubit.dart';
 import 'package:flutter_projects/shared/network/local/cache_helper.dart';
 import 'package:flutter_projects/shared/network/remote/dio_helper.dart';
 import 'package:flutter_projects/shared/styles/themes.dart';
@@ -34,7 +34,7 @@ void main()  async{
     }
   }else
   {
-    widget = SplashScreen();
+    widget = LoginScreen();
   }
 
 

@@ -2,8 +2,8 @@ import 'package:conditional_builder/conditional_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_projects/shared/componnetns/components.dart';
-import 'package:flutter_projects/shared/cubit/cubit.dart';
-import 'package:flutter_projects/shared/cubit/state.dart';
+import 'package:flutter_projects/Screens/home/cubit/cubit.dart';
+import 'package:flutter_projects/Screens/home/cubit/state.dart';
 
 class SettingScreen extends StatelessWidget {
 var formKey = GlobalKey<FormState>();
@@ -14,7 +14,7 @@ var formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<MainCubit,MainState>(
+    return BlocConsumer<MainCubit,MainStates>(
       listener: (context,state)
       {
         if(state is UserLoginSuccessState) {}

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_projects/Screens/login/login_screen.dart';
-import 'package:flutter_projects/Screens/on_boarding/on_boarding_screen.dart';
 import 'package:flutter_projects/shared/network/local/cache_helper.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
@@ -217,3 +216,5 @@ void logOut(context) {
     }
   });
 }
+
+

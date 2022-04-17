@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_projects/Screens/setting/setting.dart';
 import 'package:flutter_projects/shared/componnetns/components.dart';
-import 'package:flutter_projects/shared/cubit/cubit.dart';
-import 'package:flutter_projects/shared/cubit/state.dart';
+import 'package:flutter_projects/Screens/home/cubit/cubit.dart';
+import 'package:flutter_projects/Screens/home/cubit/state.dart';
 import 'package:flutter_projects/shared/styles/icon_broken.dart';
+
 
 class HomeScreen extends StatelessWidget {
 
@@ -12,7 +12,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<MainCubit,MainState>(
+    return BlocConsumer<MainCubit,MainStates>(
       listener: (context, state){},
       builder: (context, state)
       {
@@ -34,9 +34,9 @@ class HomeScreen extends StatelessWidget {
                 IconButton(
                   onPressed: ()
                   {
-                    navigateTo(context, SettingScreen());
+                  logOut(context);
                   },
-                  icon: Icon(IconBroken.Setting),
+                  icon: Icon(IconBroken.Logout),
                 )
               ],
             ),

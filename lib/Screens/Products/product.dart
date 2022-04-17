@@ -5,15 +5,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_projects/model/category_model.dart';
 import 'package:flutter_projects/model/home_model.dart';
 import 'package:flutter_projects/shared/componnetns/components.dart';
-import 'package:flutter_projects/shared/cubit/cubit.dart';
-import 'package:flutter_projects/shared/cubit/state.dart';
-import 'package:flutter_projects/shared/styles/colors.dart';
+import 'package:flutter_projects/Screens/home/cubit/cubit.dart';
+import 'package:flutter_projects/Screens/home/cubit/state.dart';
+
+
 
 class ProductsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<MainCubit,MainState>(
+    return BlocConsumer<MainCubit,MainStates>(
       listener: (context,state)
       {
         if(state is ChangeFavoritesSuccessStates)
@@ -192,7 +193,7 @@ class ProductsScreen extends StatelessWidget {
                 Text(
                   '${model.price.round()}',
                   style: TextStyle(
-                    color: DColor,
+                    color: Colors.red,
                   ),
                 ),
                 SizedBox(
