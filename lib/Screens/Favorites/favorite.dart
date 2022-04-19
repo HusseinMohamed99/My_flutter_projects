@@ -1,6 +1,9 @@
 import 'package:conditional_builder/conditional_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_projects/model/favorite_model.dart';
+import 'package:flutter_projects/model/favorite_model.dart';
+
 import 'package:flutter_projects/shared/componnetns/components.dart';
 import 'package:flutter_projects/Screens/home/cubit/cubit.dart';
 import 'package:flutter_projects/Screens/home/cubit/state.dart';
@@ -14,24 +17,42 @@ class FavoritesScreen extends StatelessWidget {
       listener: (context, state) {},
       builder: (context, state)
       {
-        return ConditionalBuilder(
-          condition: state is! FavoritesLoadingStates,
-          builder:(context)=> ListView.separated(
-            itemBuilder: (context, index) => BuildListProduct(MainCubit.get(context).favoritesModel.data.data[index].product,context) ,
-            separatorBuilder: (context , index) => myDivider(),
-            itemCount: MainCubit.get(context).favoritesModel.data.data.length ,
+        FavoritesModel favoritesModel = MainCubit.get(context).favoritesModel;
+        return MainCubit.get(context).favoritesModel.data.favoritesData.length == 0 ? Scaffold(
+          body: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(Icons.favorite_border,size: 70,color: Colors.greenAccent,),
+                SizedBox(height: 10,),
+                Text('Your Favorites is empty',style: TextStyle(fontWeight: FontWeight.bold),),
+                Text('Be sure to fill your favorite with something you like',style: TextStyle(fontSize: 15 ))
+              ],
+            ),
           ),
-          fallback: (context)=> Center(child: CircularProgressIndicator()),
+        )
 
-        );
+
+         : Scaffold(
+           body: ConditionalBuilder(
+            condition: state is! FavoritesLoadingStates,
+            builder:(context)=> ListView.separated(
+              itemBuilder: (context, index) => BuildListProduct(MainCubit.get(context).favoritesModel.data.favoritesData[index].product,context) ,
+              separatorBuilder: (context , index) => myDivider(),
+              itemCount: MainCubit.get(context).favoritesModel.data.favoritesData.length ,
+            ),
+            fallback: (context)=> Center(child: CircularProgressIndicator()),
+
+        ),
+         );
       },
     );
   }
   Widget BuildListProduct ( model , context , {isOldPrice = true,})=>  Padding(
     padding: const EdgeInsets.all(20.0),
     child: Container(
-      height: 120.0,
-      child: Row(
+      height: 400.0,
+      child: Column(
         children:
         [
           Stack(
@@ -39,8 +60,9 @@ class FavoritesScreen extends StatelessWidget {
             children: [
               Image(
                 image: NetworkImage (model.image,),
-                width: 120.0,
-                height: 120.0,
+                height: 250.0,
+                width: double.infinity,
+
               ),
               if(model.discount !=0 && isOldPrice)
                 Container(
@@ -64,11 +86,14 @@ class FavoritesScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
 
               children: [
-                Text(
-                  model.name,
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(height: 1.5),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 20.0),
+                  child: Text(
+                    model.name,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(height: 1.5),
+                  ),
                 ),
                 Spacer(),
                 Row(
@@ -104,6 +129,7 @@ class FavoritesScreen extends StatelessWidget {
                         ),
                       ),
                     ),
+
                   ],
                 ),
               ],

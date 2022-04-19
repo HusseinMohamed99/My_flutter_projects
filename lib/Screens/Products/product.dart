@@ -2,11 +2,13 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:conditional_builder/conditional_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_projects/Screens/category_details/category_details.dart';
 import 'package:flutter_projects/model/category_model.dart';
 import 'package:flutter_projects/model/home_model.dart';
 import 'package:flutter_projects/shared/componnetns/components.dart';
 import 'package:flutter_projects/Screens/home/cubit/cubit.dart';
 import 'package:flutter_projects/Screens/home/cubit/state.dart';
+import 'package:flutter_projects/shared/styles/colors.dart';
 
 
 
@@ -19,8 +21,13 @@ class ProductsScreen extends StatelessWidget {
       {
         if(state is ChangeFavoritesSuccessStates)
         {
-          if(!state.model.status)
+          if(state.model.status)
           {
+            ShowToast(
+              text: state.model.message,
+              state: ToastStates.SUCCESS,
+            );
+          }else{
             ShowToast(
               text: state.model.message,
               state: ToastStates.ERROR,
@@ -46,26 +53,29 @@ class ProductsScreen extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children:
       [
-        CarouselSlider(
-          items: model.data.banners.map((e) => Image(
-            image: NetworkImage('${e.image}'),
-            width: double.infinity,
-            fit: BoxFit.cover,
-          ),
-          ).toList(),
-          options: CarouselOptions(
-            height: 250.0,
-            enableInfiniteScroll: true,
-            reverse: false,
-            initialPage: 0,
-            autoPlay: true,
-            autoPlayInterval: Duration(seconds: 4),
-            autoPlayAnimationDuration: Duration(seconds: 3),
-            autoPlayCurve: Curves.fastOutSlowIn,
-            scrollDirection: Axis.horizontal,
-            viewportFraction: 1.0,
-            enlargeCenterPage: false,
+        Container(
+          width: double.infinity,
+          child: CarouselSlider(
+            items: model.data.banners.map((e) => Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: Container(
+                width: double.infinity,
+                height: 300,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(30),
+                  child: Image(
+                    image: NetworkImage('${e.image}'),
+                    width: double.infinity,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+            ),
+            ).toList(),
+            options: CarouselOptions(
+              autoPlay: true,
 
+            ),
           ),
         ),
         SizedBox(
@@ -84,8 +94,11 @@ class ProductsScreen extends StatelessWidget {
                 height: 10.0,
               ),
               Container(
-                height: 100.0,
+                height: 140.0,
+                color: Colors.white,
+                padding: EdgeInsets.symmetric(vertical: 10.0),
                 child: ListView.separated(
+                  padding: EdgeInsetsDirectional.only(start: 10.0,top: 10),
                   physics: BouncingScrollPhysics(),
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (context,index)=> CategoriesItem(categoriesModel.data.data[index],context),
@@ -117,35 +130,44 @@ class ProductsScreen extends StatelessWidget {
         ),
       ],
     ),
+
+
   );
 
-  Widget CategoriesItem (DataModel model , context) => Stack(
-    alignment: AlignmentDirectional.bottomCenter,
-    children: [
-      Image(
-        image: NetworkImage(model.image),
-        height: 100.0,
-        width: 100.0,
-        fit: BoxFit.cover,
-      ),
-      Container(
-        color: Colors.black.withOpacity(0.5),
-        width: 100.0,
-        child: Text(
-          model.name,
-          textAlign: TextAlign.center,
-          maxLines: 1,
-          overflow: TextOverflow.ellipsis,
-          style: TextStyle(
-            fontSize: 16.0,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
+  Widget CategoriesItem (DataModel model , context) => InkWell(
+    onTap: ()
+    {
+      MainCubit.get(context).getCategoriesDetailData(model.id);
+      navigateTo(context, CategoryProductsScreen(model.name));
+    },
+    child: Column(
+      children: [
+        Stack(
+          alignment: AlignmentDirectional.bottomCenter,
+          children: [
+            CircleAvatar(
+              backgroundColor: DColor,
+              radius: 36,
+              child: CircleAvatar(
+                backgroundColor: Colors.white,
+                radius: 35,
+                child: Image(
+                  image: NetworkImage(model.image),
+                  height: 50.0,
+                  width: 50.0,
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
 
-
-          ),
+          ],
         ),
-      ),
-    ],
+        SizedBox(
+          height: 10.0,
+        ),
+        Text(model.name),
+      ],
+    ),
   );
 
   Widget GridProducts (Products model , context) => Column(

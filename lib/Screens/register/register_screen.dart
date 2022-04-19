@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:conditional_builder/conditional_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -7,7 +9,9 @@ import 'package:flutter_projects/Screens/register/cubit/state.dart';
 import 'package:flutter_projects/shared/componnetns/components.dart';
 import 'package:flutter_projects/shared/componnetns/constants.dart';
 import 'package:flutter_projects/shared/network/local/cache_helper.dart';
+import 'package:flutter_projects/shared/styles/icon_broken.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:image_picker/image_picker.dart';
 
 class RegisterScreen extends StatelessWidget {
 
@@ -20,6 +24,9 @@ class RegisterScreen extends StatelessWidget {
   var nameController = TextEditingController();
 
   var phoneController = TextEditingController();
+
+  File profileImage;
+  var pickerController = ImagePicker();
 
   @override
   Widget build(BuildContext context) {
@@ -130,6 +137,7 @@ class RegisterScreen extends StatelessWidget {
                             label: 'Password',
                             hint: 'Enter your password',
                           ),
+
                           SizedBox(height: 20,),
                           ConditionalBuilder(
                             condition: state is! RegisterLoadingState,

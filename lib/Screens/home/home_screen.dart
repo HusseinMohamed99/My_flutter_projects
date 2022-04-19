@@ -1,5 +1,7 @@
+import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_projects/Screens/cart/cart.dart';
 import 'package:flutter_projects/shared/componnetns/components.dart';
 import 'package:flutter_projects/Screens/home/cubit/cubit.dart';
 import 'package:flutter_projects/Screens/home/cubit/state.dart';
@@ -26,7 +28,10 @@ class HomeScreen extends StatelessWidget {
               actions:
               [
                 IconButton(
-                  icon: Icon(IconBroken.Search),
+                  icon: Icon(
+                      IconBroken.Search,
+                    color: Colors.deepOrangeAccent,
+                  ),
                   onPressed: (){
 
                   },
@@ -41,29 +46,38 @@ class HomeScreen extends StatelessWidget {
               ],
             ),
             body: cubit.pages[cubit.currentIndex],
-            bottomNavigationBar: BottomNavigationBar(
-              currentIndex: cubit.currentIndex,
+            floatingActionButton: FloatingActionButton(
+              onPressed: ()
+              {
+                navigateTo(context, CartScreen());
+              },
+              child: Icon(
+                  Icons.shopping_cart
+              ),
+              backgroundColor: Colors.deepOrangeAccent,
+
+            ),
+            floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+
+            bottomNavigationBar: AnimatedBottomNavigationBar(
+              activeIndex: cubit.currentIndex,
               onTap: (index)
               {
                 cubit.ChangeNavBar(index);
               },
-              items: [
-                BottomNavigationBarItem(
-                  icon: Icon(IconBroken.Home),
-                 label: 'Home',
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(IconBroken.Category),
-                  label: 'Category',
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(IconBroken.Heart),
-                  label: 'Favorites',
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(IconBroken.Profile),
-                  label: 'Profile',
-                ),
+              splashColor: Colors.red,
+              activeColor: Colors.deepOrangeAccent,
+              backgroundColor: Colors.white,
+              gapLocation: GapLocation.center,
+              notchSmoothness: NotchSmoothness.softEdge,
+              leftCornerRadius: 32,
+              rightCornerRadius: 32,
+
+              icons: [
+                IconBroken.Home,
+                IconBroken.Category,
+                IconBroken.Heart,
+                IconBroken.Profile,
               ],
             ),
           ),

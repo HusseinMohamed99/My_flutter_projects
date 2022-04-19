@@ -39,6 +39,7 @@ class DioHelper
     Map<String,dynamic>query,
     String token,
     String lang  = 'en',
+    Map<String,dynamic> data,
   }) async {
     dio.options.headers = {
 
@@ -48,7 +49,7 @@ class DioHelper
     };
     return await dio.get(
       url,
-      queryParameters: query ?? null,
+      queryParameters: query ,
 
     );
   }
@@ -71,6 +72,19 @@ class DioHelper
       queryParameters: query,
       data: data,
     );
+  }
+  static Future<Response> deleteData({
+    @required String url,
+    String token,
+    String lang  = 'en',
+  }) async {
+    dio.options.headers = {
+
+      'Content-Type': 'application/json',
+      'Authorization': token??'',
+      'lang': lang,
+    };
+    return await dio.delete(url);
   }
 }
 
