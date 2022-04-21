@@ -1,10 +1,10 @@
-class AddCartModel {
+class ChangeCartModel {
    bool status;
   String message;
   AddCartProductData data;
 
 
-  AddCartModel.fromJson(Map<String, dynamic> json) {
+  ChangeCartModel.fromJson(Map<String, dynamic> json) {
     status = json['status'];
     message = json['message'];
     data =json['data'] != null ?  AddCartProductData.fromJson(json['data']) : null;

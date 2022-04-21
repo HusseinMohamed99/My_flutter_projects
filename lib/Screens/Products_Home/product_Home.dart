@@ -3,11 +3,12 @@ import 'package:conditional_builder/conditional_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_projects/Screens/category_details/category_details.dart';
-import 'package:flutter_projects/model/category_model.dart';
-import 'package:flutter_projects/model/home_model.dart';
+import 'package:flutter_projects/Screens/product_detalis/product_details.dart';
+import 'package:flutter_projects/cubit/cubit.dart';
+import 'package:flutter_projects/cubit/state.dart';
+import 'package:flutter_projects/model/category/category_model.dart';
+import 'package:flutter_projects/model/home/home_model.dart';
 import 'package:flutter_projects/shared/componnetns/components.dart';
-import 'package:flutter_projects/Screens/home/cubit/cubit.dart';
-import 'package:flutter_projects/Screens/home/cubit/state.dart';
 import 'package:flutter_projects/shared/styles/colors.dart';
 
 
@@ -34,6 +35,7 @@ class ProductsScreen extends StatelessWidget {
             );
           }
         }
+
       },
       builder: (context,state)
       {
@@ -170,84 +172,91 @@ class ProductsScreen extends StatelessWidget {
     ),
   );
 
-  Widget GridProducts (Products model , context) => Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children:
-    [
-      Stack(
-        alignment: AlignmentDirectional.bottomEnd,
-        children: [
-          Image(
-            image: NetworkImage (model.image,),
-            width: double.infinity ,
-            height: 200.0,
-          ),
-          if(model.discount !=0)
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 5.0,),
-              color: Colors.red,
-              child: Text(
-                'OFFERS',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 10.0,
+  Widget GridProducts (ProductsModel model , context) => InkWell(
+    onTap: ()
+    {
+      MainCubit.get(context).getProductData(model.id);
+      navigateTo(context, ProductDetailsScreen());
+    },
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children:
+      [
+        Stack(
+          alignment: AlignmentDirectional.bottomEnd,
+          children: [
+            Image(
+              image: NetworkImage (model.image,),
+              width: double.infinity ,
+              height: 200.0,
+            ),
+            if(model.discount !=0)
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 5.0,),
+                color: Colors.red,
+                child: Text(
+                  'OFFERS',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 10.0,
+                  ),
                 ),
               ),
-            ),
-        ],
-      ),
-      Padding(
-        padding: const EdgeInsets.all(12.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              model.name,
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-              style: TextStyle(height: 1.5),
-            ),
-            SizedBox(
-              height: 5.0,
-            ),
-            Row(
-              children: [
-                Text(
-                  '${model.price.round()}',
-                  style: TextStyle(
-                    color: Colors.red,
-                  ),
-                ),
-                SizedBox(
-                  width: 10.0,
-                ),
-                if(model.discount != 0)
-                  Text(
-                    '${model.oldPrice.round()}',
-                    style: TextStyle(
-                      color: Colors.grey,
-                      decoration: TextDecoration.lineThrough,
-                    ),
-                  ),
-                Spacer(),
-                CircleAvatar(
-                  backgroundColor: MainCubit.get(context).favorites[model.id] ? Colors.red : Colors.grey[300],
-                  child: IconButton(
-                    onPressed: ()
-                    {
-                      MainCubit.get(context).ChangeFavorites(model.id);
-                    },
-                    icon: Icon(
-                      Icons.star_border,
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
-              ],
-            ),
           ],
         ),
-      ),
-    ],
+        Padding(
+          padding: const EdgeInsets.all(12.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                model.name,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(height: 1.5),
+              ),
+              SizedBox(
+                height: 5.0,
+              ),
+              Row(
+                children: [
+                  Text(
+                    '${model.price.round()}',
+                    style: TextStyle(
+                      color: Colors.red,
+                    ),
+                  ),
+                  SizedBox(
+                    width: 10.0,
+                  ),
+                  if(model.discount != 0)
+                    Text(
+                      '${model.oldPrice.round()}',
+                      style: TextStyle(
+                        color: Colors.grey,
+                        decoration: TextDecoration.lineThrough,
+                      ),
+                    ),
+                  Spacer(),
+                  CircleAvatar(
+                    backgroundColor: MainCubit.get(context).favorites[model.id] ? Colors.red : Colors.grey[300],
+                    child: IconButton(
+                      onPressed: ()
+                      {
+                        MainCubit.get(context).changeFavorites(model.id);
+                      },
+                      icon: Icon(
+                        Icons.star_border,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ],
+    ),
   );
 }

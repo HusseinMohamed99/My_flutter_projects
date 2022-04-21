@@ -14,4 +14,21 @@ const FAVORITES = 'favorites';
 
 const CARTS = 'carts';
 
-const CATEGORIES_DETAILS =  'products';
+const PRODUCT_DETAILS = 'products/1';
+
+const CATEGORIES_DETAIL =  'products';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

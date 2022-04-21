@@ -1,15 +1,13 @@
-import 'dart:math';
-
 import 'package:conditional_builder/conditional_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_projects/Screens/home/home_screen.dart';
 import 'package:flutter_projects/Screens/login/cubit/cubit.dart';
 import 'package:flutter_projects/Screens/login/cubit/state.dart';
 import 'package:flutter_projects/Screens/register/register_screen.dart';
+import 'package:flutter_projects/layout/home_screen.dart';
 import 'package:flutter_projects/shared/componnetns/components.dart';
 import 'package:flutter_projects/shared/componnetns/constants.dart';
-import 'package:flutter_projects/shared/network/local/cache_helper.dart';
+import 'package:flutter_projects/network/cache_helper.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class LoginScreen extends StatelessWidget {

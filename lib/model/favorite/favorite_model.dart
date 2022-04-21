@@ -16,13 +16,15 @@ class FavoritesModel {
 
 class Data {
   int currentPage;
-  List<FavoritesData> favoritesData;
+  List<FavoritesData> data;
   String firstPageUrl;
   int from;
   int lastPage;
   String lastPageUrl;
+  Null nextPageUrl;
   String path;
   int perPage;
+  Null prevPageUrl;
   int to;
   int total;
 
@@ -31,17 +33,19 @@ class Data {
   Data.fromJson(Map<String, dynamic> json) {
     currentPage = json['current_page'];
     if (json['data'] != null) {
-      favoritesData = <FavoritesData>[];
+      data = <FavoritesData>[];
       json['data'].forEach((v) {
-        favoritesData.add(new FavoritesData.fromJson(v));
+        data.add(new FavoritesData.fromJson(v));
       });
     }
     firstPageUrl = json['first_page_url'];
     from = json['from'];
     lastPage = json['last_page'];
     lastPageUrl = json['last_page_url'];
+    nextPageUrl = json['next_page_url'];
     path = json['path'];
     perPage = json['per_page'];
+    prevPageUrl = json['prev_page_url'];
     to = json['to'];
     total = json['total'];
   }
@@ -65,8 +69,8 @@ class FavoritesData {
 
 class Product {
   int id;
-  int price;
-  int oldPrice;
+  dynamic price;
+  dynamic oldPrice;
   int discount;
   String image;
   String name;
@@ -96,3 +100,4 @@ class ChangeFavoritesModel
     message = json['message'];
   }
 }
+

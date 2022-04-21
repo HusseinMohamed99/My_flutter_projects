@@ -2,9 +2,9 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_projects/Screens/login/cubit/state.dart';
-import 'package:flutter_projects/model/login_model.dart';
-import 'package:flutter_projects/shared/network/End_Points.dart';
-import 'package:flutter_projects/shared/network/remote/dio_helper.dart';
+import 'package:flutter_projects/model/login/login_model.dart';
+import 'package:flutter_projects/network/End_Points.dart';
+import 'package:flutter_projects/network/dio_helper.dart';
 
 class loginCubit extends Cubit<LoginState> {
   loginCubit() : super(LoginInitialState());

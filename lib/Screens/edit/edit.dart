@@ -1,9 +1,11 @@
 import 'package:conditional_builder/conditional_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_projects/cubit/cubit.dart';
+import 'package:flutter_projects/cubit/state.dart';
+
 import 'package:flutter_projects/shared/componnetns/components.dart';
-import 'package:flutter_projects/Screens/home/cubit/cubit.dart';
-import 'package:flutter_projects/Screens/home/cubit/state.dart';
+
 
 class EditScreen extends StatelessWidget {
   var formKey = GlobalKey<FormState>();
@@ -17,7 +19,7 @@ class EditScreen extends StatelessWidget {
     return BlocConsumer<MainCubit,MainStates>(
       listener: (context,state)
       {
-        if(state is UserLoginSuccessState) {}
+        if(state is UserLoginSuccessStates) {}
       },
       builder: (context,state)
       {
@@ -38,7 +40,7 @@ class EditScreen extends StatelessWidget {
                   child: Column(
                       children:
                       [
-                        if(state is UserUpdateLoadingState)
+                        if(state is UserUpdateLoadingStates)
                           LinearProgressIndicator(),
                         SizedBox(height: 20,),
                         defaultTextFormField(
