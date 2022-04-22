@@ -1,5 +1,6 @@
 import 'package:flutter_projects/model/cart/add_cart_model.dart';
 import 'package:flutter_projects/model/favorite/favorite_model.dart';
+import 'package:flutter_projects/model/home/home_model.dart';
 import 'package:flutter_projects/model/login/login_model.dart';
 
 abstract class MainStates {}
@@ -38,7 +39,7 @@ class UserUpdateErrorStates extends MainStates {
   UserUpdateErrorStates( this.error);
 }
 
-class UserChangePasswordStates extends MainStates {}
+
 
 ////////////////////// Home ///////////////////////////////
 
@@ -69,11 +70,15 @@ class ChangeFavoritesSuccessStates extends MainStates
 
 class ChangeFavoritesErrorStates extends MainStates{}
 
-////////////////////// Products_Home ///////////////////////////////
+////////////////////// Products_Details ///////////////////////////////
 
 class ProductLoadingStates extends MainStates{}
 
-class ProductSuccessStates extends MainStates {}
+class ProductSuccessStates extends MainStates {
+  final ProductResponse productResponse;
+
+  ProductSuccessStates(this.productResponse);
+}
 
 class ProductErrorStates extends MainStates{}
 
@@ -116,6 +121,8 @@ class UpdateCartSuccessStates extends MainStates{}
 class UpdateCartErrorStates extends MainStates{}
 
 //////////////////////   ///////////////////////////////
+
+class ShowPasswordStates extends MainStates {}
 
 class ChangeNavBarItem extends MainStates {}
 

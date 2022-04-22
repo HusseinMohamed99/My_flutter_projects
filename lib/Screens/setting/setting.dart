@@ -10,8 +10,6 @@ import 'package:flutter_projects/shared/styles/icon_broken.dart';
 
 class SettingScreen extends StatelessWidget {
 
-
-
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<MainCubit,MainStates>(
@@ -85,7 +83,7 @@ class SettingScreen extends StatelessWidget {
                           [
                             Icon(Icons.favorite_border_rounded,color: Colors.green,),
                             separator(15, 0),
-                            Text('WishList',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
+                            Text('Favorites',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
                             Spacer(),
                             Icon(Icons.arrow_forward_ios_rounded),
                             separator(10,0),

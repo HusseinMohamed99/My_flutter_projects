@@ -73,8 +73,8 @@ class CategoryProductsScreen extends StatelessWidget {
 
   Widget productItemBuilder (ProductData model,context) => InkWell(
     onTap: (){
-      MainCubit.get(context).getProductData(model.id);
-      navigateTo(context, ProductDetailsScreen());
+      MainCubit.get(context).getProductData(model.id).then((value)=> navigateTo(context, ProductDetailsScreen()));
+
     },
     child: Container(
           color: Colors.white,
@@ -112,18 +112,19 @@ class CategoryProductsScreen extends StatelessWidget {
                       ),
                     Positioned(
                       top: 10,
-                      left: 10,
-                      child: CircleAvatar(
-                        backgroundColor: MainCubit.get(context).favorites[model.id] ? Colors.red : Colors.grey[300],
-                        child: IconButton(
-                          onPressed: ()
-                          {
-                            MainCubit.get(context).changeFavorites(model.id);
-                          },
-                          icon: Icon(
-                            Icons.star_border,
-                            color: Colors.white,
-                          ),
+                      left: 0,
+                      child: IconButton(
+                        onPressed: () {
+                          MainCubit.get(context).changeFavorites(model.id);
+                        },
+                        icon: Icon(
+                          MainCubit.get(context).favorites[model.id]
+                              ? Icons.favorite
+                              : Icons.favorite_border,
+                          color: MainCubit.get(context).favorites[model.id]
+                              ? Colors.red
+                              : Colors.grey,
+                          size: 35,
                         ),
                       ),
                     ),

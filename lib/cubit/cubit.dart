@@ -230,9 +230,6 @@ class MainCubit extends Cubit<MainStates> {
     });
   }
 
-
-
-
   ChangeFavoritesModel changeFavoritesModel;
 
   void changeFavorites(int productID) {
@@ -273,35 +270,31 @@ class MainCubit extends Cubit<MainStates> {
     });
   }
 
-  ProductDetailsModel productDetailsModel;
-  void getProductData( productId ) {
-    productDetailsModel = null;
+  ProductResponse productResponse;
+  Future getProductData( productId )
+  async {
+    productResponse = null;
     emit(ProductLoadingStates());
-    DioHelper.getData(
+    return await DioHelper.getData(
         url: 'products/$productId',
         token: token
     ).then((value){
-      productDetailsModel = ProductDetailsModel.fromJson(value.data);
-      print('Product Detail '+productDetailsModel.status.toString());
-      emit(ProductSuccessStates());
+      productResponse = ProductResponse.fromJson(value.data);
+      //print('Product Detail '+productsModel.status.toString());
+      emit(ProductSuccessStates(productResponse));
     }).catchError((error){
       emit(ProductErrorStates());
       print(error.toString());
     });
   }
 
-
-
-
-
   IconData suffix = Icons.visibility_outlined;
   bool isPassword = true;
-
-  void ChangePassword() {
+  void ShowPassword() {
     isPassword = !isPassword;
     suffix =
     isPassword ? Icons.visibility_outlined : Icons.visibility_off_outlined;
 
-    emit(UserChangePasswordStates());
+    emit(ShowPasswordStates());
   }
 }

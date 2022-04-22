@@ -14,7 +14,34 @@ class CartScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<MainCubit,MainStates>(
-      listener: (context, state) {},
+      listener: (context, state)
+      {
+        if(state is ChangeFavoritesSuccessStates)
+        {
+          if(state.model.status)
+          {
+            ShowToast(
+              text: state.model.message,
+              state: ToastStates.SUCCESS,
+            );
+          }else{
+            ShowToast(
+              text: state.model.message,
+              state: ToastStates.ERROR,
+            );
+          }
+        }
+        if(state is ChangeCartSuccessStates)
+        {
+          if(state.model.status)
+          {
+            ShowToast(
+              text: state.model.message,
+              state: ToastStates.ERROR,
+            );
+          }
+        }
+      },
       builder: (context, state) {
         CartModel cartModel = MainCubit.get(context).cartModel;
         cartLength = MainCubit.get(context).cartModel.data.cartItems.length;
@@ -190,21 +217,25 @@ class CartScreen extends StatelessWidget {
                 Spacer(),
                 TextButton(
                   onPressed: () {
-                    MainCubit.get(context).changeCart(model.product.id);
                     MainCubit.get(context).changeFavorites(model.product.id);
                   },
                   child: Row(
                     children: [
-                      Icon(
-                        Icons.favorite_border_rounded,
-                        color: Colors.grey,
-                        size: 18,
-                      ),
+                       Icon(
+                          MainCubit.get(context).favorites[model.product.id]
+                              ? Icons.favorite
+                              : Icons.favorite_border,
+                          color: MainCubit.get(context).favorites[model.product.id]
+                              ? Colors.red
+                              : Colors.grey,
+                          size: 30,
+                        ),
+
                       SizedBox(
                         width: 2.5,
                       ),
                       Text(
-                        'Move to Wishlist',
+                        'Move to Favorites',
                         style: TextStyle(
                           color: Colors.grey,
                           fontSize: 13,

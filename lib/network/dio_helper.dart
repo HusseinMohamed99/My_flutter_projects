@@ -7,7 +7,7 @@ class DioHelper
 
   static init()
   {
-    print('dioHelper Initialized');
+
     dio = Dio(
         BaseOptions(
           baseUrl:'https://student.valuxapps.com/api/',

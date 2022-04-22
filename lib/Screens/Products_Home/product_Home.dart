@@ -12,7 +12,6 @@ import 'package:flutter_projects/shared/componnetns/components.dart';
 import 'package:flutter_projects/shared/styles/colors.dart';
 
 
-
 class ProductsScreen extends StatelessWidget {
 
   @override
@@ -172,11 +171,11 @@ class ProductsScreen extends StatelessWidget {
     ),
   );
 
-  Widget GridProducts (ProductsModel model , context) => InkWell(
+  Widget GridProducts (ProductModel model , context) => InkWell(
     onTap: ()
     {
-      MainCubit.get(context).getProductData(model.id);
-      navigateTo(context, ProductDetailsScreen());
+      //MainCubit.get(context).getProductData(model.id).then((value)=> navigateTo(context, ProductDetailsScreen(product: model,)));
+      MainCubit.get(context).getProductData(model.id).then((value)=> navigateTo(context, ProductDetailsScreen()));
     },
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -238,17 +237,18 @@ class ProductsScreen extends StatelessWidget {
                       ),
                     ),
                   Spacer(),
-                  CircleAvatar(
-                    backgroundColor: MainCubit.get(context).favorites[model.id] ? Colors.red : Colors.grey[300],
-                    child: IconButton(
-                      onPressed: ()
-                      {
-                        MainCubit.get(context).changeFavorites(model.id);
-                      },
-                      icon: Icon(
-                        Icons.star_border,
-                        color: Colors.white,
-                      ),
+                  IconButton(
+                    onPressed: () {
+                      MainCubit.get(context).changeFavorites(model.id);
+                    },
+                    icon: Icon(
+                      MainCubit.get(context).favorites[model.id]
+                          ? Icons.favorite
+                          : Icons.favorite_border,
+                      color: MainCubit.get(context).favorites[model.id]
+                          ? Colors.red
+                          : Colors.grey,
+                      size: 26,
                     ),
                   ),
                 ],

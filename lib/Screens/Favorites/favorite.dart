@@ -103,7 +103,9 @@ class FavoritesScreen extends StatelessWidget {
                     bottom: 10,
                     left: 10,
                     child: CircleAvatar(
-                      backgroundColor: Colors.deepOrangeAccent,
+                      backgroundColor: MainCubit.get(context).cart[model.id]
+                          ? Colors.deepOrangeAccent
+                          : Colors.grey[300],
                       child: IconButton(
                         onPressed: (){
                           MainCubit.get(context).changeCart(model.id);
