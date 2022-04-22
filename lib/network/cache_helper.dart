@@ -31,7 +31,7 @@ class CacheHelper {
   }
 
 
-  static dynamic removeData({
+  static Future<bool> removeData({
     @required String key,
   })
   {

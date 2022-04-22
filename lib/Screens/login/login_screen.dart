@@ -1,13 +1,14 @@
 import 'package:conditional_builder/conditional_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_projects/Screens/home/home_screen.dart';
 import 'package:flutter_projects/Screens/login/cubit/cubit.dart';
 import 'package:flutter_projects/Screens/login/cubit/state.dart';
 import 'package:flutter_projects/Screens/register/register_screen.dart';
+import 'package:flutter_projects/layout/home_screen.dart';
 import 'package:flutter_projects/shared/componnetns/components.dart';
 import 'package:flutter_projects/shared/componnetns/constants.dart';
-import 'package:flutter_projects/shared/network/local/cache_helper.dart';
+import 'package:flutter_projects/network/cache_helper.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class LoginScreen extends StatelessWidget {
 
@@ -169,6 +170,94 @@ class LoginScreen extends StatelessWidget {
                                   navigateTo(context, RegisterScreen());
                                 },
                                 text: 'Register Now!',
+                            ),
+                          ],
+                        ),
+
+                        Row(
+
+                          children: [
+                            Expanded(
+                              child: Container(
+
+                                height: 60.0,
+
+                                decoration: BoxDecoration(
+                                  color: Colors.white.withOpacity(0.1),
+                                  borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(20.0),
+                                    topRight: Radius.circular(20.0),
+                                    bottomLeft: Radius.circular(20.0),
+                                    bottomRight: Radius.circular(20.0),
+                                  ),
+                                ),
+                                child: InkWell(
+                                  child: SvgPicture.asset(
+                                    'assets/icon/google.svg',
+                                    fit: BoxFit.none,
+
+                                  ),
+                                  onTap: () {
+
+                                  },
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              width: 20.0,
+                            ),
+                            Expanded(
+                              child: Container(
+
+                                height: 60.0,
+                                decoration: BoxDecoration(
+                                  color: Colors.white.withOpacity(0.1),
+                                  borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(20.0),
+                                    topRight: Radius.circular(20.0),
+                                    bottomLeft: Radius.circular(20.0),
+                                    bottomRight: Radius.circular(20.0),
+                                  ),
+                                ),
+                                child: InkWell(
+                                  child: SvgPicture.asset(
+                                    'assets/icon/facebook.svg',
+                                    fit: BoxFit.none,
+                                  ),
+                                  onTap: ()
+                                  {
+
+
+                                  },
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              width: 20.0,
+                            ),
+                            Expanded(
+                              child: Container(
+
+                                height: 60.0,
+                                decoration: BoxDecoration(
+                                  color: Colors.white.withOpacity(0.1),
+                                  borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(20.0),
+                                    topRight: Radius.circular(20.0),
+                                    bottomLeft: Radius.circular(20.0),
+                                    bottomRight: Radius.circular(20.0),
+                                  ),
+                                ),
+                                child: InkWell(
+                                  child: SvgPicture.asset(
+                                    'assets/icon/twitter.svg',
+                                    fit: BoxFit.none,
+                                  ),
+                                  onTap: () {
+
+                                  },
+                                ),
+                              ),
                             ),
                           ],
                         ),

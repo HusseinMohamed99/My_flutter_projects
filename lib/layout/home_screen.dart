@@ -1,18 +1,18 @@
+import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_projects/Screens/setting/setting.dart';
+import 'package:flutter_projects/cubit/cubit.dart';
+import 'package:flutter_projects/cubit/state.dart';
+
 import 'package:flutter_projects/shared/componnetns/components.dart';
-import 'package:flutter_projects/shared/cubit/cubit.dart';
-import 'package:flutter_projects/shared/cubit/state.dart';
 import 'package:flutter_projects/shared/styles/icon_broken.dart';
+
 
 class HomeScreen extends StatelessWidget {
 
-
-
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<MainCubit,MainState>(
+    return BlocConsumer<MainCubit,MainStates>(
       listener: (context, state){},
       builder: (context, state)
       {
@@ -26,7 +26,10 @@ class HomeScreen extends StatelessWidget {
               actions:
               [
                 IconButton(
-                  icon: Icon(IconBroken.Search),
+                  icon: Icon(
+                      IconBroken.Search,
+                    color: Colors.deepOrangeAccent,
+                  ),
                   onPressed: (){
 
                   },
@@ -34,36 +37,46 @@ class HomeScreen extends StatelessWidget {
                 IconButton(
                   onPressed: ()
                   {
-                    navigateTo(context, SettingScreen());
+                  logOut(context);
                   },
-                  icon: Icon(IconBroken.Setting),
+                  icon: Icon(IconBroken.Logout),
                 )
               ],
             ),
             body: cubit.pages[cubit.currentIndex],
             bottomNavigationBar: BottomNavigationBar(
-              currentIndex: cubit.currentIndex,
-              onTap: (index)
-              {
+              elevation: 50.0,
+              onTap: (index) {
                 cubit.ChangeNavBar(index);
               },
+              currentIndex: cubit.currentIndex,
               items: [
                 BottomNavigationBarItem(
-                  icon: Icon(IconBroken.Home),
-                 label: 'Home',
+                  icon: Icon(
+                    IconBroken.Home,
+                  ),
+                  label: 'Home',
                 ),
                 BottomNavigationBarItem(
-                  icon: Icon(IconBroken.Category),
-                  label: 'Category',
+                  icon: Icon(
+                    IconBroken.Category,
+                  ),
+                  label: 'Categories',
+                ),
+
+                BottomNavigationBarItem(
+                  icon: Icon(
+                    IconBroken.Bag,
+                  ),
+                  label: 'Cart',
                 ),
                 BottomNavigationBarItem(
-                  icon: Icon(IconBroken.Heart),
-                  label: 'Favorites',
+                  icon: Icon(
+                    IconBroken.Setting,
+                  ),
+                  label: 'Settings',
                 ),
-                BottomNavigationBarItem(
-                  icon: Icon(IconBroken.Profile),
-                  label: 'Profile',
-                ),
+
               ],
             ),
           ),

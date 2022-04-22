@@ -11,3 +11,24 @@ const HOME = 'home';
 const CATEGORIES = 'categories';
 
 const FAVORITES = 'favorites';
+
+const CARTS = 'carts';
+
+const PRODUCT_DETAILS = 'products/1';
+
+const CATEGORIES_DETAIL =  'products';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

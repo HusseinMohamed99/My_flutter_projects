@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_projects/model/login_model.dart';
+import 'package:flutter_projects/model/login/login_model.dart';
 
 abstract class LoginState {}
 
