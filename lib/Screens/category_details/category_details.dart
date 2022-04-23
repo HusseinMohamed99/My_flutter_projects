@@ -84,7 +84,7 @@ class CategoryProductsScreen extends StatelessWidget {
             children:
             [
               Stack(
-                  alignment:AlignmentDirectional.bottomEnd,
+
                   children:[
                     Image(
                       image: NetworkImage(
@@ -92,27 +92,10 @@ class CategoryProductsScreen extends StatelessWidget {
                       ),
                       height: 250,
                       width: double.infinity,),
-                    if(model.discount != 0 )
-                      Container(
-                          color: DColor,
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 5),
-                            child:  Container(
-                              padding: EdgeInsets.symmetric(horizontal: 5.0,),
-                              color: Colors.red,
-                              child: Text(
-                                'OFFERS',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 10.0,
-                                ),
-                              ),
-                            ),
-                          )
-                      ),
+
                     Positioned(
                       top: 10,
-                      left: 0,
+                      right: 0,
                       child: IconButton(
                         onPressed: () {
                           MainCubit.get(context).changeFavorites(model.id);
@@ -128,6 +111,28 @@ class CategoryProductsScreen extends StatelessWidget {
                         ),
                       ),
                     ),
+                    if (model.discount != 0)
+                      Positioned.fill(
+                        child: Align(
+                          alignment: Alignment(1, -1),
+                          child: ClipRect(
+                            child: Banner(
+                              message: 'OFFERS',
+                              textStyle: TextStyle(
+                                fontFamily: 'Roboto',
+                                fontWeight: FontWeight.bold,
+                                fontSize: 12,
+                                letterSpacing: 0.5,
+                              ),
+                              location: BannerLocation.topStart,
+                              color: Colors.red,
+                              child: Container(
+                                height: 100.0,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
                   ]),
 
               Text('${model.name}',maxLines: 3, overflow: TextOverflow.ellipsis,),

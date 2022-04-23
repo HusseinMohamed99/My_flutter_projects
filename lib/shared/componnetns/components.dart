@@ -5,6 +5,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 
 
 Widget defaultTextFormField({
+  FocusNode focusNode,
   @required TextEditingController controller,
   @required TextInputType keyboardType,
   @required Function validate,
@@ -21,6 +22,7 @@ Widget defaultTextFormField({
   Function suffixPressed,
 }) =>
     TextFormField(
+      focusNode: FocusNode(),
       style: TextStyle(
           color: Colors.black,
       ),

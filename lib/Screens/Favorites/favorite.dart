@@ -45,6 +45,7 @@ class FavoritesScreen extends StatelessWidget {
                 body: ConditionalBuilder(
                   condition: state is! FavoritesLoadingStates,
                   builder: (context) => ListView.separated(
+                    physics: BouncingScrollPhysics(),
                     itemBuilder: (context, index) => BuildListProduct(
                         MainCubit.get(context)
                             .favoritesModel
@@ -160,7 +161,7 @@ class FavoritesScreen extends StatelessWidget {
                         CircleAvatar(
                           backgroundColor:
                               MainCubit.get(context).favorites[model.id]
-                                  ? Colors.deepOrangeAccent
+                                  ? Colors.red
                                   : Colors.grey[300],
                           child: IconButton(
                             onPressed: () {

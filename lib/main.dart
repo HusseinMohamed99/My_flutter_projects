@@ -7,6 +7,7 @@ import 'package:flutter_projects/shared/componnetns/constants.dart';
 import 'package:flutter_projects/network/cache_helper.dart';
 import 'package:flutter_projects/network/dio_helper.dart';
 import 'package:flutter_projects/shared/styles/themes.dart';
+import 'package:splashscreen/splashscreen.dart';
 
 
 
@@ -48,19 +49,12 @@ class Myapp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
        BlocProvider(create: (context) => MainCubit()
-
          ..getHomeData()
          ..getCategoriesData()
          ..getFavoritesData()
          ..getUserData()
          ..getCartData()
-
-
-
-
-
        ),
-
       ],
       child: MaterialApp(
         theme: lightTheme,
@@ -69,4 +63,6 @@ class Myapp extends StatelessWidget {
       ),
     );
   }
+  
 }
+

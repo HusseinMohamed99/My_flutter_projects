@@ -1,13 +1,10 @@
 import 'package:conditional_builder/conditional_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_projects/Screens/cart/cart.dart';
 import 'package:flutter_projects/cubit/cubit.dart';
 import 'package:flutter_projects/cubit/state.dart';
 import 'package:flutter_projects/layout/home_screen.dart';
-import 'package:flutter_projects/model/home/home_model.dart';
 import 'package:flutter_projects/shared/componnetns/components.dart';
-import 'package:flutter_projects/shared/styles/icon_broken.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class ProductDetailsScreen extends StatelessWidget {

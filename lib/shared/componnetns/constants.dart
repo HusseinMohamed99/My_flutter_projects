@@ -6,7 +6,7 @@ void printFullText(String Text) {
 }
 
 
-Widget separator (double wide,double high){
+Widget space (double wide,double high){
   return SizedBox(width: wide,height: high,);
 }
 

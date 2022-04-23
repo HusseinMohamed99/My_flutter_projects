@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_projects/Screens/Categories/category.dart';
+import 'package:flutter_projects/Screens/Favorites/favorite.dart';
 import 'package:flutter_projects/Screens/Products_Home/product_Home.dart';
 import 'package:flutter_projects/Screens/cart/cart.dart';
 import 'package:flutter_projects/Screens/setting/setting.dart';
@@ -14,6 +15,7 @@ import 'package:flutter_projects/model/home/home_model.dart';
 import 'package:flutter_projects/model/login/login_model.dart';
 import 'package:flutter_projects/model/product/product_model.dart';
 import 'package:flutter_projects/model/cart/update_cart_model.dart';
+import 'package:flutter_projects/model/search/search_model.dart';
 import 'package:flutter_projects/shared/componnetns/components.dart';
 import 'package:flutter_projects/shared/componnetns/constants.dart';
 import 'package:flutter_projects/network/End_Points.dart';
@@ -33,7 +35,7 @@ class MainCubit extends Cubit<MainStates> {
   List<Widget> pages = [
     ProductsScreen(),
     CategoriesScreen(),
-    CartScreen(),
+    FavoritesScreen(),
     SettingScreen(),
 
   ];
@@ -91,17 +93,14 @@ class MainCubit extends Cubit<MainStates> {
 
   void getHomeData() {
     emit(HomeLoadingStates());
-
     DioHelper.getData(
       url: HOME,
       token: token,
     ).then((value) {
       homeModel = HomeModel.fromJson(value.data);
-      printFullText(homeModel.data.banners.toString());
+      //printFullText(homeModel.data.banners.toString());
       print(homeModel.status);
       print(token);
-
-
       homeModel.data.products.forEach((element) {
         favorites.addAll({
           element.id: element.inFavorites,
@@ -112,7 +111,6 @@ class MainCubit extends Cubit<MainStates> {
           element.id: element.inCart,
         });
       });
-
       emit(HomeSuccessStates());
     }).catchError((error) {
       print(error.toString());
@@ -121,7 +119,6 @@ class MainCubit extends Cubit<MainStates> {
   }
 
   CategoriesModel categoriesModel;
-
   void getCategoriesData() {
     DioHelper.getData(
       url: CATEGORIES,
@@ -157,7 +154,6 @@ class MainCubit extends Cubit<MainStates> {
 
 // changeCart
   ChangeCartModel changeCartModel;
-
   void changeCart(int productId) {
     // cart[productId] = !cart[productId];
     emit(ChangeCartStates());
@@ -169,7 +165,7 @@ class MainCubit extends Cubit<MainStates> {
       token: token,
     ).then((value) {
       changeCartModel = ChangeCartModel.fromJson(value.data);
-      print('changeCartModel ' + changeCartModel.status.toString());
+     // print('changeCartModel ' + changeCartModel.status.toString());
       if ( changeCartModel.status ) {
        getCartData();
        getHomeData();
@@ -194,7 +190,7 @@ class MainCubit extends Cubit<MainStates> {
     emit(CartLoadingStates());
     DioHelper.getData(url: CARTS, token: token).then((value) {
       cartModel = CartModel.fromJson(value.data);
-      print('Get Cart'+cartModel.toString());
+     // print('Get Cart'+cartModel.toString());
       emit(GetCartSuccessStates());
     }).catchError((error) {
       print(error.toString());
@@ -204,7 +200,6 @@ class MainCubit extends Cubit<MainStates> {
 
 // update cart
   UpdateCartModel updateCartModel;
-
   void updateCartData( int id, int quantity) {
     emit(UpdateCartLoadingStates());
     DioHelper.putData(
@@ -222,7 +217,7 @@ class MainCubit extends Cubit<MainStates> {
           text: updateCartModel.message,
           state: ToastStates.SUCCESS,
         );
-      print('updateCartModel ' + updateCartModel.status.toString());
+    //  print('updateCartModel ' + updateCartModel.status.toString());
       emit(UpdateCartSuccessStates());
     }).catchError((error) {
       emit(UpdateCartErrorStates());
@@ -287,6 +282,8 @@ class MainCubit extends Cubit<MainStates> {
       print(error.toString());
     });
   }
+
+
 
   IconData suffix = Icons.visibility_outlined;
   bool isPassword = true;

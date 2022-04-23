@@ -18,6 +18,10 @@ const PRODUCT_DETAILS = 'products/1';
 
 const CATEGORIES_DETAIL =  'products';
 
+const SEARCH =  'products/search';
+
+
+
 
 
 

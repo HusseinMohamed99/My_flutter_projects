@@ -15,6 +15,7 @@ class CategoriesScreen extends StatelessWidget {
       listener: (context, state) {},
       builder: (context, state) {
         return ListView.separated(
+          physics: BouncingScrollPhysics(),
           itemBuilder: (context, index) => CatList(
               MainCubit.get(context).categoriesModel.data.data[index], context),
           separatorBuilder: (context, index) => myDivider(),
@@ -33,18 +34,31 @@ class CategoriesScreen extends StatelessWidget {
           padding: const EdgeInsets.all(20.0),
           child: Row(
             children: [
-              Image(
-                image: NetworkImage(model.image),
-                width: 80.0,
-                height: 80.0,
-                fit: BoxFit.cover,
+              Container(
+                width: 100.0,
+                height: 100.0,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  border: Border.all(color: Colors.deepOrange, width: 2),
+                  image: DecorationImage(
+                    image: NetworkImage(
+                      model.image,
+                    ),
+                    fit: BoxFit.cover,
+                  ),
+                ),
               ),
               SizedBox(
                 width: 20.0,
               ),
               Text(
-                model.name,
-                style: Theme.of(context).textTheme.headline6,
+                model.name.toUpperCase(),
+                style: Theme.of(context).textTheme.bodyText2.copyWith(
+                  fontWeight: FontWeight.bold,
+                ),
+
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
               ),
               Spacer(),
               IconButton(

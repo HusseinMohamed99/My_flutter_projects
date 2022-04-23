@@ -1,14 +1,18 @@
-
+import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter_projects/Screens/login/login_screen.dart';
+import 'package:flutter_projects/layout/home_screen.dart';
+import 'package:flutter_projects/network/cache_helper.dart';
 
 class SplashScreen extends StatefulWidget {
-  const SplashScreen({Key key}) : super(key: key);
-
   @override
   State<SplashScreen> createState() => _SplashScreenState();
 }
 
+
 class _SplashScreenState extends State<SplashScreen>with SingleTickerProviderStateMixin {
+
+
 
    AnimationController animationController;
   Animation fadeAnimation;
@@ -16,6 +20,7 @@ class _SplashScreenState extends State<SplashScreen>with SingleTickerProviderSta
   @override
   void initState() {
     super.initState();
+
     animationController =
         AnimationController(vsync: this,duration: Duration(seconds: 10));
     fadeAnimation = Tween(begin: 0.2, end: 1.0).animate(animationController)..addListener(() {
@@ -40,6 +45,7 @@ class _SplashScreenState extends State<SplashScreen>with SingleTickerProviderSta
             Spacer(),
             FadeTransition(
               opacity: fadeAnimation,
+
               child: Text(
                 'Online Market',
                 style: TextStyle(

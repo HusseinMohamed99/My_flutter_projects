@@ -120,6 +120,9 @@ class UpdateCartSuccessStates extends MainStates{}
 
 class UpdateCartErrorStates extends MainStates{}
 
+
+
+
 //////////////////////   ///////////////////////////////
 
 class ShowPasswordStates extends MainStates {}
