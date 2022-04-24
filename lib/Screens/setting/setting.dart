@@ -22,7 +22,7 @@ class SettingScreen extends StatelessWidget {
       {
         var model = MainCubit.get(context).UserData;
         return Scaffold(
-          backgroundColor: Colors.white,
+
           body: SingleChildScrollView(
             child: Column(
               children:
@@ -59,7 +59,7 @@ class SettingScreen extends StatelessWidget {
                           },
                           icon: Icon(
                             IconBroken.Edit_Square,
-                            color: Colors.white,
+
                             size: 30,
                           )
                       ),
@@ -72,7 +72,7 @@ class SettingScreen extends StatelessWidget {
                     navigateTo(context, EditScreen());
                   },
                   child: Container(
-                    color: Colors.white,
+
                     padding: EdgeInsets.all(15),
                     child: Row(
                       children:
@@ -90,7 +90,7 @@ class SettingScreen extends StatelessWidget {
                     navigateTo(context, EditScreen());
                   },
                   child: Container(
-                    color: Colors.white,
+
                     padding: EdgeInsets.all(15),
                     child: Row(
                       children:
@@ -108,7 +108,7 @@ class SettingScreen extends StatelessWidget {
                     navigateTo(context, EditScreen());
                   },
                   child: Container(
-                    color: Colors.white,
+
                     padding: EdgeInsets.all(15),
                     child: Row(
                       children:
@@ -126,7 +126,7 @@ class SettingScreen extends StatelessWidget {
                   navigateTo(context, EditScreen());
                 },
                 child: Container(
-                  color: Colors.white,
+
                   padding: EdgeInsets.all(15),
                   child: Row(
                     children:
@@ -144,7 +144,7 @@ class SettingScreen extends StatelessWidget {
                   navigateTo(context, EditScreen());
                 },
                 child: Container(
-                  color: Colors.white,
+
                   padding: EdgeInsets.all(15),
                   child: Row(
                     children:
@@ -162,7 +162,7 @@ class SettingScreen extends StatelessWidget {
                     navigateTo(context, EditScreen());
                   },
                   child: Container(
-                    color: Colors.white,
+
                     padding: EdgeInsets.all(15),
                     child: Row(
                       children:
@@ -180,7 +180,7 @@ class SettingScreen extends StatelessWidget {
                   navigateTo(context, EditScreen());
                 },
                 child: Container(
-                  color: Colors.white,
+
                   padding: EdgeInsets.all(15),
                   child: Row(
                     children:
@@ -198,7 +198,7 @@ class SettingScreen extends StatelessWidget {
                   navigateTo(context, EditScreen());
                 },
                 child: Container(
-                  color: Colors.white,
+
                   padding: EdgeInsets.all(15),
                   child: Row(
                     children:
@@ -226,7 +226,7 @@ class SettingScreen extends StatelessWidget {
                   ).show();
                 },
                 child: Container(
-                  color: Colors.white,
+
                   padding: EdgeInsets.all(15),
                   child: Row(
                     children:

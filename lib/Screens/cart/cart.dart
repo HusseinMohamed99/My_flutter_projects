@@ -42,27 +42,29 @@ class CartScreen extends StatelessWidget {
         CartModel cartModel = MainCubit.get(context).cartModel;
         cartLength = MainCubit.get(context).cartModel.data.cartItems.length;
         return MainCubit.get(context).cartModel.data.cartItems.length == 0
-            ? Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(
-                      Icons.shopping_bag_outlined,
-                      size: 70,
-                      color: Colors.greenAccent,
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Text(
-                      'Your Cart is empty',
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                    Text('Be Sure to fill your cart with something you like',
-                        style: TextStyle(fontSize: 15))
-                  ],
+            ? Scaffold(
+              body: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.shopping_bag_outlined,
+                        size: 70,
+                        color: Colors.greenAccent,
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Text(
+                        'Your Cart is empty',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      Text('Be Sure to fill your cart with something you like',
+                          style: TextStyle(fontSize: 15))
+                    ],
+                  ),
                 ),
-              )
+            )
             : Scaffold(
                 body: SingleChildScrollView(
                   physics: BouncingScrollPhysics(),

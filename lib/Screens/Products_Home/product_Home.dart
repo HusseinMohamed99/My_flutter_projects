@@ -95,7 +95,7 @@ class ProductsScreen extends StatelessWidget {
                   ),
                   Container(
                     height: 140.0,
-                    color: Colors.white,
+
                     padding: EdgeInsets.symmetric(vertical: 10.0),
                     child: Scrollbar(
                       thickness: 1,
@@ -150,11 +150,9 @@ class ProductsScreen extends StatelessWidget {
         },
         child: Container(
           width: 105,
-
           child: Column(
             children: [
               Container(
-
                 width: 95.0,
                 height: 82.0,
                 decoration: BoxDecoration(
@@ -174,7 +172,7 @@ class ProductsScreen extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  color: Colors.black,
+
                 ),
                 textAlign: TextAlign.center,
               )
@@ -197,7 +195,7 @@ class ProductsScreen extends StatelessWidget {
               ),
               clipBehavior: Clip.none,
               elevation: 20,
-              color: Colors.white,
+
               child: Padding(
                 padding: const EdgeInsets.symmetric(
                   horizontal: 16,

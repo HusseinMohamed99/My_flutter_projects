@@ -78,7 +78,6 @@ class LoginScreen extends StatelessWidget {
                         Text(
                           "Login",
                           style: TextStyle(
-                            color: Colors.black,
                             fontSize: 30,
                             fontWeight: FontWeight.bold,
                           ),
@@ -197,33 +196,6 @@ class LoginScreen extends StatelessWidget {
                                     fit: BoxFit.none,
 
                                   ),
-                                  onTap: () {
-
-                                  },
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              width: 20.0,
-                            ),
-                            Expanded(
-                              child: Container(
-
-                                height: 60.0,
-                                decoration: BoxDecoration(
-                                  color: Colors.white.withOpacity(0.1),
-                                  borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(20.0),
-                                    topRight: Radius.circular(20.0),
-                                    bottomLeft: Radius.circular(20.0),
-                                    bottomRight: Radius.circular(20.0),
-                                  ),
-                                ),
-                                child: InkWell(
-                                  child: SvgPicture.asset(
-                                    'assets/icon/facebook.svg',
-                                    fit: BoxFit.none,
-                                  ),
                                   onTap: ()
                                   {
 
@@ -250,19 +222,40 @@ class LoginScreen extends StatelessWidget {
                                 ),
                                 child: InkWell(
                                   child: SvgPicture.asset(
+                                    'assets/icon/facebook.svg',
+                                    fit: BoxFit.none,
+                                  ),
+                                  onTap: () {},
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              width: 20.0,
+                            ),
+                            Expanded(
+                              child: Container(
+                                height: 60.0,
+                                decoration: BoxDecoration(
+                                  color: Colors.white.withOpacity(0.1),
+                                  borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(20.0),
+                                    topRight: Radius.circular(20.0),
+                                    bottomLeft: Radius.circular(20.0),
+                                    bottomRight: Radius.circular(20.0),
+                                  ),
+                                ),
+                                child: InkWell(
+                                  child: SvgPicture.asset(
                                     'assets/icon/twitter.svg',
                                     fit: BoxFit.none,
                                   ),
                                   onTap: () {
-
                                   },
                                 ),
                               ),
                             ),
                           ],
                         ),
-
-
                       ],
                     ),
                   ),
@@ -278,3 +271,8 @@ class LoginScreen extends StatelessWidget {
     );
   }
 }
+
+
+
+
+

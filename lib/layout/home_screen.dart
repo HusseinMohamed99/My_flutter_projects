@@ -9,6 +9,7 @@ import 'package:flutter_projects/cubit/state.dart';
 import 'package:flutter_projects/model/home/home_model.dart';
 
 import 'package:flutter_projects/shared/componnetns/components.dart';
+import 'package:flutter_projects/shared/mode_cubit/cubit.dart';
 import 'package:flutter_projects/shared/styles/icon_broken.dart';
 
 
@@ -44,9 +45,9 @@ class HomeScreen extends StatelessWidget {
                 IconButton(
                   onPressed: ()
                   {
-                  logOut(context);
+                    ModeCubit.get(context).changeAppMode();
                   },
-                  icon: Icon(IconBroken.Logout),
+                  icon: Icon(Icons.dark_mode_outlined),
                 )
               ],
             ),

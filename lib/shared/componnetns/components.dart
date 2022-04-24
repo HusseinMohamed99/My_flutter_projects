@@ -24,7 +24,7 @@ Widget defaultTextFormField({
     TextFormField(
       focusNode: FocusNode(),
       style: TextStyle(
-          color: Colors.black,
+
       ),
       maxLines: 1,
       minLines: 1,
