@@ -1,18 +1,27 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_projects/Screens/FQA/fqa_screen.dart';
 import 'package:flutter_projects/Screens/edit/edit.dart';
 import 'package:flutter_projects/cubit/cubit.dart';
 import 'package:flutter_projects/cubit/state.dart';
 import 'package:flutter_projects/shared/componnetns/components.dart';
 import 'package:flutter_projects/shared/componnetns/constants.dart';
+import 'package:flutter_projects/shared/mode_cubit/cubit.dart';
 import 'package:flutter_projects/shared/styles/icon_broken.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class SettingScreen extends StatelessWidget {
+class SettingScreen extends StatefulWidget {
 
   @override
+  State<SettingScreen> createState() => _SettingScreenState();
+}
+
+class _SettingScreenState extends State<SettingScreen> {
+  @override
   Widget build(BuildContext context) {
+    bool value = false;
+
     return BlocConsumer<MainCubit,MainStates>(
       listener:(context,state)
       {
@@ -141,7 +150,17 @@ class SettingScreen extends StatelessWidget {
               ),
                 InkWell(
                 onTap: (){
-                  navigateTo(context, EditScreen());
+                  AwesomeDialog(
+                    context: context,
+                    dialogType: DialogType.QUESTION,
+                    animType: AnimType.TOPSLIDE,
+
+                    title: 'Do you want to change mode?',
+                    btnOkOnPress: () {
+                      ModeCubit.get(context).changeAppMode();
+                    },
+                    btnCancelOnPress: () {},
+                  ).show();
                 },
                 child: Container(
 
@@ -149,9 +168,17 @@ class SettingScreen extends StatelessWidget {
                   child: Row(
                     children:
                     [
-                      Icon(IconBroken.Setting,color: Colors.deepOrange,size: 35,),
+                      Icon(Icons.dark_mode_outlined,color: Colors.deepOrange,size: 35,),
                       space(15, 0),
-                      Text('General',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
+                      Text('Theme Mode',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
+                      Spacer(),
+                      Switch(
+                          value: value,
+                          onChanged: (value) {
+                            ModeCubit.get(context).changeAppMode();
+
+                          },
+                      ),
 
                     ],
                   ),
@@ -159,7 +186,7 @@ class SettingScreen extends StatelessWidget {
               ),
                 InkWell(
                   onTap: (){
-                    navigateTo(context, EditScreen());
+                    navigateTo(context,FqaScreen());
                   },
                   child: Container(
 
@@ -175,24 +202,7 @@ class SettingScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                InkWell(
-                onTap: (){
-                  navigateTo(context, EditScreen());
-                },
-                child: Container(
 
-                  padding: EdgeInsets.all(15),
-                  child: Row(
-                    children:
-                    [
-                      Icon(Icons.help_outline,color: Colors.deepOrange,size: 35,),
-                      space(15, 0),
-                      Text('Help Center',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
-
-                    ],
-                  ),
-                ),
-              ),
                 InkWell(
                 onTap: (){
                   navigateTo(context, EditScreen());

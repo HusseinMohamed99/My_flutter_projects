@@ -129,8 +129,17 @@ class ShowPasswordStates extends MainStates {}
 
 class ChangeNavBarItem extends MainStates {}
 
+class FaqLoadingStates extends MainStates {}
 
+class GetFaqSuccessStates extends MainStates {}
 
+class GetFaqErrorStates extends MainStates {}
+
+class NotificationLoadingStates extends MainStates {}
+
+class GetNotificationSuccessStates extends MainStates {}
+
+class GetNotificationErrorStates extends MainStates {}
 
 
 

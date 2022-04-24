@@ -20,6 +20,10 @@ const CATEGORIES_DETAIL =  'products';
 
 const SEARCH =  'products/search';
 
+const FAQS =  'faqs';
+
+const NOTIFICATION =  'notifications';
+
 
 
 

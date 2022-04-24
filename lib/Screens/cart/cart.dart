@@ -91,7 +91,7 @@ class CartScreen extends StatelessWidget {
 
                             shape: BoxShape.rectangle,
                             border: Border.all(
-                                color: Colors.black,
+
                                 width: 2,
                             ),
                             borderRadius: BorderRadius.circular(20),
@@ -137,7 +137,7 @@ class CartScreen extends StatelessWidget {
                     Container(
                       width: double.infinity,
                       height: 60,
-                      color: Colors.white,
+
                     ),
                   ]),
                 ),
@@ -163,7 +163,7 @@ class CartScreen extends StatelessWidget {
         ),
         clipBehavior: Clip.none,
         elevation: 20,
-        color: Colors.white,
+
         child: Container(
           height: 455,
           padding: EdgeInsets.all(15),
@@ -173,7 +173,6 @@ class CartScreen extends StatelessWidget {
                 image: NetworkImage('${model.product.image}'),
                 width: double.infinity,
                 height: 250,
-
               ),
               Text(
                 '${model.product.name}',
@@ -183,16 +182,16 @@ class CartScreen extends StatelessWidget {
                 maxLines: 3,
                 overflow: TextOverflow.ellipsis,
               ),
-              space(double.infinity,0),
+              space(double.infinity,5),
               Container(
                 width: double.infinity,
 
                 clipBehavior: Clip.antiAliasWithSaveLayer,
                 decoration: BoxDecoration(
-                  color: Colors.grey[200],
+
                   shape: BoxShape.rectangle,
                   border: Border.all(
-                    color: Colors.black,
+
                     width: 2,
                   ),
                   borderRadius: BorderRadius.circular(20),

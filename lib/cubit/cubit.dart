@@ -10,6 +10,7 @@ import 'package:flutter_projects/model/cart/add_cart_model.dart';
 import 'package:flutter_projects/model/cart/get_cart_model.dart';
 import 'package:flutter_projects/model/category/category_details_model.dart';
 import 'package:flutter_projects/model/category/category_model.dart';
+import 'package:flutter_projects/model/faq/faq_model.dart';
 import 'package:flutter_projects/model/favorite/favorite_model.dart';
 import 'package:flutter_projects/model/home/home_model.dart';
 import 'package:flutter_projects/model/login/login_model.dart';
@@ -283,7 +284,17 @@ class MainCubit extends Cubit<MainStates> {
     });
   }
 
-
+  FaqModel faqModel;
+  void getFaqData(){
+    emit(FaqLoadingStates());
+    DioHelper.getData(url: FAQS, token: token).then((value) {
+      faqModel = FaqModel.fromJson(value.data);
+      emit(GetFaqSuccessStates());
+    }).catchError((error) {
+      print(error.toString());
+      emit(GetFaqErrorStates());
+    });
+  }
 
   IconData suffix = Icons.visibility_outlined;
   bool isPassword = true;

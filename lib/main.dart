@@ -51,7 +51,9 @@ class Myapp extends StatelessWidget {
               ..getCategoriesData()
               ..getFavoritesData()
               ..getUserData()
-              ..getCartData()),
+              ..getCartData()
+                ..getFaqData()
+        ),
         BlocProvider(
           create: (context) => ModeCubit()
             ..changeAppMode(

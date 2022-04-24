@@ -206,6 +206,10 @@ class ProductDetailsScreen extends StatelessWidget {
                                                   maxLines: 2,
                                                   overflow:
                                                       TextOverflow.ellipsis,
+                                                  style: TextStyle(
+                                                   color: Colors.black,
+
+                                                  ),
                                                 ),
                                                 SizedBox(
                                                   height: 5,
