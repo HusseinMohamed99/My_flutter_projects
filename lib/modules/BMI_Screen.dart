@@ -1,3 +1,5 @@
+// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors, prefer_const_literals_to_create_immutables, camel_case_types, file_names, non_constant_identifier_names, avoid_print
+
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
@@ -51,7 +53,9 @@ class _BMI_ScreenState extends State<BMI_Screen> {
                             borderRadius: BorderRadius.circular(
                               10.0,
                             ),
-                            color: isMale ?   HexColor('#ff1493'): HexColor('#800080'),
+                            color: isMale
+                                ? HexColor('#ff1493')
+                                : HexColor('#800080'),
                           ),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -93,7 +97,9 @@ class _BMI_ScreenState extends State<BMI_Screen> {
                             borderRadius: BorderRadius.circular(
                               10.0,
                             ),
-                            color: !isMale ? HexColor('#ff1493'): HexColor('#800080'),
+                            color: !isMale
+                                ? HexColor('#ff1493')
+                                : HexColor('#800080'),
                           ),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -131,12 +137,12 @@ class _BMI_ScreenState extends State<BMI_Screen> {
               padding: const EdgeInsets.symmetric(
                 horizontal: 20.0,
               ),
-                child: Container(
+              child: Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(
                     10.0,
                   ),
-                  color:HexColor('#800080'),
+                  color: HexColor('#800080'),
                 ),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -183,7 +189,6 @@ class _BMI_ScreenState extends State<BMI_Screen> {
                       onChanged: (value) {
                         setState(() {
                           HEIGHT = value;
-
                         });
                       },
                     ),
@@ -204,7 +209,7 @@ class _BMI_ScreenState extends State<BMI_Screen> {
                           borderRadius: BorderRadius.circular(
                             10.0,
                           ),
-                          color:HexColor('#800080') ,
+                          color: HexColor('#800080'),
                         ),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
@@ -230,7 +235,6 @@ class _BMI_ScreenState extends State<BMI_Screen> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 FloatingActionButton(
-
                                   onPressed: () {
                                     setState(() {
                                       AGE--;
@@ -256,7 +260,6 @@ class _BMI_ScreenState extends State<BMI_Screen> {
                                   ),
                                   backgroundColor: Colors.black,
                                 ),
-
                               ],
                             ),
                           ],
@@ -272,7 +275,7 @@ class _BMI_ScreenState extends State<BMI_Screen> {
                           borderRadius: BorderRadius.circular(
                             10.0,
                           ),
-                          color:  HexColor('#800080'),
+                          color: HexColor('#800080'),
                         ),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -335,7 +338,7 @@ class _BMI_ScreenState extends State<BMI_Screen> {
 
             // Part 4 (Button)
             Container(
-              color:  HexColor('#800080') ,
+              color: HexColor('#800080'),
               width: double.infinity,
               child: MaterialButton(
                 onPressed: () {
@@ -365,7 +368,6 @@ class _BMI_ScreenState extends State<BMI_Screen> {
               ),
             ),
           ],
-        )
-    );
+        ));
   }
 }
