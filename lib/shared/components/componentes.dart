@@ -1,8 +1,9 @@
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, non_constant_identifier_names, avoid_types_as_parameter_names
+
 import 'package:conditional_builder/conditional_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_projects/shared/cubit/cubit.dart';
 import 'package:flutter_projects/styles/colors.dart';
-
 
 Widget defaultButton({
   double width = double.infinity,
@@ -11,34 +12,36 @@ Widget defaultButton({
   double radius = 3.0,
   @required Function function,
   @required String text,
-}) =>     Container(
-  width: width,
-  height: 50.0,
-  child: MaterialButton(
-    onPressed: function,
-    child: Text(
-      isUpperCase ? text.toUpperCase() : text,
-      style: const TextStyle(
-        color: Colors.white,
-        fontSize: 20.0,
+}) =>
+    Container(
+      width: width,
+      height: 50.0,
+      child: MaterialButton(
+        onPressed: function,
+        child: Text(
+          isUpperCase ? text.toUpperCase() : text,
+          style: const TextStyle(
+            color: Colors.white,
+            fontSize: 20.0,
+          ),
+        ),
       ),
-    ),
-  ),
-  decoration: BoxDecoration(
-    borderRadius: BorderRadius.circular(
-      radius,
-    ),
-    color: background,
-  ),
-);
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(
+          radius,
+        ),
+        color: background,
+      ),
+    );
 
 Widget defaultTextButton({
   @required Function function,
   @required String text,
-}) => TextButton(
-  onPressed: function,
-  child: Text(text.toUpperCase()),
-);
+}) =>
+    TextButton(
+      onPressed: function,
+      child: Text(text.toUpperCase()),
+    );
 
 Widget defaultTextFormField({
   @required TextEditingController controller,
@@ -46,139 +49,128 @@ Widget defaultTextFormField({
   Function onSubmit,
   Function onChange,
   Function onTap,
-  @required  Function  validate,
+  @required Function validate,
   @required String label,
   @required IconData prefix,
   bool isPassword = false,
   bool isClickable = true,
-
-  IconData  suffix,
-    Function suffixPressed,
-}) => TextFormField(
-  controller: controller,
-  keyboardType: type,
-  obscureText: isPassword,
-  onFieldSubmitted: onSubmit,
-  onChanged: onChange,
-  enabled: isClickable,
-  onTap: onTap,
-  validator:validate,
-  decoration: InputDecoration(
-    labelText: label,
-    prefixIcon: Icon(
-      prefix,
-    ),
-    suffixIcon: suffix != null ? IconButton(
-      onPressed: suffixPressed,
-      icon: Icon(
-        suffix,
+  IconData suffix,
+  Function suffixPressed,
+}) =>
+    TextFormField(
+      controller: controller,
+      keyboardType: type,
+      obscureText: isPassword,
+      onFieldSubmitted: onSubmit,
+      onChanged: onChange,
+      enabled: isClickable,
+      onTap: onTap,
+      validator: validate,
+      decoration: InputDecoration(
+        labelText: label,
+        prefixIcon: Icon(
+          prefix,
+        ),
+        suffixIcon: suffix != null
+            ? IconButton(
+                onPressed: suffixPressed,
+                icon: Icon(
+                  suffix,
+                ),
+              )
+            : null,
+        border: const OutlineInputBorder(),
       ),
-    ) : null,
+    );
 
-    border: const OutlineInputBorder(),
-  ),
-);
-
-
-Widget buildTaskItem(Map model, context)=> Dismissible(
-    key: Key(model['id'].toString()),
-  child:Padding(
-    padding: const EdgeInsets.all(20.0),
-    child: Row(
-      children: [
-
-        CircleAvatar(
-          radius: 40.0,
-          child: Text(
-            '${model['time']}',
-          ),
-        ),
-        SizedBox(
-          width: 20.0,
-        ),
-        Expanded(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                '${model['title']}',
-                style: TextStyle(
-                  fontSize: 20.0,
-                  fontWeight: FontWeight.bold,
-                ),
+Widget buildTaskItem(Map model, context) => Dismissible(
+      key: Key(model['id'].toString()),
+      child: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Row(
+          children: [
+            CircleAvatar(
+              radius: 40.0,
+              child: Text(
+                '${model['time']}',
               ),
-              Text(
-                '${model['date']}',
-                style: TextStyle(
-                  fontSize: 15.0,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.grey,
-                ),
+            ),
+            SizedBox(
+              width: 20.0,
+            ),
+            Expanded(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    '${model['title']}',
+                    style: TextStyle(
+                      fontSize: 20.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Text(
+                    '${model['date']}',
+                    style: TextStyle(
+                      fontSize: 15.0,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.grey,
+                    ),
+                  ),
+                ],
               ),
-            ],
-          ),
+            ),
+            SizedBox(
+              width: 20.0,
+            ),
+            IconButton(
+              onPressed: () {
+                AppCubit.get(context).UpdateData(
+                  status: 'done',
+                  id: model['id'],
+                );
+              },
+              icon: Icon(
+                Icons.check_box,
+                color: Colors.green,
+              ),
+            ),
+            IconButton(
+              onPressed: () {
+                AppCubit.get(context).UpdateData(
+                  status: 'archive',
+                  id: model['id'],
+                );
+              },
+              icon: Icon(
+                Icons.archive,
+                color: Colors.black38,
+              ),
+            ),
+          ],
         ),
-        SizedBox(
-          width: 20.0,
-        ),
-        IconButton(onPressed: ()
-        {
-          AppCubit.get(context).UpdateData(
-            status: 'done',
-            id: model['id'],
-          );
+      ),
+      onDismissed: (direction) {
+        AppCubit.get(context).DeleteData(
+          id: model['id'],
+        );
+      },
+    );
 
-        },
-          icon: Icon(
-            Icons.check_box,
-           color: Colors.green,
-          ),
-        ),
-        IconButton(
-          onPressed: ()
-          {
-            AppCubit.get(context).UpdateData(
-              status: 'archive',
-              id: model['id'],
-            );
-
-          },
-          icon: Icon(
-            Icons.archive,
-           color: Colors.black38,
-          ),
-        ),
-
-      ],
-    ),
-  ),
-  onDismissed: (direction)
-  {
-    AppCubit.get(context).DeleteData(id:model['id'],);
-  },
-
-
-);
-
-Widget tasksBuilder ({
-  @required List <Map> tasks
-}) => ConditionalBuilder(
-  condition: tasks.length > 0,
-  builder: (context) => ListView.separated(
-
-    itemBuilder: (context, index) =>buildTaskItem(tasks[index],context),
-    separatorBuilder: (context,index) => myDivider() ,
-    itemCount: tasks.length,
-  ),
-  fallback:(context) => Center(
-    child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
+Widget tasksBuilder({@required List<Map> tasks}) => ConditionalBuilder(
+      condition: tasks.isNotEmpty,
+      builder: (context) => ListView.separated(
+        itemBuilder: (context, index) => buildTaskItem(tasks[index], context),
+        separatorBuilder: (context, index) => myDivider(),
+        itemCount: tasks.length,
+      ),
+      fallback: (context) => Center(
+        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
           Icon(
             Icons.menu,
             size: 150.0,
-           color: Colors.grey,
+            color: Colors.grey,
           ),
           Text(
             'No Tasks Yet, please Add Some',
@@ -188,32 +180,22 @@ Widget tasksBuilder ({
               color: Colors.grey,
             ),
           ),
-        ]
-    ),
-  ),
+        ]),
+      ),
+    );
 
-);
+Widget myDivider() => Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Container(
+        width: double.infinity,
+        height: 1.0,
+        color: defaultColor,
+      ),
+    );
 
-
-
-
-Widget myDivider () => Padding(
-  padding: const EdgeInsets.all(8.0),
-  child: Container(
-    width: double.infinity,
-    height: 1.0,
-    color:defaultColor,
-  ),
-);
-
-
-
-void navigateTo(context,Widget)=>  Navigator.push(
-  context,
-  MaterialPageRoute(
-    builder: (context) => Widget,
-  ),
-);
-
-
-
+void navigateTo(context, Widget) => Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => Widget,
+      ),
+    );

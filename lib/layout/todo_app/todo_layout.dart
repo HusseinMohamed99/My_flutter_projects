@@ -1,3 +1,5 @@
+// ignore_for_file: use_key_in_widget_constructors, must_be_immutable, unnecessary_import, prefer_const_constructors, prefer_const_literals_to_create_immutables, camel_case_types, empty_statements, avoid_print
+
 import 'package:conditional_builder/conditional_builder.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -7,9 +9,7 @@ import 'package:flutter_projects/shared/cubit/cubit.dart';
 import 'package:flutter_projects/shared/cubit/states.dart';
 import 'package:intl/intl.dart';
 
-
 class Home_Layout extends StatelessWidget {
-
   var scaffoldkey = GlobalKey<ScaffoldState>();
   var formkey = GlobalKey<FormState>();
   var titleController = TextEditingController();
@@ -22,10 +22,9 @@ class Home_Layout extends StatelessWidget {
       create: (BuildContext context) => AppCubit()..createDatabase(),
       child: BlocConsumer<AppCubit, AppStates>(
         listener: (BuildContext context, AppStates state) {
-          if(state is AppInsertDatabaseState)
-            {
-              Navigator.pop(context);
-            }
+          if (state is AppInsertDatabaseState) {
+            Navigator.pop(context);
+          }
         },
         builder: (BuildContext context, state) {
           AppCubit cubit = AppCubit.get(context);
@@ -52,16 +51,15 @@ class Home_Layout extends StatelessWidget {
                 if (cubit.isBottomSheetShown) {
                   if (formkey.currentState.validate()) {
                     cubit.insertToDatabase(
-                        title: titleController.text,
-                        time: timeController.text,
-                        date: dateController.text,
+                      title: titleController.text,
+                      time: timeController.text,
+                      date: dateController.text,
                     );
                   }
                 } else {
                   scaffoldkey.currentState
                       .showBottomSheet(
-                        (context) =>
-                        Container(
+                        (context) => Container(
                           color: Colors.white,
                           padding: EdgeInsets.all(
                             20.0,
@@ -138,22 +136,19 @@ class Home_Layout extends StatelessWidget {
                             ),
                           ),
                         ),
-                    elevation: 20.0,
-                  )
+                        elevation: 20.0,
+                      )
                       .closed
-                      .then((value)
-                  {
+                      .then((value) {
                     cubit.changeBottomSheetState(
-                        isShow: false,
-                        icon: Icons.edit,
+                      isShow: false,
+                      icon: Icons.edit,
                     );
-
                   });
                   cubit.changeBottomSheetState(
                     isShow: true,
                     icon: Icons.add,
                   );
-
                 }
                 ;
               },
@@ -195,5 +190,4 @@ class Home_Layout extends StatelessWidget {
       ),
     );
   }
-
 }
