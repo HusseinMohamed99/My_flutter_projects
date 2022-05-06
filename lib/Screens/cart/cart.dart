@@ -1,3 +1,5 @@
+// ignore_for_file: unused_import, use_key_in_widget_constructors, must_be_immutable, prefer_const_literals_to_create_immutables, prefer_const_constructors, unnecessary_string_escapes, sized_box_for_whitespace, unnecessary_string_interpolations, curly_braces_in_flow_control_structures
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_projects/Screens/Products_Home/product_Home.dart';
@@ -41,9 +43,9 @@ class CartScreen extends StatelessWidget {
       builder: (context, state) {
         CartModel cartModel = MainCubit.get(context).cartModel;
         cartLength = MainCubit.get(context).cartModel.data.cartItems.length;
-        return MainCubit.get(context).cartModel.data.cartItems.length == 0
+        return MainCubit.get(context).cartModel.data.cartItems.isEmpty
             ? Scaffold(
-              body: Center(
+                body: Center(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -64,7 +66,7 @@ class CartScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-            )
+              )
             : Scaffold(
                 body: SingleChildScrollView(
                   physics: BouncingScrollPhysics(),
@@ -81,22 +83,18 @@ class CartScreen extends StatelessWidget {
                       separatorBuilder: (context, index) => myDivider(),
                       itemCount: cartLength,
                     ),
-
                     Padding(
                       padding: const EdgeInsets.all(20.0),
                       child: Container(
                         clipBehavior: Clip.antiAliasWithSaveLayer,
-                          decoration: BoxDecoration(
-                            color: Colors.deepOrangeAccent,
-
-                            shape: BoxShape.rectangle,
-                            border: Border.all(
-
-                                width: 2,
-                            ),
-                            borderRadius: BorderRadius.circular(20),
-
+                        decoration: BoxDecoration(
+                          color: Colors.deepOrangeAccent,
+                          shape: BoxShape.rectangle,
+                          border: Border.all(
+                            width: 2,
                           ),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
                         padding: EdgeInsets.symmetric(horizontal: 15),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -110,24 +108,26 @@ class CartScreen extends StatelessWidget {
                                       fontSize: 20),
                                 ),
                                 Spacer(),
-                                Text( ' $cartLength  items',
+                                Text(' $cartLength  items',
                                     style: TextStyle(
-                                        color: Colors.white,
+                                      color: Colors.white,
                                       fontWeight: FontWeight.bold,
                                       fontSize: 20,
                                     )),
                               ],
                             ),
                             Row(
-
                               children: [
-                                Text(
-                                    'TOTAL :',
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold,fontSize: 20)),
+                                Text('TOTAL :',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 20)),
                                 Spacer(),
-                                Text( '${cartModel.data.total}\ LE',
-                                    style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20,color: Colors.white)),
+                                Text('${cartModel.data.total}\ LE',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 20,
+                                        color: Colors.white)),
                               ],
                             ),
                           ],
@@ -137,7 +137,6 @@ class CartScreen extends StatelessWidget {
                     Container(
                       width: double.infinity,
                       height: 60,
-
                     ),
                   ]),
                 ),
@@ -163,7 +162,6 @@ class CartScreen extends StatelessWidget {
         ),
         clipBehavior: Clip.none,
         elevation: 20,
-
         child: Container(
           height: 455,
           padding: EdgeInsets.all(15),
@@ -182,20 +180,16 @@ class CartScreen extends StatelessWidget {
                 maxLines: 3,
                 overflow: TextOverflow.ellipsis,
               ),
-              space(double.infinity,5),
+              space(double.infinity, 5),
               Container(
                 width: double.infinity,
-
                 clipBehavior: Clip.antiAliasWithSaveLayer,
                 decoration: BoxDecoration(
-
                   shape: BoxShape.rectangle,
                   border: Border.all(
-
                     width: 2,
                   ),
                   borderRadius: BorderRadius.circular(20),
-
                 ),
                 padding: EdgeInsets.symmetric(horizontal: 5),
                 child: Column(
@@ -207,12 +201,15 @@ class CartScreen extends StatelessWidget {
                                 fontWeight: FontWeight.bold, fontSize: 20)),
                         Text(
                           ' ${model.product.price}\ LE',
-                          style: TextStyle(fontSize: 20, color: Colors.deepOrangeAccent,fontWeight: FontWeight.bold),
+                          style: TextStyle(
+                              fontSize: 20,
+                              color: Colors.deepOrangeAccent,
+                              fontWeight: FontWeight.bold),
                         ),
-                        space(110,0),
+                        space(110, 0),
                         if (model.product.discount != 0)
                           Text(
-                             '${model.product.oldPrice} \ LE',
+                            '${model.product.oldPrice} \ LE',
                             style: TextStyle(
                                 decoration: TextDecoration.lineThrough,
                                 color: Colors.grey),
@@ -277,21 +274,23 @@ class CartScreen extends StatelessWidget {
                             padding: EdgeInsets.zero,
                           ),
                         ),
-Spacer(),
+                        Spacer(),
                         TextButton(
                           onPressed: () {
-                            MainCubit.get(context).changeFavorites(model.product.id);
+                            MainCubit.get(context)
+                                .changeFavorites(model.product.id);
                           },
                           child: Row(
                             children: [
                               Icon(
-                                MainCubit.get(context).favorites[model.product.id]
+                                MainCubit.get(context)
+                                        .favorites[model.product.id]
                                     ? Icons.favorite
                                     : Icons.favorite_border,
-                                color:
-                                    MainCubit.get(context).favorites[model.product.id]
-                                        ? Colors.red
-                                        : Colors.grey,
+                                color: MainCubit.get(context)
+                                        .favorites[model.product.id]
+                                    ? Colors.red
+                                    : Colors.grey,
                                 size: 30,
                               ),
                               SizedBox(
@@ -300,7 +299,8 @@ Spacer(),
                               Text(
                                 'Move to Favorites',
                                 style: TextStyle(
-                                  color: MainCubit.get(context).favorites[model.product.id]
+                                  color: MainCubit.get(context)
+                                          .favorites[model.product.id]
                                       ? Colors.red
                                       : Colors.grey,
                                   fontSize: 10,
@@ -331,8 +331,7 @@ Spacer(),
                               SizedBox(
                                 width: 2.5,
                               ),
-                              Text(
-                                  'Remove',
+                              Text('Remove',
                                   style: TextStyle(
                                     color: Colors.grey,
                                     fontSize: 13,

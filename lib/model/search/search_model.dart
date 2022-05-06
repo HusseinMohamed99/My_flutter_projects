@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_new
+
 class SearchModel {
   bool status;
   SearchData data;
@@ -6,12 +8,11 @@ class SearchModel {
     status = json['status'];
     data = json['data'] != null ? new SearchData.fromJson(json['data']) : null;
   }
-
-
 }
+
 class SearchData {
   List<SearchProductModel> products = [];
-   dynamic total;
+  dynamic total;
   SearchData.fromJson(Map<String, dynamic> json) {
     products = List.from(json["data"])
         .map((e) => SearchProductModel.fromJson(e))
@@ -19,15 +20,16 @@ class SearchData {
     total = json["total"];
   }
 }
+
 class SearchProductModel {
-   int id;
-   dynamic price;
-   String image;
+  int id;
+  dynamic price;
+  String image;
   List<String> images = [];
-   String name;
-   String description;
-   bool inFavorites;
-   bool inCart;
+  String name;
+  String description;
+  bool inFavorites;
+  bool inCart;
   SearchProductModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     price = json['price'];

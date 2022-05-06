@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_import, non_constant_identifier_names
+
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,7 +12,6 @@ class RegisterCubit extends Cubit<RegisterState> {
   RegisterCubit() : super(RegisterInitialState());
   static RegisterCubit get(context) => BlocProvider.of(context);
 
-
   LoginModel loginModel;
   void UserRegister({
     @required String email,
@@ -18,10 +19,7 @@ class RegisterCubit extends Cubit<RegisterState> {
     @required String name,
     @required String phone,
     @required String image,
-  })
-
-  {
-
+  }) {
     emit(RegisterLoadingState());
 
     DioHelper.postData(
@@ -44,10 +42,10 @@ class RegisterCubit extends Cubit<RegisterState> {
   IconData suffix = Icons.visibility_outlined;
   bool isPassword = true;
 
-  void ChangePassword()
-  {
+  void ChangePassword() {
     isPassword = !isPassword;
-    suffix = isPassword ? Icons.visibility_outlined : Icons.visibility_off_outlined;
+    suffix =
+        isPassword ? Icons.visibility_outlined : Icons.visibility_off_outlined;
 
     emit(ChangePasswordRegisterState());
   }

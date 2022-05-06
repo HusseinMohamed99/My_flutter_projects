@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_new, prefer_void_to_null
+
 class FavoritesModel {
   bool status;
   Null message;
@@ -10,8 +12,6 @@ class FavoritesModel {
     message = json['message'];
     data = json['data'] != null ? new Data.fromJson(json['data']) : null;
   }
-
-
 }
 
 class Data {
@@ -27,8 +27,6 @@ class Data {
   Null prevPageUrl;
   int to;
   int total;
-
-
 
   Data.fromJson(Map<String, dynamic> json) {
     currentPage = json['current_page'];
@@ -49,22 +47,17 @@ class Data {
     to = json['to'];
     total = json['total'];
   }
-
-
 }
 
 class FavoritesData {
   int id;
   Product product;
 
-
-  FavoritesData .fromJson(Map<String, dynamic> json) {
+  FavoritesData.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     product =
-    json['product'] != null ? new Product.fromJson(json['product']) : null;
+        json['product'] != null ? new Product.fromJson(json['product']) : null;
   }
-
-
 }
 
 class Product {
@@ -76,8 +69,6 @@ class Product {
   String name;
   String description;
 
-
-
   Product.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     price = json['price'];
@@ -87,17 +78,14 @@ class Product {
     name = json['name'];
     description = json['description'];
   }
-
 }
-class ChangeFavoritesModel
-{
+
+class ChangeFavoritesModel {
   bool status;
   String message;
 
-  ChangeFavoritesModel.fromJson(Map<String,dynamic>json)
-  {
+  ChangeFavoritesModel.fromJson(Map<String, dynamic> json) {
     status = json['status'];
     message = json['message'];
   }
 }
-

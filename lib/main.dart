@@ -1,3 +1,5 @@
+// ignore_for_file: use_key_in_widget_constructors, unused_local_variable, prefer_const_constructors_in_immutables
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_projects/Screens/login/login_screen.dart';
@@ -52,8 +54,7 @@ class Myapp extends StatelessWidget {
               ..getFavoritesData()
               ..getUserData()
               ..getCartData()
-                ..getFaqData()
-        ),
+              ..getFaqData()),
         BlocProvider(
           create: (context) => ModeCubit()
             ..changeAppMode(

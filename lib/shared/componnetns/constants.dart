@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names, avoid_print
+
 import 'package:flutter/material.dart';
 
 void printFullText(String Text) {
@@ -5,17 +7,15 @@ void printFullText(String Text) {
   pattern.allMatches(Text).forEach((match) => print(match.group(0)));
 }
 
-
-Widget space (double wide,double high){
-  return SizedBox(width: wide,height: high,);
+Widget space(double wide, double high) {
+  return SizedBox(
+    width: wide,
+    height: high,
+  );
 }
 
- String token = '' ;
+String token = '';
 
- String uId = '' ;
+String uId = '';
 
 int cartLength = 0;
-
-
-
-

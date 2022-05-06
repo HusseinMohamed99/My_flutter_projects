@@ -1,3 +1,5 @@
+// ignore_for_file: use_key_in_widget_constructors, must_be_immutable, prefer_const_constructors, avoid_print
+
 import 'package:conditional_builder/conditional_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -11,27 +13,20 @@ import 'package:flutter_projects/network/cache_helper.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class LoginScreen extends StatelessWidget {
-
   var formKey = GlobalKey<FormState>();
 
   var emailController = TextEditingController();
 
   var passwordController = TextEditingController();
 
-
-
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (BuildContext  context) => loginCubit(),
-
-      child: BlocConsumer<loginCubit,LoginState>(
-        listener: (context,state)
-        {
-          if(state is LoginSuccessState)
-          {
-            if(state.loginModel.status)
-            {
+      create: (BuildContext context) => loginCubit(),
+      child: BlocConsumer<loginCubit, LoginState>(
+        listener: (context, state) {
+          if (state is LoginSuccessState) {
+            if (state.loginModel.status) {
               ShowToast(
                 text: state.loginModel.message,
                 state: ToastStates.SUCCESS,
@@ -39,29 +34,25 @@ class LoginScreen extends StatelessWidget {
               print(state.loginModel.message);
               print(state.loginModel.data.token);
 
-              CacheHelper.saveData(key: "token", value: state.loginModel.data.token).then((value)
-              {
+              CacheHelper.saveData(
+                      key: "token", value: state.loginModel.data.token)
+                  .then((value) {
                 token = state.loginModel.data.token;
                 navigateAndFinish(context, HomeScreen());
               });
-            }
-            else
-            {
+            } else {
               ShowToast(
-                  text: state.loginModel.message,
-                  state: ToastStates.ERROR,
+                text: state.loginModel.message,
+                state: ToastStates.ERROR,
               );
-                print(state.loginModel.message);
-
+              print(state.loginModel.message);
             }
           }
-
         },
-        builder: (context,state)
-        {
+        builder: (context, state) {
           return Scaffold(
             appBar: AppBar(
-             backgroundColor: Colors.transparent,
+              backgroundColor: Colors.transparent,
             ),
             body: Center(
               child: SingleChildScrollView(
@@ -71,10 +62,7 @@ class LoginScreen extends StatelessWidget {
                     key: formKey,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-
-                      children:
-                      [
-
+                      children: [
                         Text(
                           "Login",
                           style: TextStyle(
@@ -105,8 +93,9 @@ class LoginScreen extends StatelessWidget {
                           label: 'Email',
                           hint: 'Enter your email',
                         ),
-
-                        SizedBox(height: 20,),
+                        SizedBox(
+                          height: 20,
+                        ),
                         defaultTextFormField(
                           controller: passwordController,
                           keyboardType: TextInputType.visiblePassword,
@@ -126,61 +115,56 @@ class LoginScreen extends StatelessWidget {
                           hint: 'Enter your password',
                         ),
                         defaultTextButton(
-
-                        function: () {} ,
-                        text: "Forgotten password?",
-
-
-
-                      ),
-
-                        SizedBox(height: 20,),
-
+                          function: () {},
+                          text: "Forgotten password?",
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
                         ConditionalBuilder(
                           condition: state is! LoginLoadingState,
-                          builder:(context)=> Center(
+                          builder: (context) => Center(
                             child: defaultMaterialButton(
-                              function: ()
-                              {
-                                if (formKey.currentState.validate())
-                                {
+                              function: () {
+                                if (formKey.currentState.validate()) {
                                   loginCubit.get(context).UserLogin(
                                       email: emailController.text,
-                                      password: passwordController.text
-                                  );
+                                      password: passwordController.text);
                                 }
-                              } ,
+                              },
                               text: 'Login',
                               radius: 20,
                             ),
                           ),
-
-                          fallback: (context)=> Center(child: CircularProgressIndicator()),
-                          ),
-                        SizedBox(height: 20,),
+                          fallback: (context) =>
+                              Center(child: CircularProgressIndicator()),
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
                         Row(
-                          children:
-                          [
-                            Text('Don\'t have an account?',style: TextStyle(fontSize: 16,color: Colors.grey),),
-                            SizedBox(width: 10,),
+                          children: [
+                            Text(
+                              'Don\'t have an account?',
+                              style:
+                                  TextStyle(fontSize: 16, color: Colors.grey),
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
                             defaultTextButton(
-                                function: ()
-                                {
-                                  navigateTo(context, RegisterScreen());
-                                },
-                                text: 'Register Now!',
+                              function: () {
+                                navigateTo(context, RegisterScreen());
+                              },
+                              text: 'Register Now!',
                             ),
                           ],
                         ),
-
                         Row(
-
                           children: [
                             Expanded(
                               child: Container(
-
                                 height: 60.0,
-
                                 decoration: BoxDecoration(
                                   color: Colors.white.withOpacity(0.1),
                                   borderRadius: BorderRadius.only(
@@ -194,13 +178,8 @@ class LoginScreen extends StatelessWidget {
                                   child: SvgPicture.asset(
                                     'assets/icon/google.svg',
                                     fit: BoxFit.none,
-
                                   ),
-                                  onTap: ()
-                                  {
-
-
-                                  },
+                                  onTap: () {},
                                 ),
                               ),
                             ),
@@ -209,7 +188,6 @@ class LoginScreen extends StatelessWidget {
                             ),
                             Expanded(
                               child: Container(
-
                                 height: 60.0,
                                 decoration: BoxDecoration(
                                   color: Colors.white.withOpacity(0.1),
@@ -249,8 +227,7 @@ class LoginScreen extends StatelessWidget {
                                     'assets/icon/twitter.svg',
                                     fit: BoxFit.none,
                                   ),
-                                  onTap: () {
-                                  },
+                                  onTap: () {},
                                 ),
                               ),
                             ),
@@ -262,17 +239,9 @@ class LoginScreen extends StatelessWidget {
                 ),
               ),
             ),
-
           );
         },
-
-
       ),
     );
   }
 }
-
-
-
-
-

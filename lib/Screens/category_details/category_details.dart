@@ -1,3 +1,5 @@
+// ignore_for_file: use_key_in_widget_constructors, unnecessary_string_interpolations, unnecessary_string_escapes, prefer_const_constructors_in_immutables, prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_projects/Screens/product_detalis/product_details.dart';
@@ -5,7 +7,6 @@ import 'package:flutter_projects/cubit/cubit.dart';
 import 'package:flutter_projects/cubit/state.dart';
 import 'package:flutter_projects/model/category/category_details_model.dart';
 import 'package:flutter_projects/shared/componnetns/components.dart';
-import 'package:flutter_projects/shared/styles/colors.dart';
 
 class CategoryProductsScreen extends StatelessWidget {
   final String categoryName;
@@ -35,11 +36,10 @@ class CategoryProductsScreen extends StatelessWidget {
                   child: CircularProgressIndicator(),
                 )
               : MainCubit.get(context)
-                          .categoriesDetailModel
-                          .data
-                          .productData
-                          .length ==
-                      0
+                      .categoriesDetailModel
+                      .data
+                      .productData
+                      .isEmpty
                   ? Scaffold(
                       body: Center(
                       child: Text(
@@ -67,11 +67,10 @@ class CategoryProductsScreen extends StatelessWidget {
                                       .productData
                                       .length,
                                   (index) => MainCubit.get(context)
-                                              .categoriesDetailModel
-                                              .data
-                                              .productData
-                                              .length ==
-                                          0
+                                          .categoriesDetailModel
+                                          .data
+                                          .productData
+                                          .isEmpty
                                       ? Center(
                                           child: Text(
                                             'Soon',
@@ -103,7 +102,6 @@ class CategoryProductsScreen extends StatelessWidget {
               .then((value) => navigateTo(context, ProductDetailsScreen()));
         },
         child: Container(
-
           padding: EdgeInsetsDirectional.only(start: 8, bottom: 8),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

@@ -1,3 +1,5 @@
+// ignore_for_file: use_key_in_widget_constructors, unused_local_variable, prefer_const_literals_to_create_immutables, prefer_const_constructors, non_constant_identifier_names, sized_box_for_whitespace
+
 import 'package:conditional_builder/conditional_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -16,7 +18,7 @@ class FavoritesScreen extends StatelessWidget {
       listener: (context, state) {},
       builder: (context, state) {
         FavoritesModel favoritesModel = MainCubit.get(context).favoritesModel;
-        return MainCubit.get(context).favoritesModel.data.data.length == 0
+        return MainCubit.get(context).favoritesModel.data.data.isEmpty
             ? Scaffold(
                 body: Center(
                   child: Column(
@@ -108,9 +110,8 @@ class FavoritesScreen extends StatelessWidget {
                           ? Colors.deepOrangeAccent
                           : Colors.grey[300],
                       child: IconButton(
-                        onPressed: (){
+                        onPressed: () {
                           MainCubit.get(context).changeCart(model.id);
-
                         },
                         icon: Icon(
                           Icons.add_shopping_cart,

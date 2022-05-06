@@ -1,9 +1,8 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_projects/shared/styles/colors.dart';
-
-
-
 
 ThemeData darkTheme = ThemeData(
   cardColor: Colors.black,
@@ -22,7 +21,6 @@ ThemeData darkTheme = ThemeData(
       color: Colors.white,
       fontSize: 20.0,
       fontWeight: FontWeight.bold,
-
     ),
     actionsIconTheme: IconThemeData(
       color: Colors.white,
@@ -71,20 +69,15 @@ ThemeData darkTheme = ThemeData(
       fontSize: 16.0,
       fontWeight: FontWeight.bold,
     ),
-
-
-    subtitle1:  TextStyle(
+    subtitle1: TextStyle(
         fontSize: 16.0,
         fontWeight: FontWeight.w600,
         color: Colors.white,
-        height: 1.0
-    ),
+        height: 1.0),
     bodyText1: TextStyle(
       fontSize: 18.0,
       color: Colors.white,
-
     ),
-
   ),
   iconTheme: IconThemeData(
     color: Colors.white,
@@ -111,7 +104,6 @@ ThemeData darkTheme = ThemeData(
       ),
     ),
   ),
-
 );
 
 ThemeData lightTheme = ThemeData(
@@ -123,7 +115,6 @@ ThemeData lightTheme = ThemeData(
       statusBarColor: Colors.white,
       statusBarIconBrightness: Brightness.dark,
       statusBarBrightness: Brightness.light,
-
     ),
     backgroundColor: Colors.white,
     elevation: 0.0,
@@ -131,7 +122,6 @@ ThemeData lightTheme = ThemeData(
       color: Colors.black,
       fontSize: 20.0,
       fontWeight: FontWeight.bold,
-
     ),
     iconTheme: IconThemeData(
       color: Colors.black,
@@ -150,20 +140,16 @@ ThemeData lightTheme = ThemeData(
       color: Colors.black,
     ),
   ),
-  textTheme:   TextTheme(
+  textTheme: TextTheme(
     bodyText1: TextStyle(
       fontSize: 18.0,
       color: Colors.black,
-
     ),
-     subtitle1:  TextStyle(
+    subtitle1: TextStyle(
       fontSize: 14.0,
       fontWeight: FontWeight.w600,
       color: Colors.black,
       height: 1.3,
-
     ),
   ),
-
-
 );

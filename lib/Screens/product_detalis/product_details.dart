@@ -1,3 +1,5 @@
+// ignore_for_file: use_key_in_widget_constructors, prefer_adjacent_string_concatenation, unnecessary_string_interpolations, must_be_immutable, sized_box_for_whitespace, unnecessary_string_escapes, prefer_const_constructors, prefer_const_literals_to_create_immutables
+
 import 'package:conditional_builder/conditional_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -207,8 +209,7 @@ class ProductDetailsScreen extends StatelessWidget {
                                                   overflow:
                                                       TextOverflow.ellipsis,
                                                   style: TextStyle(
-                                                   color: Colors.black,
-
+                                                    color: Colors.black,
                                                   ),
                                                 ),
                                                 SizedBox(

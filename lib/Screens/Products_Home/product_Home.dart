@@ -1,3 +1,5 @@
+// ignore_for_file: file_names, unused_import, use_key_in_widget_constructors, prefer_const_constructors, sized_box_for_whitespace, unnecessary_string_interpolations, non_constant_identifier_names, unnecessary_string_escapes
+
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:conditional_builder/conditional_builder.dart';
 import 'package:flutter/material.dart';
@@ -95,7 +97,6 @@ class ProductsScreen extends StatelessWidget {
                   ),
                   Container(
                     height: 140.0,
-
                     padding: EdgeInsets.symmetric(vertical: 10.0),
                     child: Scrollbar(
                       thickness: 1,
@@ -172,7 +173,6 @@ class ProductsScreen extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
-
                 ),
                 textAlign: TextAlign.center,
               )
@@ -195,7 +195,6 @@ class ProductsScreen extends StatelessWidget {
               ),
               clipBehavior: Clip.none,
               elevation: 20,
-
               child: Padding(
                 padding: const EdgeInsets.symmetric(
                   horizontal: 16,
@@ -218,7 +217,6 @@ class ProductsScreen extends StatelessWidget {
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
                         ),
-
                         Row(
                           children: [
                             Text(

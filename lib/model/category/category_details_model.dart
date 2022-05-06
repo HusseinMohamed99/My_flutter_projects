@@ -1,18 +1,18 @@
+// ignore_for_file: prefer_void_to_null
+
 class CategoryDetailModel {
   bool status;
-   Data data;
-
+  Data data;
 
   CategoryDetailModel.fromJson(Map<String, dynamic> json) {
     status = json['status'];
     data = Data.fromJson(json['data']);
   }
-
 }
 
 class Data {
   int currentPage;
-   List<ProductData> productData;
+  List<ProductData> productData;
   String firstPageUrl;
   int from;
   int lastPage;
@@ -23,7 +23,6 @@ class Data {
   Null prevPageUrl;
   int to;
   int total;
-
 
   Data.fromJson(Map<String, dynamic> json) {
     currentPage = json['current_page'];

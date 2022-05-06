@@ -1,15 +1,16 @@
+// ignore_for_file: prefer_collection_literals, prefer_void_to_null, unnecessary_this
+
 class NotificationModel {
   bool status;
   NotiData data;
 
-
   NotificationModel.fromJson(Map<String, dynamic> json) {
     status = json['status'];
-    data = json['data'] != null ? new NotiData.fromJson(json['data']) : null;
+    data = json['data'] != null ? NotiData.fromJson(json['data']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
     data['status'] = this.status;
     if (this.data != null) {
       data['data'] = this.data.toJson();
@@ -32,14 +33,12 @@ class Data {
   int to;
   int total;
 
-
-
   Data.fromJson(Map<String, dynamic> json) {
     currentPage = json['current_page'];
     if (json['data'] != null) {
       data = <NotiData>[];
       json['data'].forEach((v) {
-        data.add(new NotiData.fromJson(v));
+        data.add(NotiData.fromJson(v));
       });
     }
     firstPageUrl = json['first_page_url'];
@@ -55,7 +54,7 @@ class Data {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
     data['current_page'] = this.currentPage;
     if (this.data != null) {
       data['data'] = this.data.map((v) => v.toJson()).toList();
@@ -79,7 +78,6 @@ class NotiData {
   String title;
   String message;
 
-
   NotiData.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     title = json['title'];
@@ -87,7 +85,7 @@ class NotiData {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
     data['id'] = this.id;
     data['title'] = this.title;
     data['message'] = this.message;

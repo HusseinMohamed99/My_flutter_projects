@@ -1,3 +1,5 @@
+// ignore_for_file: constant_identifier_names, file_names
+
 const LOGIN = 'login';
 
 const REGISTER = 'register';
@@ -16,27 +18,10 @@ const CARTS = 'carts';
 
 const PRODUCT_DETAILS = 'products/1';
 
-const CATEGORIES_DETAIL =  'products';
+const CATEGORIES_DETAIL = 'products';
 
-const SEARCH =  'products/search';
+const SEARCH = 'products/search';
 
-const FAQS =  'faqs';
+const FAQS = 'faqs';
 
-const NOTIFICATION =  'notifications';
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+const NOTIFICATION = 'notifications';

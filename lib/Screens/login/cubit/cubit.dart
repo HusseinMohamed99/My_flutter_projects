@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_import, camel_case_types, non_constant_identifier_names, duplicate_ignore
+
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -31,10 +33,11 @@ class loginCubit extends Cubit<LoginState> {
   IconData suffix = Icons.visibility_outlined;
   bool isPassword = true;
 
-  void ChangePassword()
-  {
+  // ignore: non_constant_identifier_names
+  void ChangePassword() {
     isPassword = !isPassword;
-    suffix = isPassword ? Icons.visibility_outlined : Icons.visibility_off_outlined;
+    suffix =
+        isPassword ? Icons.visibility_outlined : Icons.visibility_off_outlined;
 
     emit(ChangePasswordState());
   }

@@ -1,3 +1,5 @@
+// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors, non_constant_identifier_names
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_projects/Screens/category_details/category_details.dart';
@@ -6,7 +8,6 @@ import 'package:flutter_projects/cubit/state.dart';
 
 import 'package:flutter_projects/model/category/category_model.dart';
 import 'package:flutter_projects/shared/componnetns/components.dart';
-
 
 class CategoriesScreen extends StatelessWidget {
   @override
@@ -54,9 +55,8 @@ class CategoriesScreen extends StatelessWidget {
               Text(
                 model.name.toUpperCase(),
                 style: Theme.of(context).textTheme.bodyText2.copyWith(
-                  fontWeight: FontWeight.bold,
-                ),
-
+                      fontWeight: FontWeight.bold,
+                    ),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),

@@ -1,8 +1,9 @@
+// ignore_for_file: constant_identifier_names, prefer_const_constructors, non_constant_identifier_names, avoid_types_as_parameter_names
+
 import 'package:flutter/material.dart';
 import 'package:flutter_projects/Screens/login/login_screen.dart';
 import 'package:flutter_projects/network/cache_helper.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-
 
 Widget defaultTextFormField({
   FocusNode focusNode,
@@ -23,9 +24,7 @@ Widget defaultTextFormField({
 }) =>
     TextFormField(
       focusNode: FocusNode(),
-      style: TextStyle(
-
-      ),
+      style: TextStyle(),
       maxLines: 1,
       minLines: 1,
       controller: controller,
@@ -114,7 +113,8 @@ Widget defaultMaterialButton({
   double radius = 3.0,
   bool isUpperCase = true,
   Function onTap,
-}) => Container(
+}) =>
+    Container(
       width: width,
       height: height,
       child: MaterialButton(
@@ -155,8 +155,6 @@ Widget myDivider() => Container(
       color: Colors.grey[300],
     );
 
-
-
 void ShowToast({
   @required String text,
   @required ToastStates state,
@@ -193,21 +191,20 @@ Color chooseToastColor(ToastStates state) {
   return color;
 }
 
-
 void navigateTo(context, Widget) => Navigator.push(
-  context,
-  MaterialPageRoute(
-    builder: (context) => Widget,
-  ),
-);
+      context,
+      MaterialPageRoute(
+        builder: (context) => Widget,
+      ),
+    );
 
 void navigateAndFinish(context, Widget) => Navigator.pushAndRemoveUntil(
-    context,
-    MaterialPageRoute(
-      builder: (context) => Widget,
-    ), (route) {
-  return false;
-});
+        context,
+        MaterialPageRoute(
+          builder: (context) => Widget,
+        ), (route) {
+      return false;
+    });
 
 void logOut(context) {
   CacheHelper.removeData(
@@ -218,5 +215,3 @@ void logOut(context) {
     }
   });
 }
-
-

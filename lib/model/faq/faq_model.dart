@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_collection_literals, unnecessary_new, prefer_void_to_null, unnecessary_this
+
 class FaqModel {
   bool status;
   Null message;
@@ -35,8 +37,6 @@ class Data {
   Null prevPageUrl;
   int to;
   int total;
-
-
 
   Data.fromJson(Map<String, dynamic> json) {
     currentPage = json['current_page'];
@@ -82,8 +82,6 @@ class FqaData {
   int id;
   String question;
   String answer;
-
-
 
   FqaData.fromJson(Map<String, dynamic> json) {
     id = json['id'];

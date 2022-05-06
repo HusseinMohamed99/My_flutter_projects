@@ -1,6 +1,8 @@
+// ignore_for_file: avoid_print
+
 import 'package:bloc/bloc.dart';
 
-class MyBlocObserver extends BlocObserver  {
+class MyBlocObserver extends BlocObserver {
   @override
   void onCreate(BlocBase bloc) {
     super.onCreate(bloc);
