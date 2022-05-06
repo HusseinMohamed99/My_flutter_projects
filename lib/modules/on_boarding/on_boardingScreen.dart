@@ -1,27 +1,25 @@
+// ignore_for_file: unnecessary_import, file_names, camel_case_types, use_key_in_widget_constructors, prefer_const_constructors, curly_braces_in_flow_control_structures, unnecessary_string_interpolations
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_projects/modules/login/login_screen.dart';
 import 'package:flutter_projects/shared/componnetns/components.dart';
 import 'package:flutter_projects/shared/network/local/cache_helper.dart';
-import 'package:flutter_projects/shared/styles/icon_broken.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-
 
 class BoardingModel {
   final String image;
   final String title;
   final String body;
 
-  BoardingModel ({
+  BoardingModel({
     @required this.image,
     @required this.title,
     @required this.body,
   });
-
 }
 
 class onBoardingScreen extends StatefulWidget {
-
   @override
   State<onBoardingScreen> createState() => _onBoardingScreenState();
 }
@@ -29,8 +27,7 @@ class onBoardingScreen extends StatefulWidget {
 class _onBoardingScreenState extends State<onBoardingScreen> {
   var pageController = PageController();
 
-
-  List <BoardingModel> boarding = [
+  List<BoardingModel> boarding = [
     BoardingModel(
       image: 'assets/images/1.png',
       title: 'You aren\'t alone in this',
@@ -38,7 +35,7 @@ class _onBoardingScreenState extends State<onBoardingScreen> {
     ),
     BoardingModel(
       image: 'assets/images/2.png',
-      title:'Communicate with friends',
+      title: 'Communicate with friends',
       body: 'Have a nice time',
     ),
     BoardingModel(
@@ -49,15 +46,16 @@ class _onBoardingScreenState extends State<onBoardingScreen> {
   ];
   bool isLast = false;
 
-  void submit(){
+  void submit() {
     CacheHelper.saveData(
       key: 'onBoarding',
       value: true,
-    ).then((value)
-    {
-      if(value)
-      {
-        navigateAndFinish(context, Login_Screen(),);
+    ).then((value) {
+      if (value) {
+        navigateAndFinish(
+          context,
+          Login_Screen(),
+        );
       }
     });
   }
@@ -69,8 +67,8 @@ class _onBoardingScreenState extends State<onBoardingScreen> {
       appBar: AppBar(
         actions: [
           defaultTextButton(
-            function:submit,
-            text:'Skip',
+            function: submit,
+            text: 'Skip',
           ),
         ],
       ),
@@ -82,19 +80,19 @@ class _onBoardingScreenState extends State<onBoardingScreen> {
             Expanded(
               child: PageView.builder(
                 physics: BouncingScrollPhysics(),
-                onPageChanged: (int index)
-                {
-                  if (index == boarding.length - 1 )
-                  {
+                onPageChanged: (int index) {
+                  if (index == boarding.length - 1) {
                     setState(() {
                       isLast = true;
                     });
-                  }else setState(() {
-                    isLast = false;
-                  });
+                  } else
+                    setState(() {
+                      isLast = false;
+                    });
                 },
                 controller: pageController,
-                itemBuilder: (context, index) => buildBoardingItem(boarding[index]),
+                itemBuilder: (context, index) =>
+                    buildBoardingItem(boarding[index]),
                 itemCount: boarding.length,
               ),
             ),
@@ -122,13 +120,10 @@ class _onBoardingScreenState extends State<onBoardingScreen> {
                     Icons.navigate_next_sharp,
                     size: 35.0,
                   ),
-                  onPressed: ()
-                  {
-                    if (isLast)
-                    {
+                  onPressed: () {
+                    if (isLast) {
                       submit();
-                    }else
-                    {
+                    } else {
                       pageController.nextPage(
                         duration: Duration(
                           milliseconds: 780,
@@ -143,47 +138,43 @@ class _onBoardingScreenState extends State<onBoardingScreen> {
           ],
         ),
       ),
-
-
-
     );
   }
 
-  Widget buildBoardingItem(BoardingModel model)=> Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      Expanded(
-        child: Image(
-          image: AssetImage(
-            '${model.image}',
-
-          ),
-        ),
-      ),
-      Column(
+  Widget buildBoardingItem(BoardingModel model) => Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            '${model.title}',
-            style: TextStyle(
-              color: Colors.black,
-              fontSize: 25.0,
-              fontWeight: FontWeight.bold,
+          Expanded(
+            child: Image(
+              image: AssetImage(
+                '${model.image}',
+              ),
             ),
           ),
-          SizedBox(
-            height: 20.0,
-          ),
-          Text(
-            '${model.body}',
-            style: TextStyle(
-              color: Colors.black,
-              fontSize: 16.0,
-              fontWeight: FontWeight.bold,
-            ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                '${model.title}',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 25.0,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              SizedBox(
+                height: 20.0,
+              ),
+              Text(
+                '${model.body}',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 16.0,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
           ),
         ],
-      ),
-    ],
-  );
+      );
 }

@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, non_constant_identifier_names, avoid_types_as_parameter_names, constant_identifier_names
+
 import 'package:flutter/material.dart';
 import 'package:flutter_projects/modules/on_boarding/on_boardingScreen.dart';
 import 'package:flutter_projects/shared/network/local/cache_helper.dart';

@@ -1,31 +1,28 @@
+// ignore_for_file: unnecessary_null_in_if_null_operators
+
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
-class DioHelper
-{
-  static  Dio dio;
-  static init()
-  {
-    dio = Dio(
-        BaseOptions(
+class DioHelper {
+  static Dio dio;
+  static init() {
+    dio = Dio(BaseOptions(
       baseUrl: '',
       receiveDataWhenStatusError: true,
     ));
+  } // 1. Login
 
-
-  }  // 1. Login
   static Future<Response> postData({
-  @required String url,
-    Map<String , dynamic> query,
-    @required Map<String , dynamic> data,
+    @required String url,
+    Map<String, dynamic> query,
+    @required Map<String, dynamic> data,
     String lang = 'en',
     String token,
-})async
-  {
+  }) async {
     dio.options.headers = {
-      'Content-Type' : 'application/json',
-      'lang' : lang,
-      'Authorization' : token??'',
+      'Content-Type': 'application/json',
+      'lang': lang,
+      'Authorization': token ?? '',
     };
     return await dio.post(
       url,
@@ -36,37 +33,34 @@ class DioHelper
 
   // 2. GetHomeData
   static Future<Response> getData({
-  @required String url,
-    Map<String , dynamic> query,
+    @required String url,
+    Map<String, dynamic> query,
     String lang = 'en',
     String token,
-})async
-  {
+  }) async {
     dio.options.headers = {
-      'Content-Type' : 'application/json',
-      'lang' : lang,
-      'Authorization' : token??'',
+      'Content-Type': 'application/json',
+      'lang': lang,
+      'Authorization': token ?? '',
     };
     return await dio.get(
       url,
-      queryParameters: query??null,
-
+      queryParameters: query ?? null,
     );
   }
 
 // 2. UpdateUserData
   static Future<Response> putData({
     @required String url,
-    Map<String , dynamic> query,
-    @required Map<String , dynamic> data,
+    Map<String, dynamic> query,
+    @required Map<String, dynamic> data,
     String lang = 'en',
     String token,
-  })async
-  {
+  }) async {
     dio.options.headers = {
-      'Content-Type' : 'application/json',
-      'lang' : lang,
-      'Authorization' : token??'',
+      'Content-Type': 'application/json',
+      'lang': lang,
+      'Authorization': token ?? '',
     };
     return await dio.put(
       url,
@@ -74,7 +68,4 @@ class DioHelper
       data: data,
     );
   }
-
 }
-
-

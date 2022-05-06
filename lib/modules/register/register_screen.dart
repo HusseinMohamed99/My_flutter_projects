@@ -1,15 +1,13 @@
+// ignore_for_file: prefer_const_constructors, camel_case_types, use_key_in_widget_constructors, avoid_init_to_null
+
 import 'package:conditional_builder/conditional_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_projects/home/home_screen.dart';
 import 'package:flutter_projects/modules/Chats/chats_screen.dart';
 import 'package:flutter_projects/modules/register/cubit/cubit.dart';
 import 'package:flutter_projects/modules/register/cubit/state.dart';
 import 'package:flutter_projects/shared/componnetns/components.dart';
-import 'package:flutter_projects/shared/styles/icon_broken.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
-
 
 List<DropdownMenuItem<String>> get dropdownItems {
   List<DropdownMenuItem<String>> menuItems = [
@@ -74,16 +72,14 @@ class _Register_ScreenState extends State<Register_Screen> {
           fit: BoxFit.cover,
         ),
       ),
-
-
       child: BlocProvider(
         create: (context) => RegisterCubit(),
         child: BlocConsumer<RegisterCubit, RegisterStates>(
             listener: (context, state) {
-              if (state is CreateUserSuccessState) {
-                navigateAndFinish(context, ChatsScreen());
-              }
-            }, builder: (context, state) {
+          if (state is CreateUserSuccessState) {
+            navigateAndFinish(context, ChatsScreen());
+          }
+        }, builder: (context, state) {
           return SafeArea(
             child: Scaffold(
               backgroundColor: Colors.transparent,
@@ -237,7 +233,7 @@ class _Register_ScreenState extends State<Register_Screen> {
                             ),
                           ),
                           validator: (value) =>
-                          value == null ? "Select a city" : null,
+                              value == null ? "Select a city" : null,
                           dropdownColor: Colors.white.withOpacity(0.5),
                           value: selectedValue,
                           onChanged: (String newValue) {
@@ -263,7 +259,7 @@ class _Register_ScreenState extends State<Register_Screen> {
                             radius: 20.0,
                           ),
                           fallback: (context) =>
-                          const Center(child: CircularProgressIndicator()),
+                              const Center(child: CircularProgressIndicator()),
                         ),
                         SizedBox(
                           height: 20.0,
@@ -271,8 +267,8 @@ class _Register_ScreenState extends State<Register_Screen> {
                         Text(
                           "ــــــــــــــــــــــ OR Sign With ــــــــــــــــــــ",
                           style: Theme.of(context).textTheme.bodyText1.copyWith(
-                            color: Colors.white,
-                          ),
+                                color: Colors.white,
+                              ),
                         ),
                         Padding(
                           padding: const EdgeInsets.symmetric(vertical: 20.0),

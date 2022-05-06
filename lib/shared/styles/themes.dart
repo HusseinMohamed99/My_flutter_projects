@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_projects/shared/styles/colors.dart';
@@ -32,23 +34,20 @@ ThemeData darkTheme = ThemeData(
     elevation: 25.0,
   ),
   textTheme: TextTheme(
-    subtitle1:  TextStyle(
+    subtitle1: TextStyle(
         fontSize: 16.0,
         fontWeight: FontWeight.w600,
         color: Colors.black,
-        height: 1.0
-    ),
+        height: 1.0),
     bodyText1: TextStyle(
       fontSize: 18.0,
       color: Colors.white,
-
     ),
-
   ),
   iconTheme: IconThemeData(
     color: Colors.white,
   ),
-  inputDecorationTheme: InputDecorationTheme( ),
+  inputDecorationTheme: InputDecorationTheme(),
   fontFamily: 'Jannah',
 );
 
@@ -61,7 +60,6 @@ ThemeData lightTheme = ThemeData(
     systemOverlayStyle: SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
       statusBarIconBrightness: Brightness.dark,
-
     ),
     backgroundColor: Colors.white,
     elevation: 0.0,
@@ -88,20 +86,17 @@ ThemeData lightTheme = ThemeData(
       color: Colors.black,
     ),
   ),
-  textTheme:   TextTheme(
+  textTheme: TextTheme(
     bodyText1: TextStyle(
       fontSize: 18.0,
       color: Colors.black,
-
     ),
-     subtitle1:  TextStyle(
+    subtitle1: TextStyle(
       fontSize: 14.0,
       fontWeight: FontWeight.w600,
       color: Colors.black,
       height: 1.3,
-
     ),
   ),
-
   fontFamily: 'Jannah',
 );

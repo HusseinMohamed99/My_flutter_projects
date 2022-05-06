@@ -1,3 +1,4 @@
+// ignore_for_file: must_be_immutable, unnecessary_string_interpolations, unnecessary_const, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -6,44 +7,34 @@ import 'package:flutter_projects/home/cubit/state.dart';
 import 'package:flutter_projects/shared/componnetns/components.dart';
 import 'package:flutter_projects/shared/styles/icon_broken.dart';
 
-
 class NewPostsScreens extends StatelessWidget {
-
   var textController = TextEditingController();
 
+  NewPostsScreens({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<SocialCubit,SocialStates>(
+    return BlocConsumer<SocialCubit, SocialStates>(
       listener: (context, state) {},
-      builder: (context, state)
-      {
+      builder: (context, state) {
         var userModel = SocialCubit.get(context).userModel;
         return Scaffold(
           appBar: defaultAppBar(
             context: context,
             title: 'Create Post',
-            actions:
-            [
+            actions: [
               Padding(
                 padding: const EdgeInsetsDirectional.only(end: 15.0),
                 child: defaultTextButton(
-                  function: ()
-                  {
+                  function: () {
                     var now = DateTime.now();
 
-                    if(SocialCubit.get(context).postImage == null)
-                    {
+                    if (SocialCubit.get(context).postImage == null) {
                       SocialCubit.get(context).createPost(
-                          dateTime: now.toString(),
-                          text: textController.text
-                      );
-                    }else
-                    {
+                          dateTime: now.toString(), text: textController.text);
+                    } else {
                       SocialCubit.get(context).uploadPostImage(
-                          dateTime: now.toString(),
-                          text: textController.text
-                      );
+                          dateTime: now.toString(), text: textController.text);
                     }
                   },
                   text: 'Post',
@@ -51,28 +42,23 @@ class NewPostsScreens extends StatelessWidget {
               )
             ],
           ),
-
           body: Padding(
             padding: const EdgeInsets.all(20.0),
             child: Column(
-              children:
-              [
-                if(state is SocialCreatePostLoadingState)
-                  LinearProgressIndicator(),
-                if(state is SocialCreatePostLoadingState)
-                  SizedBox(
+              children: [
+                if (state is SocialCreatePostLoadingState)
+                  const LinearProgressIndicator(),
+                if (state is SocialCreatePostLoadingState)
+                  const SizedBox(
                     height: 10.0,
                   ),
                 Row(
-                  children:
-                  [
+                  children: [
                     CircleAvatar(
-                      backgroundImage:  NetworkImage(
-                          '${userModel.image}'
-                      ),
+                      backgroundImage: NetworkImage('${userModel.image}'),
                       radius: 30.0,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 20.0,
                     ),
                     Expanded(
@@ -85,7 +71,10 @@ class NewPostsScreens extends StatelessWidget {
                           ),
                           Row(
                             children: [
-                              Icon(IconBroken.User,size: 16.0,),
+                              const Icon(
+                                IconBroken.User,
+                                size: 16.0,
+                              ),
                               Text(
                                 'public',
                                 style: Theme.of(context).textTheme.caption,
@@ -94,25 +83,21 @@ class NewPostsScreens extends StatelessWidget {
                           ),
                         ],
                       ),
-
                     ),
                   ],
                 ),
                 Expanded(
                   child: TextFormField(
                     controller: textController,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                         hintText: 'What\'s on your mind? ',
-                        border: InputBorder.none
-
-
-                    ),
+                        border: InputBorder.none),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20.0,
                 ),
-                if(SocialCubit.get(context).postImage != null)
+                if (SocialCubit.get(context).postImage != null)
                   Stack(
                     alignment: AlignmentDirectional.topEnd,
                     children: [
@@ -122,18 +107,17 @@ class NewPostsScreens extends StatelessWidget {
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(4.0),
                             image: DecorationImage(
-                              image: FileImage(SocialCubit.get(context).postImage),
+                              image:
+                                  FileImage(SocialCubit.get(context).postImage),
                               fit: BoxFit.cover,
-
-                            )
-                        ),
+                            )),
                       ),
                       Padding(
                         padding: const EdgeInsets.all(15.0),
                         child: IconButton(
-                          icon: CircleAvatar(
+                          icon: const CircleAvatar(
                             backgroundColor: Colors.white,
-                            child: CircleAvatar(
+                            child: const CircleAvatar(
                               backgroundColor: Colors.blue,
                               radius: 14.0,
                               child: Icon(
@@ -142,58 +126,48 @@ class NewPostsScreens extends StatelessWidget {
                               ),
                             ),
                           ),
-                          onPressed: ()
-                          {
+                          onPressed: () {
                             SocialCubit.get(context).removePostImage();
                           },
                         ),
                       ),
                     ],
                   ),
-                SizedBox(
+                const SizedBox(
                   height: 20.0,
                 ),
                 Row(
                   children: [
                     Expanded(
                       child: TextButton(
-                        onPressed: ()
-                        {
+                        onPressed: () {
                           SocialCubit.get(context).getPostImage();
                         },
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
-                          children:
-                          [
-                            Icon(IconBroken.Image),
-                            SizedBox(
+                          children: [
+                            const Icon(IconBroken.Image),
+                            const SizedBox(
                               width: 5.0,
                             ),
-                            Text(
-                                'add photo'
-                            ),
+                            const Text('add photo'),
                           ],
                         ),
                       ),
                     ),
                     Expanded(
                       child: TextButton(
-                        onPressed: (){},
-                        child: Text(
-                            '# tags'
-                        ),
+                        onPressed: () {},
+                        child: const Text('# tags'),
                       ),
                     ),
                   ],
                 ),
-
               ],
             ),
           ),
-
         );
       },
-
     );
   }
 }

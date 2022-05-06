@@ -1,3 +1,5 @@
+// ignore_for_file: use_key_in_widget_constructors, sized_box_for_whitespace, prefer_const_constructors, unnecessary_string_interpolations
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_projects/home/cubit/cubit.dart';
@@ -7,20 +9,17 @@ import 'package:flutter_projects/shared/componnetns/components.dart';
 import 'package:flutter_projects/shared/styles/icon_broken.dart';
 
 class SettinsScreen extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<SocialCubit,SocialStates>(
+    return BlocConsumer<SocialCubit, SocialStates>(
       listener: (context, state) {},
-      builder: (context, state)
-      {
+      builder: (context, state) {
         var userModel = SocialCubit.get(context).userModel;
 
         return Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
-            children:
-            [
+            children: [
               Container(
                 height: 250.0,
                 child: Stack(
@@ -41,18 +40,15 @@ class SettinsScreen extends StatelessWidget {
                                 '${userModel.cover}',
                               ),
                               fit: BoxFit.cover,
-
-                            )
-                        ),
+                            )),
                       ),
                     ),
                     CircleAvatar(
                       radius: 64.0,
-                      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+                      backgroundColor:
+                          Theme.of(context).scaffoldBackgroundColor,
                       child: CircleAvatar(
-                        backgroundImage:  NetworkImage(
-                            '${userModel.image}'
-                        ),
+                        backgroundImage: NetworkImage('${userModel.image}'),
                         radius: 60.0,
                       ),
                     ),
@@ -71,17 +67,13 @@ class SettinsScreen extends StatelessWidget {
                 style: Theme.of(context).textTheme.caption,
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(
-                    vertical: 20.0
-                ),
+                padding: const EdgeInsets.symmetric(vertical: 20.0),
                 child: Row(
-                  children:
-                  [
+                  children: [
                     Expanded(
                       child: InkWell(
                         child: Column(
-                          children:
-                          [
+                          children: [
                             Text(
                               '120',
                               style: Theme.of(context).textTheme.bodyText2,
@@ -92,14 +84,13 @@ class SettinsScreen extends StatelessWidget {
                             ),
                           ],
                         ),
-                        onTap: (){},
+                        onTap: () {},
                       ),
                     ),
                     Expanded(
                       child: InkWell(
                         child: Column(
-                          children:
-                          [
+                          children: [
                             Text(
                               '300',
                               style: Theme.of(context).textTheme.bodyText2,
@@ -110,14 +101,13 @@ class SettinsScreen extends StatelessWidget {
                             ),
                           ],
                         ),
-                        onTap: (){},
+                        onTap: () {},
                       ),
                     ),
                     Expanded(
                       child: InkWell(
                         child: Column(
-                          children:
-                          [
+                          children: [
                             Text(
                               '100K',
                               style: Theme.of(context).textTheme.bodyText2,
@@ -128,14 +118,13 @@ class SettinsScreen extends StatelessWidget {
                             ),
                           ],
                         ),
-                        onTap: (){},
+                        onTap: () {},
                       ),
                     ),
                     Expanded(
                       child: InkWell(
                         child: Column(
-                          children:
-                          [
+                          children: [
                             Text(
                               '150',
                               style: Theme.of(context).textTheme.bodyText2,
@@ -146,18 +135,17 @@ class SettinsScreen extends StatelessWidget {
                             ),
                           ],
                         ),
-                        onTap: (){},
+                        onTap: () {},
                       ),
                     ),
                   ],
                 ),
               ),
               Row(
-                children:
-                [
+                children: [
                   Expanded(
                     child: OutlinedButton(
-                      onPressed: () {  },
+                      onPressed: () {},
                       child: Text(
                         'Add Photos',
                       ),
@@ -167,22 +155,18 @@ class SettinsScreen extends StatelessWidget {
                     width: 10.0,
                   ),
                   OutlinedButton(
-                      onPressed: ()
-                      {
+                      onPressed: () {
                         navigateTo(context, EditProfileScreens());
                       },
                       child: Icon(
                         IconBroken.Edit,
-                      )
-                  ),
+                      )),
                 ],
               ),
-
             ],
           ),
         );
       },
-
     );
   }
 }

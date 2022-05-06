@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_import, must_be_immutable, use_key_in_widget_constructors, prefer_const_constructors
+
 import 'package:conditional_builder/conditional_builder.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +11,6 @@ import 'package:flutter_projects/models/message_model.dart';
 import 'package:flutter_projects/models/user_model.dart';
 import 'package:flutter_projects/shared/styles/colors.dart';
 import 'package:flutter_projects/shared/styles/icon_broken.dart';
-
 
 class ChatDetailsScreen extends StatelessWidget {
   SocialUserModel userModel;
@@ -83,8 +84,8 @@ class ChatDetailsScreen extends StatelessWidget {
                   ],
                 ),
                 body: ConditionalBuilder(
-                  condition: SocialCubit.get(context).messages.length > 0 ||
-                      SocialCubit.get(context).messages.length == 0,
+                  condition: SocialCubit.get(context).messages.isNotEmpty ||
+                      SocialCubit.get(context).messages.isEmpty,
                   builder: (context) => Padding(
                     padding: const EdgeInsets.all(16),
                     child: Column(

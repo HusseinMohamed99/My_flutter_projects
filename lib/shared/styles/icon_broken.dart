@@ -5,6 +5,8 @@
 //    - family: Iconly-Broken
 //      fonts:
 //       - asset: fonts/
+// ignore_for_file: constant_identifier_names
+
 import 'package:flutter/widgets.dart';
 
 class IconBroken {
@@ -16,25 +18,44 @@ class IconBroken {
   static const IconData User1 = IconData(0xe901, fontFamily: _fontFamily);
   static const IconData Activity = IconData(0xe902, fontFamily: _fontFamily);
   static const IconData Add_User = IconData(0xe903, fontFamily: _fontFamily);
-  static const IconData Arrow___Down_2 = IconData(0xe904, fontFamily: _fontFamily);
-  static const IconData Arrow___Down_3 = IconData(0xe905, fontFamily: _fontFamily);
-  static const IconData Arrow___Down_Circle = IconData(0xe906, fontFamily: _fontFamily);
-  static const IconData Arrow___Down_Square = IconData(0xe907, fontFamily: _fontFamily);
-  static const IconData Arrow___Down = IconData(0xe908, fontFamily: _fontFamily);
-  static const IconData Arrow___Left_2 = IconData(0xe909, fontFamily: _fontFamily);
-  static const IconData Arrow___Left_3 = IconData(0xe90a, fontFamily: _fontFamily);
-  static const IconData Arrow___Left_Circle = IconData(0xe90b, fontFamily: _fontFamily);
-  static const IconData Arrow___Left_Square = IconData(0xe90c, fontFamily: _fontFamily);
-  static const IconData Arrow___Left = IconData(0xe90d, fontFamily: _fontFamily);
-  static const IconData Arrow___Right_2 = IconData(0xe90e, fontFamily: _fontFamily);
-  static const IconData Arrow___Right_3 = IconData(0xe90f, fontFamily: _fontFamily);
-  static const IconData Arrow___Right_Circle = IconData(0xe910, fontFamily: _fontFamily);
-  static const IconData Arrow___Right_Square = IconData(0xe911, fontFamily: _fontFamily);
-  static const IconData Arrow___Right = IconData(0xe912, fontFamily: _fontFamily);
-  static const IconData Arrow___Up_2 = IconData(0xe913, fontFamily: _fontFamily);
-  static const IconData Arrow___Up_3 = IconData(0xe914, fontFamily: _fontFamily);
-  static const IconData Arrow___Up_Circle = IconData(0xe915, fontFamily: _fontFamily);
-  static const IconData Arrow___Up_Square = IconData(0xe916, fontFamily: _fontFamily);
+  static const IconData Arrow___Down_2 =
+      IconData(0xe904, fontFamily: _fontFamily);
+  static const IconData Arrow___Down_3 =
+      IconData(0xe905, fontFamily: _fontFamily);
+  static const IconData Arrow___Down_Circle =
+      IconData(0xe906, fontFamily: _fontFamily);
+  static const IconData Arrow___Down_Square =
+      IconData(0xe907, fontFamily: _fontFamily);
+  static const IconData Arrow___Down =
+      IconData(0xe908, fontFamily: _fontFamily);
+  static const IconData Arrow___Left_2 =
+      IconData(0xe909, fontFamily: _fontFamily);
+  static const IconData Arrow___Left_3 =
+      IconData(0xe90a, fontFamily: _fontFamily);
+  static const IconData Arrow___Left_Circle =
+      IconData(0xe90b, fontFamily: _fontFamily);
+  static const IconData Arrow___Left_Square =
+      IconData(0xe90c, fontFamily: _fontFamily);
+  static const IconData Arrow___Left =
+      IconData(0xe90d, fontFamily: _fontFamily);
+  static const IconData Arrow___Right_2 =
+      IconData(0xe90e, fontFamily: _fontFamily);
+  static const IconData Arrow___Right_3 =
+      IconData(0xe90f, fontFamily: _fontFamily);
+  static const IconData Arrow___Right_Circle =
+      IconData(0xe910, fontFamily: _fontFamily);
+  static const IconData Arrow___Right_Square =
+      IconData(0xe911, fontFamily: _fontFamily);
+  static const IconData Arrow___Right =
+      IconData(0xe912, fontFamily: _fontFamily);
+  static const IconData Arrow___Up_2 =
+      IconData(0xe913, fontFamily: _fontFamily);
+  static const IconData Arrow___Up_3 =
+      IconData(0xe914, fontFamily: _fontFamily);
+  static const IconData Arrow___Up_Circle =
+      IconData(0xe915, fontFamily: _fontFamily);
+  static const IconData Arrow___Up_Square =
+      IconData(0xe916, fontFamily: _fontFamily);
   static const IconData Arrow___Up = IconData(0xe917, fontFamily: _fontFamily);
   static const IconData Bag_2 = IconData(0xe918, fontFamily: _fontFamily);
   static const IconData Bag = IconData(0xe919, fontFamily: _fontFamily);
@@ -49,7 +70,8 @@ class IconBroken {
   static const IconData Category = IconData(0xe922, fontFamily: _fontFamily);
   static const IconData Chart = IconData(0xe923, fontFamily: _fontFamily);
   static const IconData Chat = IconData(0xe924, fontFamily: _fontFamily);
-  static const IconData Close_Square = IconData(0xe925, fontFamily: _fontFamily);
+  static const IconData Close_Square =
+      IconData(0xe925, fontFamily: _fontFamily);
   static const IconData Danger = IconData(0xe926, fontFamily: _fontFamily);
   static const IconData Delete = IconData(0xe927, fontFamily: _fontFamily);
   static const IconData Discount = IconData(0xe928, fontFamily: _fontFamily);
@@ -77,12 +99,16 @@ class IconBroken {
   static const IconData Message = IconData(0xe93e, fontFamily: _fontFamily);
   static const IconData More_Circle = IconData(0xe93f, fontFamily: _fontFamily);
   static const IconData More_Square = IconData(0xe940, fontFamily: _fontFamily);
-  static const IconData Notification = IconData(0xe941, fontFamily: _fontFamily);
-  static const IconData Paper_Download = IconData(0xe942, fontFamily: _fontFamily);
+  static const IconData Notification =
+      IconData(0xe941, fontFamily: _fontFamily);
+  static const IconData Paper_Download =
+      IconData(0xe942, fontFamily: _fontFamily);
   static const IconData Paper_Fail = IconData(0xe943, fontFamily: _fontFamily);
-  static const IconData Paper_Negative = IconData(0xe944, fontFamily: _fontFamily);
+  static const IconData Paper_Negative =
+      IconData(0xe944, fontFamily: _fontFamily);
   static const IconData Paper_Plus = IconData(0xe945, fontFamily: _fontFamily);
-  static const IconData Paper_Upload = IconData(0xe946, fontFamily: _fontFamily);
+  static const IconData Paper_Upload =
+      IconData(0xe946, fontFamily: _fontFamily);
   static const IconData Paper = IconData(0xe947, fontFamily: _fontFamily);
   static const IconData Password = IconData(0xe948, fontFamily: _fontFamily);
   static const IconData Play = IconData(0xe949, fontFamily: _fontFamily);

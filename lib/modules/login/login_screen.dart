@@ -1,9 +1,9 @@
+// ignore_for_file: unnecessary_import, use_key_in_widget_constructors, camel_case_types, prefer_const_constructors, unnecessary_string_escapes
+
 import 'package:conditional_builder/conditional_builder.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_cmoon_icons/flutter_cmoon_icons.dart';
-import 'package:flutter_projects/home/home_screen.dart';
 import 'package:flutter_projects/modules/Chats/chats_screen.dart';
 import 'package:flutter_projects/modules/login/cubit/cubit.dart';
 import 'package:flutter_projects/modules/login/cubit/state.dart';
@@ -35,7 +35,7 @@ class _Login_ScreenState extends State<Login_Screen> {
       child: BlocProvider(
         create: (BuildContext context) => LoginCubit(),
         child:
-        BlocConsumer<LoginCubit, LoginStates>(listener: (context, state) {
+            BlocConsumer<LoginCubit, LoginStates>(listener: (context, state) {
           if (state is LoginErrorState) {
             ShowToast(
               text: state.error,
@@ -122,8 +122,8 @@ class _Login_ScreenState extends State<Login_Screen> {
                       Text(
                         "ــــــــــــــــــــــ OR Sign With ــــــــــــــــــــ",
                         style: Theme.of(context).textTheme.bodyText1.copyWith(
-                          color: Colors.white,
-                        ),
+                              color: Colors.white,
+                            ),
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 20.0),
@@ -207,8 +207,8 @@ class _Login_ScreenState extends State<Login_Screen> {
                                   .textTheme
                                   .bodyText1
                                   .copyWith(
-                                color: Colors.white,
-                              ),
+                                    color: Colors.white,
+                                  ),
                             ),
                             defaultTextButton(
                               function: () {

@@ -6,20 +6,18 @@ import 'package:flutter_projects/modules/New_Posts/new_posts.dart';
 import 'package:flutter_projects/shared/componnetns/components.dart';
 import 'package:flutter_projects/shared/styles/icon_broken.dart';
 
-
 class HomeScreen extends StatelessWidget {
+  const HomeScreen({Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<SocialCubit,SocialStates>(
-      listener: (context,state)
-      {
-        if(state is SocialAddNewPostState)
-        {
+    return BlocConsumer<SocialCubit, SocialStates>(
+      listener: (context, state) {
+        if (state is SocialAddNewPostState) {
           navigateTo(context, NewPostsScreens());
         }
       },
-      builder: (context,state)
-      {
+      builder: (context, state) {
         var cubit = SocialCubit.get(context);
 
         return Scaffold(
@@ -27,28 +25,26 @@ class HomeScreen extends StatelessWidget {
             title: Text(cubit.titles[cubit.crruntIndex]),
             actions: [
               IconButton(
-                onPressed: (){},
-                icon: Icon(
+                onPressed: () {},
+                icon: const Icon(
                   IconBroken.Notification,
                 ),
               ),
               IconButton(
-                onPressed: (){},
-                icon: Icon(
+                onPressed: () {},
+                icon: const Icon(
                   IconBroken.Search,
                 ),
               ),
             ],
           ),
           body: cubit.screens[cubit.crruntIndex],
-          bottomNavigationBar:BottomNavigationBar(
+          bottomNavigationBar: BottomNavigationBar(
             currentIndex: cubit.crruntIndex,
-            onTap: (index)
-            {
+            onTap: (index) {
               cubit.changeBottomNav(index);
             },
-            items:
-            [
+            items: const [
               BottomNavigationBarItem(
                 icon: Icon(
                   IconBroken.Home,
@@ -81,10 +77,8 @@ class HomeScreen extends StatelessWidget {
               ),
             ],
           ),
-
         );
       },
-
     );
   }
 }
