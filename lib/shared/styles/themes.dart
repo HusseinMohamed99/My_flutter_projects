@@ -1,22 +1,22 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_projects/shared/styles/colors.dart';
 import 'package:hexcolor/hexcolor.dart';
 
-
-ThemeData darkTheme  =  ThemeData(
+ThemeData darkTheme = ThemeData(
   scaffoldBackgroundColor: HexColor('#04043A'),
   primarySwatch: defaultColor,
-  appBarTheme:  AppBarTheme(
+  appBarTheme: AppBarTheme(
     titleSpacing: 20.0,
-
     systemOverlayStyle: SystemUiOverlayStyle(
       statusBarColor: HexColor('#04043A'),
       statusBarIconBrightness: Brightness.light,
     ),
     backgroundColor: HexColor('#04043A'),
     elevation: 0.0,
-    titleTextStyle:  TextStyle(
+    titleTextStyle: TextStyle(
       color: Colors.white,
       fontSize: 20.0,
       fontWeight: FontWeight.bold,
@@ -34,10 +34,9 @@ ThemeData darkTheme  =  ThemeData(
   ),
   textTheme: TextTheme(
       bodyText1: TextStyle(
-        fontSize: 18.0,
-        color: Colors.white,
-      )
-  ),
+    fontSize: 18.0,
+    color: Colors.white,
+  )),
   iconTheme: IconThemeData(
     color: Colors.black54,
   ),
@@ -45,13 +44,11 @@ ThemeData darkTheme  =  ThemeData(
 );
 
 ThemeData lightTheme = ThemeData(
-  primarySwatch:defaultColor,
+  primarySwatch: defaultColor,
   androidOverscrollIndicator: AndroidOverscrollIndicator.glow,
-
   scaffoldBackgroundColor: Colors.white,
-  appBarTheme:  AppBarTheme(
+  appBarTheme: AppBarTheme(
     titleSpacing: 20.0,
-
     systemOverlayStyle: SystemUiOverlayStyle(
       statusBarColor: Colors.white,
       statusBarBrightness: Brightness.light,
@@ -59,7 +56,7 @@ ThemeData lightTheme = ThemeData(
     ),
     backgroundColor: Colors.white,
     elevation: 0.0,
-    titleTextStyle:  TextStyle(
+    titleTextStyle: TextStyle(
       color: Colors.black,
       fontSize: 20.0,
       fontWeight: FontWeight.bold,
@@ -67,7 +64,6 @@ ThemeData lightTheme = ThemeData(
     iconTheme: IconThemeData(
       color: Colors.black,
     ),
-
     actionsIconTheme: IconThemeData(
       color: Colors.black,
     ),
@@ -83,20 +79,8 @@ ThemeData lightTheme = ThemeData(
   ),
   textTheme: TextTheme(
       bodyText1: TextStyle(
-        fontSize: 18.0,
-        color: Colors.black,
-      )
-  ),
+    fontSize: 18.0,
+    color: Colors.black,
+  )),
   fontFamily: 'Jannah',
-
-) ;
-
-
-
-
-
-
-
-
-
-
+);
