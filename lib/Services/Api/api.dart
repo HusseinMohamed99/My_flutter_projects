@@ -1,8 +1,10 @@
+// ignore_for_file: avoid_print
+
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class Api {
-  Future<dynamic> get({ String url, String token}) async {
+  Future<dynamic> get({String url, String token}) async {
     Map<String, String> headers = {};
 
     if (token != null) {
@@ -21,10 +23,7 @@ class Api {
     }
   }
 
-  Future<dynamic> post(
-      { String url,
-       dynamic body,
-       String token}) async {
+  Future<dynamic> post({String url, dynamic body, String token}) async {
     Map<String, dynamic> headers = {};
     if (token != null) {
       headers.addAll({
@@ -44,10 +43,7 @@ class Api {
     }
   }
 
-  Future<dynamic> put(
-      { String url,
-       dynamic body,
-      String token}) async {
+  Future<dynamic> put({String url, dynamic body, String token}) async {
     Map<String, dynamic> headers = {};
     headers.addAll({'Content-Type': 'application/x-www-form-urlencoded'});
     if (token != null) {

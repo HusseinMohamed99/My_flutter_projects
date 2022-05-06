@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, non_constant_identifier_names, avoid_types_as_parameter_names
+
 import 'package:flutter/material.dart';
 
 Widget defaultButton({
@@ -129,15 +131,13 @@ void navigateAndFinish(context, Widget) => Navigator.pushAndRemoveUntil(
       return false;
     });
 
-
-
-Widget customTextField(
-{
+Widget customTextField({
   Function(String) onChanged,
   String hintText,
-  TextInputType  inputType,
+  TextInputType inputType,
   bool obscureText = false,
-}) => TextField(
+}) =>
+    TextField(
       obscureText: obscureText,
       onChanged: onChanged,
       keyboardType: inputType,

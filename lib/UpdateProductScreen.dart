@@ -1,3 +1,6 @@
+// ignore: file_names
+// ignore_for_file: use_key_in_widget_constructors, prefer_if_null_operators, prefer_const_constructors, file_names, duplicate_ignore, avoid_print
+
 import 'package:flutter/material.dart';
 import 'package:flutter_projects/Services/updateProduct.dart';
 import 'package:flutter_projects/model/product_Model.dart';
@@ -85,7 +88,7 @@ class _UpdateProductScreenState extends State<UpdateProductScreen> {
                   radius: 50,
                   width: 200,
                   text: 'Update',
-                  function: ()  async{
+                  function: () async {
                     isLoading = true;
                     setState(() {});
                     try {
@@ -109,7 +112,7 @@ class _UpdateProductScreenState extends State<UpdateProductScreen> {
 
   Future<void> updateProduct(ProductModel product) async {
     await UpdateProductService().updateProduct(
-      id: product.id,
+        id: product.id,
         title: productName == null ? product.title : productName,
         price: price == null ? product.price.toString() : price,
         desc: desc == null ? product.description : desc,

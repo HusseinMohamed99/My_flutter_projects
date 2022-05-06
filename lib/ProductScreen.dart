@@ -1,3 +1,5 @@
+// ignore_for_file: use_key_in_widget_constructors, must_be_immutable, missing_required_param, prefer_const_constructors, camel_case_types, file_names, non_constant_identifier_names, deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'package:flutter_projects/Services/Get_Products.dart';
 import 'package:flutter_projects/UpdateProductScreen.dart';
@@ -62,10 +64,9 @@ class ProductScreen extends StatelessWidget {
                     return Grid_Product(product: products[index]);
                   });
             }
-              return Center(
-                child: CircularProgressIndicator(),
-              );
-
+            return Center(
+              child: CircularProgressIndicator(),
+            );
           },
         ),
       ),
@@ -92,7 +93,6 @@ class ProductScreen extends StatelessWidget {
                 Icons.electrical_services,
                 color: Colors.red,
                 size: 40,
-
               ),
               title: Text(
                 'Electronics',
@@ -112,7 +112,6 @@ class ProductScreen extends StatelessWidget {
                 Icons.watch,
                 color: Colors.red,
                 size: 40,
-
               ),
               title: Text(
                 'Jewelery',
@@ -132,7 +131,6 @@ class ProductScreen extends StatelessWidget {
                 FontAwesomeIcons.tshirt,
                 color: Colors.red,
                 size: 40,
-
               ),
               title: Text(
                 'men\'s clothing',
@@ -148,11 +146,10 @@ class ProductScreen extends StatelessWidget {
           InkWell(
             onTap: () {},
             child: ListTile(
-              leading:Icon(
+              leading: Icon(
                 FontAwesomeIcons.bagShopping,
                 color: Colors.red,
                 size: 40,
-
               ),
               title: Text(
                 'women\'s clothing',
@@ -173,16 +170,15 @@ class MyDrawerHeader extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.teal,
         image: DecorationImage(
-            image: AssetImage(
-              'assets/images/clothes.png',
-            ),
-            fit: BoxFit.cover,
+          image: AssetImage(
+            'assets/images/clothes.png',
+          ),
+          fit: BoxFit.cover,
         ),
       ),
     );
   }
 }
-
 
 class Grid_Product extends StatelessWidget {
   ProductModel product;
@@ -190,10 +186,9 @@ class Grid_Product extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: ()
-      {
-        Navigator.pushNamed(context, UpdateProductScreen.id,arguments: product);
-
+      onTap: () {
+        Navigator.pushNamed(context, UpdateProductScreen.id,
+            arguments: product);
       },
       child: Stack(
         clipBehavior: Clip.none,
@@ -226,7 +221,7 @@ class Grid_Product extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                     product.title.substring(0,9),
+                      product.title.substring(0, 9),
                       maxLines: 2,
                       style: TextStyle(
                         fontSize: 15,
@@ -268,5 +263,3 @@ class Grid_Product extends StatelessWidget {
     );
   }
 }
-
-
