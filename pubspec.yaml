@@ -52,20 +52,12 @@ dependencies:
   animated_bottom_navigation_bar: ^0.3.2
   image_picker: ^0.8.5
   smooth_page_indicator: ^1.0.0+2
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  #    #firebase
+  firebase_core: ^1.16.0
+  firebase_auth: ^3.3.17
+  cloud_firestore: ^3.1.14
+  firebase_storage: ^10.2.15
+  firebase_messaging: ^11.3.0
 
 dev_dependencies:
   flutter_test:
