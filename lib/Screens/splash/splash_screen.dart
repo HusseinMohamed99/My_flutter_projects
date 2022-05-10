@@ -1,60 +1,25 @@
-// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors, avoid_unnecessary_containers, annotate_overrides
-
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_projects/shared/mode_cubit/cubit.dart';
 
-class SplashScreen extends StatefulWidget {
-  @override
-  State<SplashScreen> createState() => _SplashScreenState();
-}
-
-class _SplashScreenState extends State<SplashScreen>
-    with SingleTickerProviderStateMixin {
-  AnimationController animationController;
-  Animation fadeAnimation;
-
-  @override
-  void initState() {
-    super.initState();
-
-    animationController =
-        AnimationController(vsync: this, duration: Duration(seconds: 10));
-    fadeAnimation = Tween(begin: 0.2, end: 1.0).animate(animationController)
-      ..addListener(() {});
-    animationController.repeat(reverse: true);
-  }
-
-  void dispose() {
-    animationController.dispose();
-    super.dispose();
-  }
-
+class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF69A03A),
-      body: Container(
-        child: Column(
-          children: [
-            Spacer(),
-            FadeTransition(
-              opacity: fadeAnimation,
-              child: Text(
-                'Online Market',
-                style: TextStyle(
-                  fontFamily: 'Poppins',
-                  fontSize: 51,
-                  fontWeight: FontWeight.w700,
-                  color: Color(0xffffffff),
-                ),
-              ),
-            ),
-            Spacer(),
-            Image.asset(
-              'assets/images/splash.png',
-            ),
-          ],
-        ),
-      ),
+      body: Center(
+          child: ModeCubit.get(context).isDark
+              ? Image(
+                  image: AssetImage('assets/images/Dark Logo.png'),
+                  width: double.infinity,
+                  height: 300,
+                  fit: BoxFit.cover,
+                )
+              : Image(
+                  image: AssetImage('assets/images/Light Logo.png'),
+                  width: double.infinity,
+                  height: 300,
+                  fit: BoxFit.cover,
+                )),
     );
   }
 }

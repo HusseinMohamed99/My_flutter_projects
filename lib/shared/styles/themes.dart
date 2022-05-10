@@ -5,17 +5,17 @@ import 'package:flutter/services.dart';
 import 'package:flutter_projects/shared/styles/colors.dart';
 
 ThemeData darkTheme = ThemeData(
-  cardColor: Colors.black,
-  scaffoldBackgroundColor: Color(0xFF121212),
+  cardColor: Color(0xFF20123c),
+  scaffoldBackgroundColor: Color(0xFF20123c),
   primarySwatch: DColor,
   appBarTheme: AppBarTheme(
     titleSpacing: 20.0,
     systemOverlayStyle: SystemUiOverlayStyle(
-      statusBarColor: Color(0xFF121212),
+      statusBarColor: Color(0xFF241056),
       statusBarIconBrightness: Brightness.light,
       statusBarBrightness: Brightness.dark,
     ),
-    backgroundColor: Color(0xFF121212),
+    backgroundColor: Color(0xFF20123c),
     elevation: 0.0,
     titleTextStyle: TextStyle(
       color: Colors.white,
@@ -28,7 +28,7 @@ ThemeData darkTheme = ThemeData(
   ),
   bottomNavigationBarTheme: BottomNavigationBarThemeData(
     type: BottomNavigationBarType.fixed,
-    selectedItemColor: Colors.red,
+    selectedItemColor: Colors.deepOrangeAccent,
     unselectedItemColor: Colors.white,
     backgroundColor: Color(0xFF121212),
     elevation: 25.0,

@@ -1,8 +1,11 @@
 // ignore_for_file: use_key_in_widget_constructors, unused_local_variable, prefer_const_constructors_in_immutables
 
+import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_projects/Screens/login/login_screen.dart';
+import 'package:flutter_projects/Screens/splash/splash_screen.dart';
+import 'package:flutter_projects/shared/bloc_observer.dart';
 import 'package:flutter_projects/cubit/cubit.dart';
 import 'package:flutter_projects/layout/home_screen.dart';
 import 'package:flutter_projects/shared/componnetns/constants.dart';
@@ -14,7 +17,11 @@ import 'package:flutter_projects/shared/styles/themes.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  DioHelper.init();
+  BlocOverrides.runZoned(
+    () {},
+    blocObserver: MyBlocObserver(),
+  );
+  await DioHelper.init();
   await CacheHelper.init();
 
   bool isDark = CacheHelper.getBoolean(key: 'isDark');
@@ -72,7 +79,14 @@ class Myapp extends StatelessWidget {
                 ? ThemeMode.dark
                 : ThemeMode.light,
             debugShowCheckedModeBanner: false,
-            home: startWidget,
+            home: AnimatedSplashScreen(
+              splash: SplashScreen(),
+              backgroundColor:
+                  ModeCubit.get(context).backgroundColor.withOpacity(1),
+              nextScreen: startWidget,
+              animationDuration: Duration(milliseconds: 2000),
+              splashTransition: SplashTransition.scaleTransition,
+            ),
           );
         },
       ),
