@@ -24,7 +24,7 @@ class ChatDetailsScreen extends StatelessWidget {
       constraints: const BoxConstraints.expand(),
       decoration: const BoxDecoration(
         image: DecorationImage(
-          image: AssetImage("assets/images/99.png"),
+          image: AssetImage("assets/images/QW.png"),
           fit: BoxFit.cover,
         ),
       ),

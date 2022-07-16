@@ -29,13 +29,9 @@ class SocialCubit extends Cubit<SocialStates> {
   void getUserData() {
     emit(SocialLoadingState());
 
-    FirebaseFirestore.instance.collection('users').doc(uId).get().then((value) {
+    FirebaseFirestore.instance.collection('users').doc(uId).snapshots().listen((value) async{
       userModel = SocialUserModel.fromJson(value.data());
       emit(SocialGetUserSuccessState());
-    }).catchError((error) {
-      // ignore: avoid_print
-      print(error.toString());
-      emit(SocialGetUserErrorState(error.toString()));
     });
   }
 
@@ -44,7 +40,7 @@ class SocialCubit extends Cubit<SocialStates> {
 
   List<Widget> screens = [
     FeedsScreen(),
-    const ChatsScreen(),
+    ChatsScreen(),
     NewPostsScreens(),
     UsersScreen(),
     SettinsScreen(),
@@ -60,9 +56,7 @@ class SocialCubit extends Cubit<SocialStates> {
 
   //---------------------  Change Bottom Navigation Bar IN Home_Screen  --------------------------------//
   void changeBottomNav(int index) {
-    if (index == 0) {
-      getPosts();
-    }
+
     if (index == 1) {
       getAllUsers();
     }
@@ -307,22 +301,20 @@ class SocialCubit extends Cubit<SocialStates> {
 
   List<int> likes = [];
   void getPosts() {
-    FirebaseFirestore.instance.collection('posts').get().then((value) {
+    posts =[];
+    FirebaseFirestore.instance.collection('posts').snapshots().listen((value) async {
       value.docs.forEach((element) {
         element.reference.collection('comments').get().then((value) {
           postsId.add(element.id);
         }).catchError((error) {});
 
-        element.reference.collection('likes').get().then((value) {
+        element.reference.collection('likes').snapshots().listen((value) async {
           likes.add(value.docs.length);
           postsId.add(element.id);
-
           posts.add(PostModel.fromJson(element.data()));
-        }).catchError((error) {});
+          emit(SocialGetPostSuccessState());
+        });
       });
-      emit(SocialGetPostSuccessState());
-    }).catchError((error) {
-      emit(SocialGetPostErrorState(error.toString()));
     });
   }
 

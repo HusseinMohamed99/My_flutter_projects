@@ -1,5 +1,3 @@
-// ignore_for_file: must_be_immutable, prefer_is_empty, prefer_const_literals_to_create_immutables
-
 import 'package:conditional_builder/conditional_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -20,8 +18,7 @@ class FeedsScreen extends StatelessWidget {
       listener: (context, state) {},
       builder: (context, state) {
         return ConditionalBuilder(
-          condition: SocialCubit.get(context).posts.length >= 0 &&
-              SocialCubit.get(context).userModel != null,
+          condition: SocialCubit.get(context).posts.length > 0 ,
           builder: (context) => SingleChildScrollView(
             physics: const BouncingScrollPhysics(),
             child: Column(

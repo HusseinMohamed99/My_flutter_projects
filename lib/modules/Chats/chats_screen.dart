@@ -15,29 +15,20 @@ class ChatsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var userModel = SocialCubit.get(context).userModel;
-    return Container(
-      constraints: const BoxConstraints.expand(),
-      decoration: const BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage("assets/images/4.png"),
-          fit: BoxFit.cover,
-        ),
-      ),
-      child: BlocConsumer<SocialCubit, SocialStates>(
-        listener: (context, state) {},
-        builder: (context, state) {
-          return ConditionalBuilder(
-            condition: SocialCubit.get(context).users.isNotEmpty,
-            builder: (context) => ListView.separated(
-              physics: const BouncingScrollPhysics(),
-              itemBuilder: (context, index) =>
-                  buildChatItem(SocialCubit.get(context).users[index], context),
-              separatorBuilder: (context, index) => myDivider(),
-              itemCount: SocialCubit.get(context).users.length,
-            ),
-          );
-        },
-      ),
+    return BlocConsumer<SocialCubit, SocialStates>(
+      listener: (context, state) {},
+      builder: (context, state) {
+        return ConditionalBuilder(
+          condition: SocialCubit.get(context).users.isNotEmpty,
+          builder: (context) => ListView.separated(
+            physics: const BouncingScrollPhysics(),
+            itemBuilder: (context, index) =>
+                buildChatItem(SocialCubit.get(context).users[index], context),
+            separatorBuilder: (context, index) => myDivider(),
+            itemCount: SocialCubit.get(context).users.length,
+          ),
+        );
+      },
     );
   }
 
@@ -66,7 +57,7 @@ class ChatsScreen extends StatelessWidget {
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
                     height: 1.4,
-                    color: Colors.white),
+                    color: Colors.black),
               )
             ],
           ),

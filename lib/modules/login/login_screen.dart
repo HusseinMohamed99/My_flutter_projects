@@ -24,40 +24,33 @@ class _Login_ScreenState extends State<Login_Screen> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      constraints: const BoxConstraints.expand(),
-      decoration: const BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage("assets/images/99.png"),
-          fit: BoxFit.cover,
-        ),
-      ),
-      child: BlocProvider(
-        create: (BuildContext context) => LoginCubit(),
-        child:
-            BlocConsumer<LoginCubit, LoginStates>(listener: (context, state) {
-          if (state is LoginErrorState) {
-            ShowToast(
-              text: state.error,
-              state: ToastStates.ERROR,
-            );
-          }
-          if (state is LoginSuccessState) {
-            CacheHelper.saveData(
-              key: 'uId',
-              value: state.uId,
-            ).then((value) {
-              navigateAndFinish(context, ChatsScreen());
-            });
-          }
-        }, builder: (context, state) {
-          return SafeArea(
-            child: Scaffold(
-              backgroundColor: Colors.transparent,
-              body: Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Form(
-                  key: formkey,
+    return BlocProvider(
+      create: (BuildContext context) => LoginCubit(),
+      child:
+          BlocConsumer<LoginCubit, LoginStates>(listener: (context, state) {
+        if (state is LoginErrorState) {
+          ShowToast(
+            text: state.error,
+            state: ToastStates.ERROR,
+          );
+        }
+        if (state is LoginSuccessState) {
+          CacheHelper.saveData(
+            key: 'uId',
+            value: state.uId,
+          ).then((value) {
+            navigateAndFinish(context, ChatsScreen());
+          });
+        }
+      }, builder: (context, state) {
+        return SafeArea(
+          child: Scaffold(
+            backgroundColor: Colors.transparent,
+            body: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Form(
+                key: formkey,
+                child: SingleChildScrollView(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -224,9 +217,9 @@ class _Login_ScreenState extends State<Login_Screen> {
                 ),
               ),
             ),
-          );
-        }),
-      ),
+          ),
+        );
+      }),
     );
   }
 

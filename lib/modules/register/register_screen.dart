@@ -9,38 +9,6 @@ import 'package:flutter_projects/modules/register/cubit/state.dart';
 import 'package:flutter_projects/shared/componnetns/components.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-List<DropdownMenuItem<String>> get dropdownItems {
-  List<DropdownMenuItem<String>> menuItems = [
-    DropdownMenuItem(child: Text("Cairo"), value: "Cairo"),
-    DropdownMenuItem(child: Text("Alexandria"), value: "Alexandria"),
-    DropdownMenuItem(child: Text("Giza"), value: "Giza"),
-    DropdownMenuItem(
-        child: Text("Shubra El Kheima"), value: "Shubra El Kheima"),
-    DropdownMenuItem(child: Text("Port Said"), value: "Port Said"),
-    DropdownMenuItem(child: Text("Suez"), value: "Suez"),
-    DropdownMenuItem(
-        child: Text("El Mahalla El Kubra"), value: "El Mahalla El Kubra"),
-    DropdownMenuItem(child: Text("Luxor"), value: "Luxor"),
-    DropdownMenuItem(child: Text("Mansoura"), value: "Mansoura"),
-    DropdownMenuItem(child: Text("Tanta"), value: "Tanta"),
-    DropdownMenuItem(child: Text("Asyut"), value: "Asyut"),
-    DropdownMenuItem(child: Text("Ismailia"), value: "Ismailia"),
-    DropdownMenuItem(child: Text("Faiyum"), value: "Faiyum"),
-    DropdownMenuItem(child: Text("Zagazig"), value: "Zagazig"),
-    DropdownMenuItem(child: Text("Damietta"), value: "Damietta"),
-    DropdownMenuItem(child: Text("Aswan"), value: "Aswan"),
-    DropdownMenuItem(child: Text("Minya"), value: "Minya"),
-    DropdownMenuItem(child: Text("Damanhur"), value: "Damanhur"),
-    DropdownMenuItem(child: Text("Beni Suef"), value: "Beni Suef"),
-    DropdownMenuItem(child: Text("Hurghada"), value: "Hurghada"),
-    DropdownMenuItem(child: Text("Qena"), value: "Qena"),
-    DropdownMenuItem(child: Text("Sohag"), value: "Sohag"),
-    DropdownMenuItem(child: Text("Shibin El Kom"), value: "Shibin El Kom"),
-    DropdownMenuItem(child: Text("Banha"), value: "Banha"),
-    DropdownMenuItem(child: Text("Arish"), value: "EnglaArishnd"),
-  ];
-  return menuItems;
-}
 
 class Register_Screen extends StatefulWidget {
   @override
@@ -156,93 +124,6 @@ class _Register_ScreenState extends State<Register_Screen> {
                         SizedBox(
                           height: 20.0,
                         ),
-                        DropdownButtonFormField(
-                          style: TextStyle(
-                            color: Colors.white,
-                          ),
-                          decoration: InputDecoration(
-                            prefixIcon: Text(''), //fake ,
-                            filled: true,
-                            isCollapsed: false,
-                            fillColor: Colors.blue.withOpacity(0.2),
-                            hoverColor: Colors.red.withOpacity(0.2),
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.only(
-                                bottomRight: Radius.circular(20.0),
-                                bottomLeft: Radius.circular(20.0),
-                                topRight: Radius.circular(20.0),
-                                topLeft: Radius.circular(20.0),
-                              ),
-                              borderSide: BorderSide(
-                                color: Colors.green,
-                              ),
-                            ),
-                            focusedErrorBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.only(
-                                bottomRight: Radius.circular(20.0),
-                                bottomLeft: Radius.circular(20.0),
-                                topRight: Radius.circular(20.0),
-                                topLeft: Radius.circular(20.0),
-                              ),
-                              borderSide: BorderSide(
-                                color: Colors.red,
-                              ),
-                            ),
-                            labelText: 'City',
-                            labelStyle: TextStyle(
-                              fontStyle: FontStyle.italic,
-                              color: Colors.deepOrangeAccent,
-                            ),
-                            hintText: 'City',
-                            hintStyle: TextStyle(
-                              color: Colors.white,
-                            ),
-                            focusColor: Colors.white,
-                            disabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.only(
-                                bottomRight: Radius.circular(20.0),
-                                bottomLeft: Radius.circular(20.0),
-                                topRight: Radius.circular(20.0),
-                                topLeft: Radius.circular(20.0),
-                              ),
-                              borderSide: BorderSide(
-                                color: Colors.green,
-                              ),
-                            ),
-                            enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.only(
-                                bottomRight: Radius.circular(20.0),
-                                bottomLeft: Radius.circular(20.0),
-                                topRight: Radius.circular(20.0),
-                                topLeft: Radius.circular(20.0),
-                              ),
-                              borderSide: BorderSide(
-                                color: Colors.black,
-                              ),
-                            ),
-                            errorBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.only(
-                                bottomRight: Radius.circular(20.0),
-                                bottomLeft: Radius.circular(20.0),
-                                topRight: Radius.circular(20.0),
-                                topLeft: Radius.circular(20.0),
-                              ),
-                              borderSide: BorderSide(
-                                color: Colors.red,
-                              ),
-                            ),
-                          ),
-                          validator: (value) =>
-                              value == null ? "Select a city" : null,
-                          dropdownColor: Colors.white.withOpacity(0.5),
-                          value: selectedValue,
-                          onChanged: (String newValue) {
-                            setState(() {
-                              selectedValue = newValue;
-                            });
-                          },
-                          items: dropdownItems,
-                        ),
                         SizedBox(
                           height: 20.0,
                         ),
@@ -280,11 +161,8 @@ class _Register_ScreenState extends State<Register_Screen> {
                                   height: 60.0,
                                   decoration: BoxDecoration(
                                     color: Colors.white.withOpacity(0.1),
-                                    borderRadius: BorderRadius.only(
-                                      topLeft: Radius.circular(20.0),
-                                      topRight: Radius.circular(20.0),
-                                      bottomLeft: Radius.circular(20.0),
-                                      bottomRight: Radius.circular(20.0),
+                                    borderRadius: BorderRadius.all(
+                                     Radius.circular(20.0),
                                     ),
                                   ),
                                   child: InkWell(
@@ -303,11 +181,8 @@ class _Register_ScreenState extends State<Register_Screen> {
                                   height: 60.0,
                                   decoration: BoxDecoration(
                                     color: Colors.white.withOpacity(0.1),
-                                    borderRadius: BorderRadius.only(
-                                      topLeft: Radius.circular(20.0),
-                                      topRight: Radius.circular(20.0),
-                                      bottomLeft: Radius.circular(20.0),
-                                      bottomRight: Radius.circular(20.0),
+                                    borderRadius:  BorderRadius.all(
+                                      Radius.circular(20.0),
                                     ),
                                   ),
                                   child: InkWell(
@@ -325,11 +200,8 @@ class _Register_ScreenState extends State<Register_Screen> {
                                   height: 60.0,
                                   decoration: BoxDecoration(
                                     color: Colors.white.withOpacity(0.1),
-                                    borderRadius: BorderRadius.only(
-                                      topLeft: Radius.circular(20.0),
-                                      topRight: Radius.circular(20.0),
-                                      bottomLeft: Radius.circular(20.0),
-                                      bottomRight: Radius.circular(20.0),
+                                    borderRadius:  BorderRadius.all(
+                                      Radius.circular(20.0),
                                     ),
                                   ),
                                   child: InkWell(
