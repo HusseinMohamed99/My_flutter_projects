@@ -23,7 +23,7 @@ Widget defaultTextFormFeild({
   Function suffixPressed,
 }) =>
     TextFormField(
-      style: TextStyle(color: Colors.white),
+      style: TextStyle(color: Colors.black),
       maxLines: 1,
       // maxLength: 25,
       minLines: 1,
@@ -39,14 +39,14 @@ Widget defaultTextFormFeild({
       decoration: InputDecoration(
         prefixIcon: Icon(
           prefix,
-          color: Colors.white,
+          color: Colors.black,
         ),
         suffixIcon: suffix != null
             ? IconButton(
                 onPressed: suffixPressed,
                 icon: Icon(
                   suffix,
-                  color: Colors.white,
+                  color: Colors.black,
                 ),
               )
             : null,
@@ -55,22 +55,16 @@ Widget defaultTextFormFeild({
         fillColor: Colors.blue.withOpacity(0.2),
         hoverColor: Colors.red.withOpacity(0.2),
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.only(
-            bottomRight: Radius.circular(20.0),
-            bottomLeft: Radius.circular(20.0),
-            topRight: Radius.circular(20.0),
-            topLeft: Radius.circular(20.0),
+          borderRadius: BorderRadius.all(
+            Radius.circular(20.0),
           ),
           borderSide: BorderSide(
             color: Colors.green,
           ),
         ),
         focusedErrorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.only(
-            bottomRight: Radius.circular(20.0),
-            bottomLeft: Radius.circular(20.0),
-            topRight: Radius.circular(20.0),
-            topLeft: Radius.circular(20.0),
+          borderRadius: BorderRadius.all(
+            Radius.circular(20.0),
           ),
           borderSide: BorderSide(
             color: Colors.red,
@@ -85,33 +79,24 @@ Widget defaultTextFormFeild({
         hintStyle: TextStyle(color: Colors.white),
         focusColor: Colors.white,
         disabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.only(
-            bottomRight: Radius.circular(20.0),
-            bottomLeft: Radius.circular(20.0),
-            topRight: Radius.circular(20.0),
-            topLeft: Radius.circular(20.0),
+          borderRadius: BorderRadius.all(
+            Radius.circular(20.0),
           ),
           borderSide: BorderSide(
             color: Colors.green,
           ),
         ),
         enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.only(
-            bottomRight: Radius.circular(20.0),
-            bottomLeft: Radius.circular(20.0),
-            topRight: Radius.circular(20.0),
-            topLeft: Radius.circular(20.0),
+          borderRadius: BorderRadius.all(
+            Radius.circular(20.0),
           ),
           borderSide: BorderSide(
             color: Colors.black,
           ),
         ),
         errorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.only(
-            bottomRight: Radius.circular(20.0),
-            bottomLeft: Radius.circular(20.0),
-            topRight: Radius.circular(20.0),
-            topLeft: Radius.circular(20.0),
+          borderRadius: BorderRadius.all(
+            Radius.circular(20.0),
           ),
           borderSide: BorderSide(
             color: Colors.red,

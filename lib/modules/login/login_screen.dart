@@ -45,174 +45,165 @@ class _Login_ScreenState extends State<Login_Screen> {
       }, builder: (context, state) {
         return SafeArea(
           child: Scaffold(
-            backgroundColor: Colors.transparent,
             body: Padding(
               padding: const EdgeInsets.all(20.0),
               child: Form(
                 key: formkey,
-                child: SingleChildScrollView(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      defaultTextFormFeild(
-                        controller: emailController,
-                        keyboardType: TextInputType.emailAddress,
-                        validate: (String value) {
-                          if (value.isEmpty) {
-                            return 'please enter your email';
-                          }
-                        },
-                        label: 'Email_Adderss',
-                        hint: 'Email',
-                      ),
-                      SizedBox(
-                        height: 20.0,
-                      ),
-                      defaultTextFormFeild(
-                        controller: passwordController,
-                        keyboardType: TextInputType.visiblePassword,
-                        suffix: LoginCubit.get(context).suffix,
-                        isPassword: LoginCubit.get(context).isPassword,
-                        suffixPressed: () {
-                          LoginCubit.get(context).ChangePassword();
-                        },
-                        onFieldSubmitted: (value) {
-                          if (formkey.currentState.validate()) {
-                            checkLogin(context);
-                          }
-                        },
-                        validate: (String value) {
-                          if (value.isEmpty) {
-                            return 'please enter your password';
-                          }
-                        },
-                        label: 'Password',
-                        hint: 'Password',
-                      ),
-                      SizedBox(
-                        height: 20.0,
-                      ),
-                      Center(
-                        child: ConditionalBuilder(
-                          condition: state is! LoginLoadingState,
-                          builder: (context) => defaultMaterialButton(
-                            function: () {
-                              if (formkey.currentState.validate()) {
-                                checkLogin(context);
-                              }
-                            },
-                            text: 'Login',
-                            width: 250.0,
-                            radius: 20.0,
-                          ),
-                          fallback: (context) =>
-                              Center(child: CircularProgressIndicator()),
+                child: Center(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        defaultTextFormFeild(
+                          controller: emailController,
+                          keyboardType: TextInputType.emailAddress,
+                          validate: (String value) {
+                            if (value.isEmpty) {
+                              return 'please enter your email';
+                            }
+                          },
+                          label: 'Email_Adderss',
+                          hint: 'Email',
                         ),
-                      ),
-                      SizedBox(
-                        height: 20.0,
-                      ),
-                      Text(
-                        "ــــــــــــــــــــــ OR Sign With ــــــــــــــــــــ",
-                        style: Theme.of(context).textTheme.bodyText1.copyWith(
-                              color: Colors.white,
-                            ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 20.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Expanded(
-                              child: Container(
-                                height: 60.0,
-                                decoration: BoxDecoration(
-                                  color: Colors.white.withOpacity(0.1),
-                                  borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(20.0),
-                                    topRight: Radius.circular(20.0),
-                                    bottomLeft: Radius.circular(20.0),
-                                    bottomRight: Radius.circular(20.0),
-                                  ),
-                                ),
-                                child: InkWell(
-                                  child: SvgPicture.asset(
-                                    'assets/icon/google.svg',
-                                  ),
-                                  onTap: () {},
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              width: 20.0,
-                            ),
-                            Expanded(
-                              child: Container(
-                                height: 60.0,
-                                decoration: BoxDecoration(
-                                  color: Colors.white.withOpacity(0.1),
-                                  borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(20.0),
-                                    topRight: Radius.circular(20.0),
-                                    bottomLeft: Radius.circular(20.0),
-                                    bottomRight: Radius.circular(20.0),
-                                  ),
-                                ),
-                                child: InkWell(
-                                  child: SvgPicture.asset(
-                                      'assets/icon/facebook.svg'),
-                                  onTap: () {},
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              width: 20.0,
-                            ),
-                            Expanded(
-                              child: Container(
-                                height: 60.0,
-                                decoration: BoxDecoration(
-                                  color: Colors.white.withOpacity(0.1),
-                                  borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(20.0),
-                                    topRight: Radius.circular(20.0),
-                                    bottomLeft: Radius.circular(20.0),
-                                    bottomRight: Radius.circular(20.0),
-                                  ),
-                                ),
-                                child: InkWell(
-                                  child: SvgPicture.asset(
-                                      'assets/icon/twitter.svg'),
-                                  onTap: () {},
-                                ),
-                              ),
-                            ),
-                          ],
+                        SizedBox(
+                          height: 20.0,
                         ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          children: [
-                            Text(
-                              "Don\'t have an account?",
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyText1
-                                  .copyWith(
-                                    color: Colors.white,
-                                  ),
-                            ),
-                            defaultTextButton(
+                        defaultTextFormFeild(
+                          controller: passwordController,
+                          keyboardType: TextInputType.visiblePassword,
+                          suffix: LoginCubit.get(context).suffix,
+                          isPassword: LoginCubit.get(context).isPassword,
+                          suffixPressed: () {
+                            LoginCubit.get(context).ChangePassword();
+                          },
+                          onFieldSubmitted: (value) {
+                            if (formkey.currentState.validate()) {
+                              checkLogin(context);
+                            }
+                          },
+                          validate: (String value) {
+                            if (value.isEmpty) {
+                              return 'please enter your password';
+                            }
+                          },
+                          label: 'Password',
+                          hint: 'Password',
+                        ),
+                        SizedBox(
+                          height: 20.0,
+                        ),
+                        Center(
+                          child: ConditionalBuilder(
+                            condition: state is! LoginLoadingState,
+                            builder: (context) => defaultMaterialButton(
                               function: () {
-                                navigateTo(context, Register_Screen());
+                                if (formkey.currentState.validate()) {
+                                  checkLogin(context);
+                                }
                               },
-                              text: 'Register Now !',
+                              text: 'Login',
+                              width: 250.0,
+                              radius: 20.0,
                             ),
-                          ],
+                            fallback: (context) =>
+                                Center(child: CircularProgressIndicator()),
+                          ),
                         ),
-                      ),
-                    ],
+                        SizedBox(
+                          height: 20.0,
+                        ),
+                        Text(
+                          "ــــــــــــــــــــــ OR Sign With ــــــــــــــــــــ",
+                          style: Theme.of(context).textTheme.bodyText1.copyWith(
+                                color: Colors.black,
+                              ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 20.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Expanded(
+                                child: Container(
+                                  height: 60.0,
+                                  decoration: BoxDecoration(
+                                    color: Colors.black.withOpacity(0.1),
+                                    borderRadius: BorderRadius.all(
+                                       Radius.circular(20.0),
+                                    ),
+                                  ),
+                                  child: InkWell(
+                                    child: SvgPicture.asset(
+                                      'assets/icon/google.svg',
+                                    ),
+                                    onTap: () {},
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                width: 20.0,
+                              ),
+                              Expanded(
+                                child: Container(
+                                  height: 60.0,
+                                  decoration: BoxDecoration(
+                                    color: Colors.black.withOpacity(0.1),
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(20.0),
+                                    ),
+                                  ),
+                                  child: InkWell(
+                                    child: SvgPicture.asset(
+                                        'assets/icon/facebook.svg'),
+                                    onTap: () {},
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                width: 20.0,
+                              ),
+                              Expanded(
+                                child: Container(
+                                  height: 60.0,
+                                  decoration: BoxDecoration(
+                                    color: Colors.black.withOpacity(0.1),
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(20.0),
+                                    ),
+                                  ),
+                                  child: InkWell(
+                                    child: SvgPicture.asset(
+                                        'assets/icon/twitter.svg'),
+                                    onTap: () {},
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Row(
+                            children: [
+                              Text(
+                                "Don\'t have an account?",
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyText1
+                                    .copyWith(
+                                      color: Colors.black,
+                                    ),
+                              ),
+                              defaultTextButton(
+                                function: () {
+                                  navigateTo(context, Register_Screen());
+                                },
+                                text: 'Register Now !',
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),

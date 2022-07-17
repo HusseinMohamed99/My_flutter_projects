@@ -29,7 +29,6 @@ class EditProfileScreens extends StatelessWidget {
         phoneController.text = userModel.phone;
 
         return Scaffold(
-          backgroundColor: Colors.transparent,
           appBar: defaultAppBar(
             context: context,
             title: 'Edit profile',

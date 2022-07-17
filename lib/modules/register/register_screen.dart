@@ -32,29 +32,21 @@ class _Register_ScreenState extends State<Register_Screen> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      constraints: const BoxConstraints.expand(),
-      decoration: const BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage("assets/images/99.png"),
-          fit: BoxFit.cover,
-        ),
-      ),
-      child: BlocProvider(
-        create: (context) => RegisterCubit(),
-        child: BlocConsumer<RegisterCubit, RegisterStates>(
-            listener: (context, state) {
-          if (state is CreateUserSuccessState) {
-            navigateAndFinish(context, ChatsScreen());
-          }
-        }, builder: (context, state) {
-          return SafeArea(
-            child: Scaffold(
-              backgroundColor: Colors.transparent,
-              body: Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Form(
-                  key: formkey,
+    return BlocProvider(
+      create: (context) => RegisterCubit(),
+      child: BlocConsumer<RegisterCubit, RegisterStates>(
+          listener: (context, state) {
+        if (state is CreateUserSuccessState) {
+          navigateAndFinish(context, ChatsScreen());
+        }
+      }, builder: (context, state) {
+        return SafeArea(
+          child: Scaffold(
+            body: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Form(
+                key: formkey,
+                child: Center(
                   child: SingleChildScrollView(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -148,7 +140,7 @@ class _Register_ScreenState extends State<Register_Screen> {
                         Text(
                           "ــــــــــــــــــــــ OR Sign With ــــــــــــــــــــ",
                           style: Theme.of(context).textTheme.bodyText1.copyWith(
-                                color: Colors.white,
+                                color: Colors.black,
                               ),
                         ),
                         Padding(
@@ -220,9 +212,9 @@ class _Register_ScreenState extends State<Register_Screen> {
                 ),
               ),
             ),
-          );
-        }),
-      ),
+          ),
+        );
+      }),
     );
   }
 

@@ -164,6 +164,7 @@ class SettinsScreen extends StatelessWidget {
                 ],
               ),
             ],
+
           ),
         );
       },
