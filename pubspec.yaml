@@ -95,7 +95,7 @@ flutter:
     - assets/images/
     - assets/icon/
 
-  fonts:
+ fonts:
     - family: Jannah
       fonts:
         - asset: assets/fonts/Janna_Bold.ttf
